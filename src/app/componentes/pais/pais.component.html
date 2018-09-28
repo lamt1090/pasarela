@@ -1,0 +1,20 @@
+<div class="row clearfix" style="padding-top: 60px">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Registrar País</h2>
+            </div>
+            <div class="body">
+                <form id="guardarpais" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" [(ngModel)]="data" class="form-control" name="npais" placeholder="Ingrese el nombre del país" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary waves-effect" type="submit" (click)="buscar()">GUARDAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Advanced Validation -->

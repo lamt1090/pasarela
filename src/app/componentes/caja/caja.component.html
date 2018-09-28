@@ -1,0 +1,32 @@
+<div class="row clearfix" style="padding-top: 60px">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Registrar Caja</h2>
+            </div>
+            <div class="body">
+                <form id="guardarcaja" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" [(ngModel)]="data_nombre" name="ncaja" required placeholder="Ingrese nombre de la caja">
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" [(ngModel)]="data_selsucursal">
+                                <option value="">-- Elija la sucursal --</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary waves-effect" type="submit" (click)="buscar()">GUARDAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Advanced Validation -->

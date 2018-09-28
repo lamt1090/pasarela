@@ -1,0 +1,92 @@
+<!-- Menu -->
+<div class="menu">
+    <ul class="list">
+        <li class="active">
+            <a href="index.html">
+                <!--<i class="material-icons">Inicio</i>-->
+                <span>Inicio</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">assignment</i>
+                <span>Bancaria</span>
+            </a>
+            <ul class="ml-menu">
+                <li routerLinkActive="active">
+                    <a [routerLink]="[ 'banco' ]">Banco</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="[ 'tipocuenta' ]">Tipo Cuenta</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">swap_calls</i>
+                <span>complemento</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a [routerLink]="[ 'categoria' ]">Categoria</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'subcategoria' ]">Subcategoria</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'iva' ]">Iva</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'moneda' ]">Moneda</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'regimen' ]">Regimen</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'requisitos' ]">Requisitos</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'estadorequisito' ]">Estados requisitos</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'deduccion' ]">Deduciones</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'validarrequisitos' ]">Validar requisitos</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">layers</i>
+                <span>Información del Comercio</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a [routerLink]="[ 'comercio' ]">Crear comercio</a>
+                </li>
+                 <li>
+                    <a [routerLink]="[ 'rol' ]">Crear rol</a>
+                </li>
+            </ul>
+        </li> 
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">layers</i>
+                <span>Ubicación</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a [routerLink]="[ 'pais' ]">Pais</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'departamento' ]">Departamento</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'ciudad' ]">Ciudad</a>
+                </li>
+            </ul>
+        </li>       
+    </ul>
+</div>
+<!-- #Menu -->
