@@ -11,7 +11,7 @@
                             <input type="text" class="form-control" #nombre="ngModel" [(ngModel)]="regimen.nombre" name="nregimen" placeholder="Ingrese el nombre del regimen" required>
                         </div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formregimen.valid">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formregimen.form.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

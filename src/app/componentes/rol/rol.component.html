@@ -11,7 +11,7 @@
                             <input type="text" class="form-control" name="nrol" #nombre="ngModel" [(ngModel)]="rol.nombre" placeholder="Ingrese el nombre del rol"  required>
                         </div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formrol.valid">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formrol.form.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

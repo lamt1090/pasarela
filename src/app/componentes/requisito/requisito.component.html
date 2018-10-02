@@ -11,7 +11,7 @@
                             <input type="text" class="form-control" #nombre="ngModel" [(ngModel)]="requisito.nombre" name="nrequisito" placeholder="Ingrese el nombre del requisito" [(ngModel)]="dataname" required>
                         </div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formrequisito.valid">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formrequisito.form.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

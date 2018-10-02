@@ -11,7 +11,7 @@
                             <input type="text" #nombre="ngModel" [(ngModel)]="categoria.nombre" class="form-control" name="ncategoria" placeholder="Ingrese nombre de la categoria" required>
                         </div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formcategoria.valid">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formcategoria.form.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

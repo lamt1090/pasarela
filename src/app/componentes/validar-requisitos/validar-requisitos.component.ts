@@ -10,9 +10,13 @@ import { ValidarRequisitosModule } from '../../modelos/validar-requisitos/valida
 export class ValidarRequisitosComponent implements OnInit {
 
   public validarrequisito: ValidarRequisitosModule;
+  public arrayvalidar: Array<ValidarRequisitosModule>;
 
   constructor() { 
     this.validarrequisito = new ValidarRequisitosModule("", "", "", "", "");
+    this.arrayvalidar = [
+        new ValidarRequisitosModule("", "", "", "", ""),
+    ];
   }
 
   ngOnInit() {
@@ -20,6 +24,8 @@ export class ValidarRequisitosComponent implements OnInit {
 
   onsubmit(){
     console.log(this.validarrequisito);
+    //this.arrayvalidar.push(this.validarrequisito);
+    this.validarrequisito= new ValidarRequisitosModule("", "", "", "", "");
   }
 
 }

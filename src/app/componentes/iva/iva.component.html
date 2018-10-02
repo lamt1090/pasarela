@@ -11,7 +11,7 @@
                             <input type="number" #valor="ngModel" [(ngModel)]="iva.valor" placeholder="Ingrese el valor del IVA" class="form-control" name="viva"  required>
                         </div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formiva.valid">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formiva.form.valid">GUARDAR</button>
                 </form>
             </div>
         </div>
