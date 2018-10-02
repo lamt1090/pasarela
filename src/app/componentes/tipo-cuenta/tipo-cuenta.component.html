@@ -1,14 +1,4 @@
-<!--<div class="container">
-    <h1>Ingresar Nuevo Tipo de Cuenta</h1>
-    <form class="formbanco">
-      <div class="form-group">
-        <label type="text" >Nombre</label>
-        <input type="text" class="form-control" id="nametipocuenta" placeholder="nombre del tipo de cuenta" required>
-      </div>
-      <button type="submit" class="btn-success">Guardar</button>
- 
-    </form>
-</div>-->
+
 
 <div class="row clearfix" style="padding-top: 60px">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -17,15 +7,14 @@
                 <h2>Registrar Tipo de Cuenta</h2>
             </div>
             <div class="body">
-                <form id="guardartpcuenta" method="POST">
+                <form #formtipocuenta=ngForm (ngSubmit)="onsubmit()">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="ntpcuenta" maxlength="10" minlength="3" required>
-                            <label class="form-label">Digite el tipo cuenta</label>
+                            <input type="text" #nombre="ngModel" [(ngModel)]="tipocuenta.nombre" placeholder="Digite el tipo cuenta" class="form-control" name="ntpcuenta" maxlength="10" minlength="3" required>
                         </div>
                         <div class="help-info">Ahorros - Corriente</div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formtipocuenta.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

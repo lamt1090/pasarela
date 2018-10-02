@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class RolModule { }
+export class RolModule {
+  constructor(
+    public nombre: String
+  ){}
+ }

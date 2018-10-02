@@ -2,34 +2,34 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="body"> 
-                <form id="guardarcomercio" method="POST">
+                <form #formcomercio=ngForm (ngSubmit)="onsubmit()">
                     <!--Star Representante legal-->
                     <div class="header">
                         <h2>Registrar Representante Legal</h2>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="creplegal" placeholder="Ingrese cédula del Representante Legal" required>
+                            <input type="number" class="form-control" #creplegal="ngModel" [(ngModel)]="comercio.cedularl" name="creplegal" placeholder="Ingrese cédula del Representante Legal" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nreplegal" placeholder="Ingrese el nombre del Representante Legal" required>
+                            <input type="text" class="form-control" #nrl="ngModel" [(ngModel)]="comercio.nombrerpl" required placeholder="Ingrese el nombre del Representante Legal" >
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="email" class="form-control" name="ereplegal" placeholder="Ingrese el email del Representate legal" >
+                            <input type="email" class="form-control" #ereplegal="ngModel" [(ngModel)]="comercio.emailrl" placeholder="Ingrese el email del Representate legal" >
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="cereplegal" placeholder="Ingrese el celular del Representante Legal">
+                            <input type="text" class="form-control" #cereplegal="ngModel" [(ngModel)]="comercio.celularrl" placeholder="Ingrese el celular del Representante Legal">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="telreplegal" placeholder="Ingrese el teléfono del Representante Legal">
+                            <input type="text" class="form-control" #telreplegal="ngModel" [(ngModel)]="comercio.telefonorl" placeholder="Ingrese el teléfono del Representante Legal">
                         </div>
                     </div>
                     <!--END registrar representante legal-->
@@ -39,17 +39,17 @@
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namecomercio" required placeholder="Ingrese nombre del comercio">
+                            <input type="text" class="form-control" #namecomercio="ngModel" [(ngModel)]="comercio.nombrecomercio" required placeholder="Ingrese nombre del comercio">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nit" required placeholder="Ingrese el nit">
+                            <input type="text" class="form-control" #nit="ngModel" [(ngModel)]="comercio.nit" required placeholder="Ingrese el nit">
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectcateg">
+                            <select class="form-control show-tick" #selectcateg="ngModel" [(ngModel)]="comercio.catc" >
                                 <option value="">-- Elija la categoria --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectsubcateg">
+                            <select class="form-control show-tick" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc" >
                                 <option value="">-- Elija la subcategoria --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -73,12 +73,12 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namereplegal" required placeholder="Ingrese nombre del representante legal">
+                            <input type="text" class="form-control" #namereplegal="ngModel" [(ngModel)]="comercio.nomrl" required placeholder="Ingrese nombre del representante legal">
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectpais">
+                            <select class="form-control show-tick" #selectpais="ngModel" [(ngModel)]="comercio.npais" >
                                 <option value="">-- Elija el País --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectdpto">
+                            <select class="form-control show-tick" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" >
                                 <option value="">-- Elija el Departamento --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectciudad">
+                            <select class="form-control show-tick" #selectciudad="ngModel" [(ngModel)]="comercio.nciu" >
                                 <option value="">-- Elija la Ciudad --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -114,12 +114,12 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="address" required placeholder="Ingrese dirección">
+                            <input type="text" class="form-control" #address="ngModel" [(ngModel)]="comercio.direccion" required placeholder="Ingrese dirección">
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectregimen">
+                            <select class="form-control show-tick" #selectregimen="ngModel" [(ngModel)]="comercio.nregimen" >
                                 <option value="">-- Elija el regimen --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                           <select class="form-control show-tick" name="selectiva">
+                           <select class="form-control show-tick" #selectiva="ngModel" [(ngModel)]="comercio.viva" >
                                 <option value="">-- Elija el iva --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -148,23 +148,22 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nsucursal" minlength="3" required>
-                            <label class="form-label">Ingrese el nombre de la sucursal</label>
+                            <input type="text" class="form-control" #nsucursal="ngModel" [(ngModel)]="comercio.nsucursal" placeholder="Ingrese el nombre de la sucursal" minlength="3" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="ndireccion" required placeholder="Ingrese la dirección">
+                            <input type="text" class="form-control" #ndireccion="ngModel" [(ngModel)]="comercio.dirsucu" required placeholder="Ingrese la dirección">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nciudad" required placeholder="Ingrese la dirección">
+                            <input type="text" class="form-control" #nciudad="ngModel" [(ngModel)]="comercio.ciusuc" required placeholder="Ingrese la ciudad donde esta ubicada">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="ncomercio" required placeholder="Ingrese comercio al que pertenecé">
+                            <input type="text" class="form-control" #ncomercio="ngModel" [(ngModel)]="comercio.ncomersu" required placeholder="Ingrese comercio al que pertenecé">
                         </div>
                     </div>
                 <!--END registro sucursal-->
@@ -174,37 +173,37 @@
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="cuser" required placeholder="Ingrese cédula del Usuario">
+                            <input type="number" class="form-control" #cuser="ngModel" [(ngModel)]="comercio.cedulauser" required placeholder="Ingrese cédula del Usuario">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nuser"  required placeholder="Ingrese el nombre del Usuario">
+                            <input type="text" class="form-control" #nuser="ngModel" [(ngModel)]="comercio.nombreuser"  required placeholder="Ingrese el nombre del Usuario">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="ceuser" required placeholder="Ingrese el celular del Usuario">
+                            <input type="number" class="form-control" #ceuser="ngModel" [(ngModel)]="comercio.celularuser" required placeholder="Ingrese el celular del Usuario">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="email" class="form-control" name="euser" required placeholder="Ingrese el email del Usuario">
+                            <input type="email" class="form-control" #euser="ngModel" [(ngModel)]="comercio.emailuser" required placeholder="Ingrese el email del Usuario">
                         </div>
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="password" class="form-control" name="puser" required placeholder="Ingrese la clave">
+                            <input type="password" class="form-control" #claveuser="ngModel" [(ngModel)]="comercio.clave" required placeholder="Ingrese la clave">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="usercoemrcio" required placeholder="Ingrese comercio al que pertenecé">
+                            <input type="text" class="form-control" #usercomercio="ngModel" [(ngModel)]="comercio.comerciouser" required placeholder="Ingrese comercio al que pertenecé">
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectrol">
+                            <select class="form-control show-tick" #selectrol="ngModel" [(ngModel)]="comercio.roluser" [ngModelOptions]="{standalone: true}">
                                 <option value="">-- Elija rol en la empresa --</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -221,21 +220,21 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="ncaja" required placeholder="Ingrese nombre de la caja">
+                            <input type="text" class="form-control" #ncaja="ngModel" [(ngModel)]="comercio.ncaja" required placeholder="Ingrese nombre de la caja">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nsucursalcaja" required placeholder="Ingrese la sucursal a la que pertenecé">
+                            <input type="text" class="form-control" #nsucursalcaja="ngModel" [(ngModel)]="comercio.nsucucaja" required placeholder="Ingrese la sucursal a la que pertenecé">
                         </div>
                     </div>
-                    <div class="form-group form-float">
+                    <!--<div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" name="nvendedor" required placeholder="Ingrese el vendedor de la caja">
                         </div>
-                    </div>
+                    </div>-->
                 <!--END registro caja-->
-                    <button class="btn btn-primary waves-effect" type="submit">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formcomercio.valid">GUARDAR</button>
                 </form>
             </div>            
         </div>

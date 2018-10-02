@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RegimenModule } from '../../modelos/regimen/regimen.module';
+
 
 @Component({
   selector: 'app-regimen',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./regimen.component.css']
 })
 export class RegimenComponent implements OnInit {
+  
+  public regimen: RegimenModule;
 
-  constructor() { }
+  constructor() {
+    this.regimen = new RegimenModule("");
+   }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.regimen);
   }
 
 }

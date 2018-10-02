@@ -5,21 +5,19 @@
                 <h2>Registrar Deducción</h2>
             </div>
             <div class="body">
-                <form id="guardardeduccion" method="POST">
+                <form #formdeduccion=ngForm (ngSubmit)="onsubmit()">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="ndeduccion" maxlength="10" minlength="3" required>
-                            <label class="form-label">Ingrese nombre de la deducción</label>
+                            <input type="text" class="form-control" #nombre="ngModel" [(ngModel)]="deduccion.nombre" placeholder="Ingrese nombre de la deducción" name="ndeduccion"  required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="vdeduccion" required>
-                            <label class="form-label">Ingrese el valor de la deducción</label>
+                            <input type="number" #valor="ngModel" [(ngModel)]="deduccion.valor" placeholder="Ingrese el valor de la deducción" class="form-control" name="vdeduccion" required>
                         </div>
                         <div class="help-info">En porcentaje (%)</div>
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit">GUARDAR</button>
+                    <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formdeduccion.valid">GUARDAR</button>
                 </form>
             </div>
         </div>

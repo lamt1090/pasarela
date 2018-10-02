@@ -7,4 +7,12 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class ValidarRequisitosModule { }
+export class ValidarRequisitosModule {
+  constructor(
+    public nrequisito: String,
+    public ncomercio: String,
+    public vestado: String,
+    public fecha: String,
+    public archivo: String 
+  ){}
+ }

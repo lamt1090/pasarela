@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CajaModule } from '../../modelos/caja/caja.module';
 
 
 @Component({
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./caja.component.css']
 })
 export class CajaComponent implements OnInit {
- data_nombre = {};
- data_selsucursal = [];
-  constructor() { }
+ 
+  public caja : CajaModule;
+
+  constructor() { 
+    this.caja = new CajaModule("", "");
+  }
 
   ngOnInit() {
   }
 
-  buscar():void{
-    console.log(this.data_nombre);
+  onsubmit(){
+    console.log(this.caja);
   }
   
 

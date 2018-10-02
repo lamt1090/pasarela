@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EstadoRequisitoModule } from '../../modelos/estado-requisito/estado-requisito.module';
+
 
 @Component({
   selector: 'app-estado-requisito',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./estado-requisito.component.css']
 })
 export class EstadoRequisitoComponent implements OnInit {
+  
+  public estadorequisito: EstadoRequisitoModule;
 
-  constructor() { }
+  constructor() {
+    this.estadorequisito= new EstadoRequisitoModule("");
+   }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.estadorequisito);
   }
 
 }

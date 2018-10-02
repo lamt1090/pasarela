@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class EstadoRequisitoModule { }
+export class EstadoRequisitoModule { 
+  constructor(
+    public nombre: String
+  ){}
+}

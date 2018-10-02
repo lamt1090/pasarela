@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DepartamentoModule } from '../../modelos/departamento/departamento.module';
+
 
 @Component({
   selector: 'app-departamento',
@@ -7,16 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartamentoComponent implements OnInit {
 
-  datanombre= String;
-  dataselect= {};
-  constructor() { }
+  public departamento: DepartamentoModule;
+
+  constructor() { 
+    this.departamento = new DepartamentoModule("","");
+  }
 
   ngOnInit() {
   }
 
-  buscar():void{
-    console.log(this.datanombre);
-    console.log(this.dataselect);
+  onsubmit(){
+    console.log(this.departamento);
   }
 
 }

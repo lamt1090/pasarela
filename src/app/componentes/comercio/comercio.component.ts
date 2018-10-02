@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ComercioModule } from '../../modelos/comercio/comercio.module';
+
 
 @Component({
   selector: 'app-comercio',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComercioComponent implements OnInit {
 
-  constructor() { }
+  public comercio: ComercioModule;
+
+  constructor() { 
+    this.comercio = new ComercioModule("","","","","","","","","","","","","","","","","","","","","","","","","","","","","");
+  }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.comercio);
   }
 
 }

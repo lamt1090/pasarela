@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class CuentaBancariaModule { }
+export class CuentaBancariaModule {
+  constructor(
+    
+  ){}
+ }

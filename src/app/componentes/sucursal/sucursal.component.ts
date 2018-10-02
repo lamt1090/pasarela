@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sucursal.component.css']
 })
 export class SucursalComponent implements OnInit {
-
+  //{} = ''
+  
   constructor() { }
 
   ngOnInit() {

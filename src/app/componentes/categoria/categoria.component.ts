@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaModule } from '../../modelos/categoria/categoria.module';
+
 
 @Component({
   selector: 'app-categoria',
@@ -6,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categoria.component.css']
 })
 export class CategoriaComponent implements OnInit {
-  datanombre = String;
-  constructor() { }
+  
+  public categoria: CategoriaModule;
+
+  constructor() {
+    this.categoria= new CategoriaModule("");
+   }
 
   ngOnInit() {
   }
 
-  buscar():void{
-    console.log(this.datanombre);
+  onsubmit(){
+    console.log(this.categoria);
   }
+
+  
 }

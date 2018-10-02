@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CuentaBancariaModule } from '../../modelos/cuenta-bancaria/cuenta-bancaria.module';
+
 
 @Component({
   selector: 'app-cuenta-bancaria',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuentaBancariaComponent implements OnInit {
 
-  constructor() { }
+  public cuentabancaria: CuentaBancariaModule;
+  
+  constructor() { 
+    this.cuentabancaria = new CuentaBancariaModule();
+  }
 
   ngOnInit() {
   }
 
+    onsubmit(){
+      console.log(this.cuentabancaria);
+    }
 }

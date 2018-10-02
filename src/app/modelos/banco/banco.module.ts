@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BancoComponent } from '../../componentes/banco/banco.component';
-import { FormsModule } from '@angular/forms';
-
-
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule
+    CommonModule
   ],
-  declarations: [
-    BancoComponent
-  ]
+  declarations: []
 })
-export class BancoModule { }
+export class BancoModule {
+  constructor(
+    public nombre: String
+  ){}
+ }

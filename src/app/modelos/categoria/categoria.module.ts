@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class CategoriaModule { }
+export class CategoriaModule {
+  constructor(
+  public nombre: String
+  ){}
+ }

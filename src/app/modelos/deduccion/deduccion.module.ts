@@ -7,4 +7,9 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class DeduccionModule { }
+export class DeduccionModule {
+  constructor(
+    public nombre: String,
+    public valor: String
+  ){}
+ }

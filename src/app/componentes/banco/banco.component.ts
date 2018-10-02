@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BancoModule } from '../../modelos/banco/banco.module';
+
 
 @Component({
   selector: 'app-banco',
@@ -6,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banco.component.css']
 })
 export class BancoComponent implements OnInit {
-  data  = {};
-  constructor() { }
+  
+  public banco : BancoModule;
 
-  ngOnInit() {
-    //this.data= '';
+  constructor() { 
+    this.banco= new BancoModule("");
   }
 
-  buscar():void{
-    console.log(this.data);
+  ngOnInit() {}
+
+  onsubmit(){
+    console.log(this.banco);
   }
+
 }

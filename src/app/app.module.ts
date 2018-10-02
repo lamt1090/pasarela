@@ -15,7 +15,7 @@ import { InfoUserComponent } from './principales/info-user/info-user.component';
 import { MenuComponent } from './principales/menu/menu.component';
 import { DesplegarComponent } from './principales/desplegar/desplegar.component';
 import { FooterComponent } from './principales/footer/footer.component';
-
+import { BancoComponent } from './componentes/banco/banco.component';
 import { TipoCuentaComponent } from './componentes/tipo-cuenta/tipo-cuenta.component';
 import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
 import { ContenidoComponent } from './principales/contenido/contenido.component';
@@ -40,7 +40,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
 
-import { BancoModule } from './modelos/banco/banco.module';
+
 
 
 //servicios
@@ -56,7 +56,7 @@ import { BancoService } from './servicios/banco.service';
     MenuComponent,
     DesplegarComponent,
     FooterComponent,
-    
+    BancoComponent,
     TipoCuentaComponent,
     CuentaBancariaComponent,
     ContenidoComponent,
@@ -87,7 +87,7 @@ import { BancoService } from './servicios/banco.service';
     RouterModule.forRoot(app_Routes),
     FormsModule,
     HttpModule,
-    BancoModule
+    
   ],
   providers: [],
   bootstrap: [

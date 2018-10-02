@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class IvaModule { }
+export class IvaModule { 
+  constructor(
+    public valor: String
+  ){}
+}

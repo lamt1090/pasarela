@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PaisModule } from '../../modelos/pais/pais.module';
+
 
 @Component({
   selector: 'app-pais',
@@ -6,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pais.component.css']
 })
 export class PaisComponent implements OnInit {
-  data = String;
-  constructor() { }
+  
+  public pais: PaisModule;
+
+  constructor() { 
+    this.pais= new PaisModule("");
+  }
 
   ngOnInit() {
   }
 
-    buscar():void{
-      console.log(this.data);
+    onsubmit(){
+      console.log(this.pais);
     }
 }

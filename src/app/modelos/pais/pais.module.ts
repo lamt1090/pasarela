@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class PaisModule { }
+export class PaisModule {
+  constructor(
+    public nombre: String
+  ){}
+ }

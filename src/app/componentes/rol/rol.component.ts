@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RolModule } from '../../modelos/rol/rol.module';
+
 
 @Component({
   selector: 'app-rol',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rol.component.css']
 })
 export class RolComponent implements OnInit {
+  
+  public rol: RolModule;
 
-  constructor() { }
+  constructor() {
+    this.rol= new RolModule("");
+   }
 
   ngOnInit() {
   }
 
+    onsubmit(){
+      console.log(this.rol);
+    }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidarRequisitosModule } from '../../modelos/validar-requisitos/validar-requisitos.module';
+
 
 @Component({
   selector: 'app-validar-requisitos',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidarRequisitosComponent implements OnInit {
 
-  constructor() { }
+  public validarrequisito: ValidarRequisitosModule;
+
+  constructor() { 
+    this.validarrequisito = new ValidarRequisitosModule("", "", "", "", "");
+  }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.validarrequisito);
   }
 
 }

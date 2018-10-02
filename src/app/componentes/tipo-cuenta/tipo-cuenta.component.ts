@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoCuentaModule } from '../../modelos/tipo-cuenta/tipo-cuenta.module';
+
 
 @Component({
   selector: 'app-tipo-cuenta',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TipoCuentaComponent implements OnInit {
 
-  constructor() { }
+  public tipocuenta: TipoCuentaModule;
+
+  constructor() {
+    this.tipocuenta= new TipoCuentaModule("");
+   }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.tipocuenta);
   }
 
 }

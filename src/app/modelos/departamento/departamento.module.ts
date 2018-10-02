@@ -7,4 +7,9 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class DepartamentoModule { }
+export class DepartamentoModule { 
+  constructor(
+    public npais: String,
+    public nombre: String
+  ){}
+}

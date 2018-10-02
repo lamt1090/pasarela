@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MonedaModule } from '../../modelos/moneda/moneda.module';
+
 
 @Component({
   selector: 'app-moneda',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./moneda.component.css']
 })
 export class MonedaComponent implements OnInit {
+  
+  public moneda: MonedaModule;
 
-  constructor() { }
+  constructor() { 
+    this.moneda= new MonedaModule("");
+  }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.moneda);
   }
 
 }

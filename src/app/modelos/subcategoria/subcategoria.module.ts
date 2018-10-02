@@ -7,4 +7,9 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class SubcategoriaModule { }
+export class SubcategoriaModule { 
+  constructor(
+    public nombre: String,
+    public categoria: String
+  ){}
+}

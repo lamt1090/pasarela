@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SubcategoriaModule } from '../../modelos/subcategoria/subcategoria.module';
+
 
 @Component({
   selector: 'app-subcategoria',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subcategoria.component.css']
 })
 export class SubcategoriaComponent implements OnInit {
+  
+  public subcategoria: SubcategoriaModule;
 
-  constructor() { }
+  constructor() {
+    this.subcategoria = new SubcategoriaModule("","");
+   }
 
   ngOnInit() {
+  }
+
+  onsubmit(){
+    console.log(this.subcategoria);
   }
 
 }

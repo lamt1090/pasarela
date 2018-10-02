@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CiudadModule } from '../../modelos/ciudad/ciudad.module';
+
 
 @Component({
   selector: 'app-ciudad',
@@ -6,15 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ciudad.component.css']
 })
 export class CiudadComponent implements OnInit {
-  dataname = String;
-  datasel = {};
-  constructor() { }
+  
+  public ciudad : CiudadModule;
+
+  constructor() {
+    this.ciudad = new CiudadModule("","");
+   }
 
   ngOnInit() {
   }
 
-  buscar():void{
-    console.log(this.dataname);
-    console.log(this.datasel);
+  onsubmit(){
+    console.log(this.ciudad);
   }
 }

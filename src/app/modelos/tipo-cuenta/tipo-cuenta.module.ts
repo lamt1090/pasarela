@@ -7,4 +7,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class TipoCuentaModule { }
+export class TipoCuentaModule {
+  constructor(
+    public nombre: String
+  ){}
+ }
