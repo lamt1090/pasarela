@@ -1,5 +1,7 @@
 
 import {RouterModule, Routes} from '@angular/router';
+
+//component
 import { BancoComponent } from './componentes/banco/banco.component';
 import { TipoCuentaComponent } from './componentes/tipo-cuenta/tipo-cuenta.component';
 import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';

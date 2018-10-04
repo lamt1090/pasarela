@@ -4,7 +4,7 @@ describe('BancoModule', () => {
   let bancoModule: BancoModule;
 
   beforeEach(() => {
-    bancoModule = new BancoModule();
+    bancoModule = new BancoModule("");
   });
 
   it('should create an instance', () => {

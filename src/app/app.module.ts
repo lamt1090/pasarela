@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 /*rutas*/
 import {app_Routes} from './app.router';
 
-
+//component
 import { HeaderComponent } from './principales/header/header.component';
 import { InfoUserComponent } from './principales/info-user/info-user.component';
 import { MenuComponent } from './principales/menu/menu.component';

@@ -8,6 +8,7 @@
                 <form #formbanco=ngForm (ngSubmit)="onsubmit()" >
                     <div class="form-group form-float">
                         <div class="form-line">
+                            <span *ngIf="!nombre.valid && nombre.touched" class="label label-danger">El nombre es obligatorio</span>
                             <input type="text" [(ngModel)]="banco.nombre" class="form-control" placeholder="Ingrese el nombre del banco" #nombre="ngModel" name="nbanco" required>
                         </div>
                     </div>
