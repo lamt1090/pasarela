@@ -21,14 +21,15 @@ export class BancoService {
    }
 
   getBanco(){
-   // return "texto desde el servicio"; --msm de prueba
-   return this._http.get(this.url+'banco').map(res =>res.json());
+    return "los datos se han guardado correctamente"; //--msm de prueba
+   //return this._http.get(this.url+'banco').map(res =>res.json());
   } 
 
   addbanco(banco:BancoModule){
+    console.log(banco);
     let json = JSON.stringify(banco);
     let params = 'json='+json;
     let headers = new Headers({'content-Type': 'application/x-www-form-urlencoded'});
-    return this._http.post(this.url+'banco',params,{headers: headers}).map(res => res.json());
+    return this._http.post(this.url+'insertbanco.php',params,{headers: headers}).map(res => res.json());
   }
 }

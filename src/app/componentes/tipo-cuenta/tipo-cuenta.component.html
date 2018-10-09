@@ -10,9 +10,8 @@
                 <form #formtipocuenta=ngForm (ngSubmit)="onsubmit()">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" #nombre="ngModel" [(ngModel)]="tipocuenta.nombre" placeholder="Digite el tipo cuenta" class="form-control" name="ntpcuenta" maxlength="10" minlength="3" required>
+                            <input type="text" #name_cuenta="ngModel" [(ngModel)]="tipocuenta.nombre" placeholder="Digite el tipo cuenta" class="form-control" name="name_cuenta" maxlength="10" minlength="3" required>
                         </div>
-                        <div class="help-info">Ahorros - Corriente</div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formtipocuenta.valid">GUARDAR</button>
                 </form>

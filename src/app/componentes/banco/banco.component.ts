@@ -10,22 +10,19 @@ import { BancoService } from '../../servicios/banco.service';
   providers: [BancoService]
 })
 export class BancoComponent implements OnInit {
-  public bancos: BancoModule[];  //array donde guarda los productos
-  
   
   public banco : BancoModule;
 
-
   constructor(
-    private _bancoservice: BancoService,
+    private _bancoservice: BancoService
   ) { 
     this.banco= new BancoModule("");
-    
+
   }
 
   ngOnInit() {
-    //alert(this._bancoservicio.getBanco()); -- msm de prueba
-    this._bancoservice.getBanco().subscribe(
+    //alert(this._bancoservice.getBanco());// -- msm de prueba
+    /*this._bancoservice.getBanco().subscribe(
       result =>{
         this.bancos = result.data;
 
@@ -33,7 +30,7 @@ export class BancoComponent implements OnInit {
       error =>{
         console.log(<any>error);
       }
-    )
+    )*/
   }
 
   onsubmit(){
@@ -41,7 +38,7 @@ export class BancoComponent implements OnInit {
     this._bancoservice.addbanco(this.banco).subscribe(
       result =>{
         if(result.code == 200){
-          
+          alert(this._bancoservice.getBanco());
         }else{
           console.log(result);
         }

@@ -8,7 +8,7 @@
                 <form #formpais=ngForm (ngSubmit)="onsubmit()">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" #nombre="ngModel" [(ngModel)]="pais.nombre" class="form-control" name="npais" placeholder="Ingrese el nombre del país" required>
+                            <input type="text" #name_pais="ngModel" [(ngModel)]="pais.nombre" class="form-control" name="name_pais" placeholder="Ingrese el nombre del país" required>
                         </div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formpais.form.valid">GUARDAR</button>

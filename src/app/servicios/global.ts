@@ -1,4 +1,4 @@
 export var GLOBAL = {
-    //irl del api
-    url: 'http://localhost/backendcomerciantes/'
+    //url de la conexion al backend
+    url: 'http://localhost/backendcomerciantes/insert/'
 };
