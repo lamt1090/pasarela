@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { RegimenModule } from '../../modelos/regimen/regimen.module';
 import { RequisitoModule } from '../../modelos/requisito/requisito.module';
-
+import { RequisitoService } from '../../servicios/requisito.service';
 
 @Component({
   selector: 'app-requisito',
   templateUrl: './requisito.component.html',
-  styleUrls: ['./requisito.component.css']
+  styleUrls: ['./requisito.component.css'],
+  providers: [RequisitoService]
 })
 export class RequisitoComponent implements OnInit {
   
   public requisito: RequisitoModule;
 
-  constructor() {
+  constructor(
+    private _requisitoservice: RequisitoService
+  ) {
     this.requisito= new RequisitoModule("");
    }
 
@@ -20,7 +22,16 @@ export class RequisitoComponent implements OnInit {
   }
 
   onsubmit(){
-    console.log(this.requisito);
+    let vm = this;
+    vm._requisitoservice.addrequisito(vm.requisito)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err =>{
+        console.log(err);
+      } 
+    )
   }
 
 }

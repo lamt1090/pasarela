@@ -34,8 +34,18 @@ export class BancoComponent implements OnInit {
   }
 
   onsubmit(){
-    console.log(this.banco);
-    this._bancoservice.addbanco(this.banco).subscribe(
+    let vm = this;
+
+    vm._bancoservice.addbanco(vm.banco)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err =>{
+        console.log(err);
+      } 
+    )
+    /*this._bancoservice.addbanco(this.banco).subscribe(
       result =>{
         if(result.code == 200){
           alert(this._bancoservice.getBanco());
@@ -46,7 +56,7 @@ export class BancoComponent implements OnInit {
       error =>{
         console.log(<any>error);
       }
-    );
+    );*/
   }
 
 }

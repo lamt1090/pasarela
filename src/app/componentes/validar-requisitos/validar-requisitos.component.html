@@ -8,7 +8,7 @@
               <form #formvalidarestado=ngForm (ngSubmit)="onsubmit()"><!--formvalidarestado.reset();-->
                 <div class="row clearfix">
                   <div class="col-sm-12">
-                    <select class="form-control show-tick" #selrequisito="ngModel" [(ngModel)]="validarrequisito.nrequisito" [ngModelOptions]="{standalone: true}" required>
+                    <select class="form-control show-tick" name="selrequisito" #selrequisito="ngModel" [(ngModel)]="validarrequisito.nrequisito" [ngModelOptions]="{standalone: true}" required>
                       <option value="">-- Elija el requisito --</option>
                       <option value="10">10</option>
                       <option value="20">20</option>
@@ -20,7 +20,7 @@
                 </div>  
                 <div class="row clearfix">
                   <div class="col-sm-12">
-                    <select class="form-control show-tick" #selcomercio="ngModel" [(ngModel)]="validarrequisito.ncomercio" [ngModelOptions]="{standalone: true}" required>
+                    <select class="form-control show-tick" name="selcomercio" #selcomercio="ngModel" [(ngModel)]="validarrequisito.ncomercio" [ngModelOptions]="{standalone: true}" required>
                       <option value="">-- Elija el comercio --</option>
                       <option value="10">10</option>
                       <option value="20">20</option>
@@ -32,7 +32,7 @@
                 </div>    
                 <div class="row clearfix">
                   <div class="col-sm-12">
-                    <select class="form-control show-tick" #selestado="ngModel" [(ngModel)]="validarrequisito.vestado" [ngModelOptions]="{standalone: true}" required>
+                    <select class="form-control show-tick" name="selestado" #selestado="ngModel" [(ngModel)]="validarrequisito.vestado" [ngModelOptions]="{standalone: true}" required>
                       <option value="">-- Elija el estado del requisito --</option>
                       <option value="10">10</option>
                       <option value="20">20</option>
@@ -42,14 +42,14 @@
                     </select>
                   </div>
                 </div>    
-                <div class="form-group form-float">
+                <!--<div class="form-group form-float">
                   <div class="form-line">
                     <input type="text" class="form-control" name="fechav" #fecha="ngModel" [(ngModel)]="validarrequisito.fecha" name="fechavalidar" required placeholder="Ingrese la fecha" required>  
                   </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                   <label for="exampleFormControlFile1">Subir archivo</label>
-                  <input type="file" class="form-control-file" name="rutarchivo" #archivo="ngModel" [(ngModel)]="validarrequisito.archivo" required>
+                  <input type="file" class="form-control-file" name="archivo" #archivo="ngModel" [(ngModel)]="validarrequisito.archivo">
                 </div>
                 <button class="btn btn-primary waves-effect" type="submit"  [disabled]="!formvalidarestado.form.valid">GUARDAR</button>
               </form>
