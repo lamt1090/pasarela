@@ -8,8 +8,8 @@
                 <form #formbanco=ngForm (ngSubmit)="onsubmit()" >
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <span *ngIf="!nbanco.valid && nbanco.touched" class="label label-danger">El nombre es obligatorio</span>
-                            <input type="text" [(ngModel)]="banco.nombre" class="form-control" placeholder="Ingrese el nombre del banco" #nbanco="ngModel" name="nbanco" required>
+                            <span *ngIf="!nbanco.valid && nbanco.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
+                            <input type="text" [(ngModel)]="banco.nombre" class="form-control" placeholder="Ingrese el nombre del banco" #nbanco="ngModel" name="nbanco" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
                         </div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formbanco.form.valid" >GUARDAR</button>

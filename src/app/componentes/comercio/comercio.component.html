@@ -9,12 +9,14 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" #creplegal="ngModel" [(ngModel)]="comercio.cedularl" name="creplegal" placeholder="Ingrese cédula del Representante Legal" required>
+                            <span *ngIf="!creplegal.valid && creplegal.touched" class="label label-danger">La cedula es obligatoria</span>
+                            <input type="number" class="form-control" #creplegal="ngModel" [(ngModel)]="comercio.cedularl" name="creplegal" placeholder="Ingrese cédula del Representante Legal" maxlength="10" pattern="[0-9]+" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" #nrl="ngModel" name="nrl" [(ngModel)]="comercio.nombrerpl" required placeholder="Ingrese el nombre del Representante Legal" >
+                            <span *ngIf="!nrl.valid && nrl.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                            <input type="text" class="form-control" #nrl="ngModel" name="nrl" [(ngModel)]="comercio.nombrerpl" required placeholder="Ingrese el nombre del Representante Legal"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
@@ -24,12 +26,12 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="cereplegal" #cereplegal="ngModel" [(ngModel)]="comercio.celularrl" placeholder="Ingrese el celular del Representante Legal">
+                            <input type="text" class="form-control" name="cereplegal" #cereplegal="ngModel" [(ngModel)]="comercio.celularrl" placeholder="Ingrese el celular del Representante Legal" maxlength="10" pattern="[0-9]+">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="telreplegal"  #telreplegal="ngModel" [(ngModel)]="comercio.telefonorl" placeholder="Ingrese el teléfono del Representante Legal">
+                            <input type="text" class="form-control" name="telreplegal"  #telreplegal="ngModel" [(ngModel)]="comercio.telefonorl" placeholder="Ingrese el teléfono del Representante Legal" maxlength="10" pattern="[0-9]+">
                         </div>
                     </div>
                     <!--END registrar representante legal-->
@@ -39,35 +41,32 @@
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namecomercio" #namecomercio="ngModel" [(ngModel)]="comercio.nombrecomercio" required placeholder="Ingrese nombre del comercio">
+                            <span *ngIf="!namecomercio.valid && namecomercio.touched" class="label label-danger">El nombre es obligatorio</span>
+                            <input type="text" class="form-control" name="namecomercio" #namecomercio="ngModel" [(ngModel)]="comercio.nombrecomercio" placeholder="Ingrese nombre del comercio" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nit" #nit="ngModel" [(ngModel)]="comercio.nit" required placeholder="Ingrese el nit">
+                            <span *ngIf="!nit.valid && nit.touched" class="label label-danger">El nit es obligatorio</span>
+                            <input type="text" class="form-control" name="nit" #nit="ngModel" [(ngModel)]="comercio.nit"  placeholder="Ingrese el nit" maxlength="12" required>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="comercio.catc" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="comercio.catc" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija la categoria --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
+                                <option value="3">30</option>
                             </select>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija la subcategoria --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
                             </select>
                         </div>
                     </div>
@@ -78,66 +77,54 @@
                     </div>-->
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectpais" #selectpais="ngModel" [(ngModel)]="comercio.npais" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectpais" #selectpais="ngModel" [(ngModel)]="comercio.npais" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el País --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
                             </select>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectdpto" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectdpto" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el Departamento --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
+                                <option value="3">30</option>
                             </select>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectciudad" #selectciudad="ngModel" [(ngModel)]="comercio.nciu" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectciudad" #selectciudad="ngModel" [(ngModel)]="comercio.nciu" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija la Ciudad --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                               <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="comercio.direccion" required placeholder="Ingrese dirección">
+                            <span *ngIf="!address.valid && address.touched" class="label label-danger">La dirección es obligatorio</span>
+                            <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="comercio.dirsucu" placeholder="Ingrese dirección" required>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectregimen" #selectregimen="ngModel" [(ngModel)]="comercio.nregimen" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectregimen" #selectregimen="ngModel" [(ngModel)]="comercio.nregimen" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el regimen --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
                             </select>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                           <select class="form-control show-tick" name="selectiva" #selectiva="ngModel" [(ngModel)]="comercio.viva" [ngModelOptions]="{standalone: true}">
+                           <select class="form-control show-tick" name="selectiva" #selectiva="ngModel" [(ngModel)]="comercio.viva" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el iva --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                               <option value="40">40</option>
-                               <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
+                                <option value="3">30</option>
                           </select>
                         </div>
                     </div>
@@ -148,7 +135,8 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nsucursal" #nsucursal="ngModel" [(ngModel)]="comercio.nsucursal" placeholder="Ingrese el nombre de la sucursal" minlength="3" required>
+                            <span *ngIf="!nsucursal.valid && nsucursal.touched" class="label label-danger">El nombre es obligatorio</span>
+                            <input type="text" class="form-control" name="nsucursal" #nsucursal="ngModel" [(ngModel)]="comercio.nsucursal" placeholder="Ingrese el nombre de la sucursal" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
                         </div>
                     </div>
                     <!--<div class="form-group form-float">
@@ -173,29 +161,33 @@
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="cuser" #cuser="ngModel" [(ngModel)]="comercio.cedulauser" required placeholder="Ingrese cédula del Usuario">
+                            <span *ngIf="!cuser.valid && cuser.touched" class="label label-danger">La cedula es obligatoria</span>
+                            <input type="number" class="form-control" name="cuser" #cuser="ngModel" [(ngModel)]="comercio.cedulauser" required placeholder="Ingrese cédula del Usuario" maxlength="10">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nuser" #nuser="ngModel" [(ngModel)]="comercio.nombreuser"  required placeholder="Ingrese el nombre del Usuario">
-                            <span *ngIf="euser.touched && !euser.valid">El nombre es incorrecto</span>
+                            <span *ngIf="!nuser.valid && nuser.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                            <input type="text" class="form-control" name="nuser" #nuser="ngModel" [(ngModel)]="comercio.nombreuser"  required placeholder="Ingrese el nombre del Usuario" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="number" class="form-control" name="ceuser" #ceuser="ngModel" [(ngModel)]="comercio.celularuser" required placeholder="Ingrese el celular del Usuario">
+                            <span *ngIf="!ceuser.valid && ceuser.touched" class="label label-danger">El celular es obligatorio</span>
+                            <input type="number" class="form-control" name="ceuser" #ceuser="ngModel" [(ngModel)]="comercio.celularuser" required placeholder="Ingrese el celular del Usuario" maxlength="10" pattern="[0-9]">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
+                            <span *ngIf="!euser.valid && euser.touched" class="label label-danger">El correo es obligatorios</span>
                             <input type="email" class="form-control" name="euser" #euser="ngModel" [(ngModel)]="comercio.emailuser" required placeholder="Ingrese el email del Usuario" >
-                            <span *ngIf="euser.touched && !euser.valid"><strong>correo es invalido</strong></span>
+                            
                         </div>
                     </div>    
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="password" class="form-control" name="claveuser" #claveuser="ngModel" [(ngModel)]="comercio.clave" required placeholder="Ingrese la clave">
+                            <span *ngIf="!claveuser.valid && claveuser.touched" class="label label-danger">La clave es obligatorios</span>
+                            <input type="password" class="form-control" name="claveuser" #claveuser="ngModel" [(ngModel)]="comercio.clave" required placeholder="Ingrese la clave" minlength="8" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
                         </div>
                     </div>
                     <!--<div class="form-group form-float">
@@ -205,13 +197,10 @@
                     </div>-->
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectrol" #selectrol="ngModel" [(ngModel)]="comercio.roluser" [ngModelOptions]="{standalone: true}">
+                            <select class="form-control show-tick" name="selectrol" #selectrol="ngModel" [(ngModel)]="comercio.roluser" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija rol en la empresa --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                                <option value="1">10</option>
+                                <option value="2">20</option>
                             </select>
                         </div>
                     </div>    
@@ -222,7 +211,8 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namecaja" #namecaja="ngModel" [(ngModel)]="comercio.ncaja" required placeholder="Ingrese nombre de la caja">
+                            <span *ngIf="!namecaja.valid && namecaja.touched" class="label label-danger">El nombre es obligatorio</span>
+                            <input type="text" class="form-control" name="namecaja" #namecaja="ngModel" [(ngModel)]="comercio.ncaja" required placeholder="Ingrese nombre de la caja" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
                         </div>
                     </div>
                     <!--<div class="form-group form-float">

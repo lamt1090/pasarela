@@ -22,7 +22,6 @@ export class ComercioModule {
     public npais: String,
     public ndep: String,
     public nciu: String,
-    public direccion: String,
     public nregimen: String,
     public viva: string,
     public nsucursal: String,
