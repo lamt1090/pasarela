@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 /*rutas*/
 import {app_Routes} from './app.router';
@@ -87,6 +87,7 @@ import { BancoService } from './servicios/banco.service';
     RouterModule.forRoot(app_Routes),
     FormsModule,
     HttpClientModule,
+    NgSelectModule,
     
   ],
   providers: [],

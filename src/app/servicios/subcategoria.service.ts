@@ -10,17 +10,23 @@ import { GLOBAL } from './global';
 export class SubcategoriaService {
 
   public url: string;
+  public url2: string;
 
   constructor(
     public _http: HttpClient
   ) {
     this.url = GLOBAL.url;
-   }
+    this.url2 = GLOBAL.url2;
+    }
 
    addsubcategoria(subcategoria):Observable<any>{
-    console.log(subcategoria);
    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
    const body = new HttpParams().set('id_categoria',subcategoria.categoria).set('name_subcategoria',subcategoria.nombre);
    return this._http.post(this.url+'insertsubcategoria.php',body,{headers: headers,responseType:'text'});
- }
+  }
+
+  getcategorias(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=subcategoria');
+}
+
 }

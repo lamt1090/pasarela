@@ -19,6 +19,7 @@ export class SubcategoriaComponent implements OnInit {
    }
 
   ngOnInit() {
+    this._subcategoriaservice.getcategorias();
   }
 
   onsubmit(){
@@ -33,5 +34,36 @@ export class SubcategoriaComponent implements OnInit {
       } 
     )
   }
+
+  categorias(){
+    let cate=this;
+    cate._subcategoriaservice.getcategorias().subscribe(
+      result => {
+          if(result.code != 200){
+              console.log(result);
+          }else{
+              cate = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+  );
+  }
+
+ 
+
+  countries = [{
+    id: '1',
+    name: 'sistemas'
+   },
+   {
+    id: '2',
+    name: 'administración'
+   },
+   {
+    id: '3',
+    name: 'finanzas'
+   }];
 
 }
