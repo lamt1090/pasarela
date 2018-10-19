@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -80,7 +80,7 @@ import { BancoService } from './servicios/banco.service';
     UsuarioComponent,
     SucursalComponent,
     ValidarRequisitosComponent,
-    
+  
   ],
   imports: [
     BrowserModule,
@@ -88,7 +88,7 @@ import { BancoService } from './servicios/banco.service';
     FormsModule,
     HttpClientModule,
     NgSelectModule,
-    
+  
   ],
   providers: [],
   bootstrap: [

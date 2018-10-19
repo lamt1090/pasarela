@@ -10,11 +10,13 @@ import { GLOBAL } from './global';
 export class ValidarRequisitosService {
 
   public url: string;
+  public url2: string;
 
   constructor(
     public _http: HttpClient
   ) {
     this.url = GLOBAL.url;
+    this.url2 = GLOBAL.url2;
    }
 
    addvalidarrequisito(validarrequisito):Observable<any>{
@@ -24,5 +26,17 @@ export class ValidarRequisitosService {
                                 .set('selestado',validarrequisito.vestado)
                                 .set('archivo',validarrequisito.archivo);
     return this._http.post(this.url+'insertvalidarrequisito.php',body,{headers: headers,responseType:'text'});
+  }
+
+  getrequisitos(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=requisito');
+  }
+
+  getcomercios(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=comercio');
+  }
+
+  getestadorequisitos(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=estadorequisito');
   }
 }

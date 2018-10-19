@@ -5,19 +5,20 @@
                 <h2>Registrar Subcategoria</h2>
             </div>
             <div class="body">
+                <!--{{countries | json}}-->
                 <form #formsubcategoria=ngForm (ngSubmit)="onsubmit()">
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_categoria" #id_categoria="ngModel" [(ngModel)]="subcategoria.categoria" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">--Elija una categoria--</option>
-                                <option *ngFor="let item of countries" value={{item.id}}>{{item.name}}</option>
+                                <option *ngFor="let item of scategoria" value={{item.id_categoria}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div> 
                     <div class="form-group form-float">
                         <div class="form-line">
                                 <span *ngIf="!name_subcategoria.valid && name_subcategoria.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
-                            <input type="text" class="form-control" #name_subcategoria="ngModel" [(ngModel)]="subcategoria.nombre" name="name_subcategoria" placeholder="Ingrese el nombre de la subcategoria" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" #name_subcategoria="ngModel" [(ngModel)]="subcategoria.nombre" name="name_subcategoria" placeholder="Ingrese el nombre de la subcategoria" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formsubcategoria.form.valid">GUARDAR</button>

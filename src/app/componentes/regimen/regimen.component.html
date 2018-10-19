@@ -9,7 +9,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!name_regimen.valid && name_regimen.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
-                            <input type="text" class="form-control" #name_regimen="ngModel" [(ngModel)]="regimen.nombre" name="name_regimen" placeholder="Ingrese el nombre del regimen" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" #name_regimen="ngModel" [(ngModel)]="regimen.nombre" name="name_regimen" placeholder="Ingrese el nombre del regimen" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formregimen.form.valid">GUARDAR</button>

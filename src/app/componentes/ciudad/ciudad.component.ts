@@ -10,12 +10,13 @@ import { CiudadService } from '../../servicios/ciudad.service';
   providers: [CiudadService]
 })
 export class CiudadComponent implements OnInit {
-  
+  sdepartamento : any[];
   public ciudad : CiudadModule;
 
   constructor(
     private _ciudadservice: CiudadService
   ) {
+    this.departamentos();
     this.ciudad = new CiudadModule("","");
    }
 
@@ -33,5 +34,22 @@ export class CiudadComponent implements OnInit {
         console.log(err);
       } 
     )
+  }
+
+  departamentos(){
+    let cate=this;
+    cate._ciudadservice.getdepartamentos()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.sdepartamento=result;
+          }else{
+              cate = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
   }
 }

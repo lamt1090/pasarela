@@ -10,15 +10,14 @@
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_pais" #id_pais="ngModel" [(ngModel)]="departamento.npais" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el país --</option>
-                                <option value="1">Colombia</option>
-                                <option value="2">Venezuela</option>
+                                <option *ngFor="let item of pais" value={{item.id_pais}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                                <span *ngIf="!name_departamento.valid && name_departamento.touched" class="label label-danger">El nombre es obligatorio</span>
-                            <input type="text" #name_departamento="ngModel" [(ngModel)]="departamento.nombre" class="form-control" name="name_departamento" placeholder="Ingrese nombre del departamento" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <span *ngIf="!name_departamento.valid && name_departamento.touched" class="label label-danger">El nombre es obligatorio</span>
+                            <input type="text" #name_departamento="ngModel" [(ngModel)]="departamento.nombre" class="form-control" name="name_departamento" placeholder="Ingrese nombre del departamento" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                             
                         </div>
                     </div>

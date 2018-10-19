@@ -9,17 +9,19 @@ import { SubcategoriaService } from '../../servicios/subcategoria.service';
   providers: [SubcategoriaService]
 })
 export class SubcategoriaComponent implements OnInit {
-  
+  scategoria: any[];
   public subcategoria: SubcategoriaModule;
 
   constructor(
     private _subcategoriaservice: SubcategoriaService
   ) {
+    this.categorias();
     this.subcategoria = new SubcategoriaModule("","");
    }
 
   ngOnInit() {
-    this._subcategoriaservice.getcategorias();
+    //this._subcategoriaservice.getcategorias();
+    //this.categorias();
   }
 
   onsubmit(){
@@ -37,10 +39,11 @@ export class SubcategoriaComponent implements OnInit {
 
   categorias(){
     let cate=this;
-    cate._subcategoriaservice.getcategorias().subscribe(
+    cate._subcategoriaservice.getcategorias()
+    .subscribe(
       result => {
           if(result.code != 200){
-              console.log(result);
+            this.scategoria=result;
           }else{
               cate = result.data;
           }
@@ -48,22 +51,7 @@ export class SubcategoriaComponent implements OnInit {
       error => {
           console.log(<any>error);
       }
-  );
+    );
   }
-
- 
-
-  countries = [{
-    id: '1',
-    name: 'sistemas'
-   },
-   {
-    id: '2',
-    name: 'administración'
-   },
-   {
-    id: '3',
-    name: 'finanzas'
-   }];
 
 }

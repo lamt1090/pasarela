@@ -9,12 +9,13 @@ import { DepartamentoService } from '../../servicios/departamento.service';
   providers: [DepartamentoService]
 })
 export class DepartamentoComponent implements OnInit {
-
+  pais: any[];
   public departamento: DepartamentoModule;
 
   constructor(
     private _departamentoservice: DepartamentoService
   ) { 
+    this.paises();
     this.departamento = new DepartamentoModule("","");
   }
 
@@ -32,6 +33,23 @@ export class DepartamentoComponent implements OnInit {
         console.log(err);
       } 
     )
+  }
+
+  paises(){
+    let cate=this;
+    cate._departamentoservice.getpaises()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.pais=result;
+          }else{
+              cate = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
   }
 
 }

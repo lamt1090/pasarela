@@ -9,7 +9,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!name_deduccion.valid && name_deduccion.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
-                            <input type="text" class="form-control" #name_deduccion="ngModel" [(ngModel)]="deduccion.nombre" placeholder="Ingrese nombre de la deducción" name="name_deduccion" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" #name_deduccion="ngModel" [(ngModel)]="deduccion.nombre" placeholder="Ingrese nombre de la deducción" name="name_deduccion" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
