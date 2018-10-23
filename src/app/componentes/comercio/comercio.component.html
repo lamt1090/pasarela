@@ -10,13 +10,13 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!creplegal.valid && creplegal.touched" class="label label-danger">La cedula es obligatoria</span>
-                            <input type="number" class="form-control" #creplegal="ngModel" [(ngModel)]="comercio.cedularl" name="creplegal" placeholder="Ingrese cédula del Representante Legal" maxlength="10" pattern="[0-9]+" required>
+                            <input type="number" class="form-control" #creplegal="ngModel" [(ngModel)]="comercio.cedularl" name="creplegal" placeholder="Ingrese cédula del Representante Legal" minlength="7" maxlength="10" pattern="[0-9]{7,10}" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!nrl.valid && nrl.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
-                            <input type="text" class="form-control" #nrl="ngModel" name="nrl" [(ngModel)]="comercio.nombrerpl" required placeholder="Ingrese el nombre del Representante Legal"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" #nrl="ngModel" name="nrl" [(ngModel)]="comercio.nombrerpl" required placeholder="Ingrese el nombre del Representante Legal"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
@@ -42,7 +42,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!namecomercio.valid && namecomercio.touched" class="label label-danger">El nombre es obligatorio</span>
-                            <input type="text" class="form-control" name="namecomercio" #namecomercio="ngModel" [(ngModel)]="comercio.nombrecomercio" placeholder="Ingrese nombre del comercio" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" name="namecomercio" #namecomercio="ngModel" [(ngModel)]="comercio.nombrecomercio" placeholder="Ingrese nombre del comercio" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <div class="form-group form-float">
@@ -51,22 +51,27 @@
                             <input type="text" class="form-control" name="nit" #nit="ngModel" [(ngModel)]="comercio.nit"  placeholder="Ingrese el nit" maxlength="12" required>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                    <div class="row clearfix" >
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="comercio.catc" [ngModelOptions]="{standalone: true}" required>
+                            <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="comercio.catc"   (ngModelChange)="onSelection()" required>
                                 <option value="">-- Elija la categoria --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
-                                <option value="3">30</option>
+                                <option *ngFor="let item of scategoria" value={{item.id_categoria}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                    
+                    <div class="row clearfix" *ngIf="ssubcategoria">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc" [ngModelOptions]="{standalone: true}" required>
+                            <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc"  required>
                                 <option value="">-- Elija la subcategoria --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
+                                <option *ngFor="let item of ssubcategoria" value={{item.id_sub_cat}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="!ssubcategoria">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="comercio.subcatc"  required>
+                                <option value="">-- Elija la subcategoria --</option>
                             </select>
                         </div>
                     </div>
@@ -77,29 +82,39 @@
                     </div>-->
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectpais" #selectpais="ngModel" [(ngModel)]="comercio.npais" [ngModelOptions]="{standalone: true}" required>
+                            <select class="form-control show-tick" name="selectpais" #selectpais="ngModel" [(ngModel)]="comercio.npais" (ngModelChange)="onSelectionpais()" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el País --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
+                                <option *ngFor="let item of spais" value={{item.id_pais}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                    <div class="row clearfix" *ngIf="sdepartamento">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" name="selectdpto" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" [ngModelOptions]="{standalone: true}" required>
+                            <select class="form-control show-tick"  name="selectdpto" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" (ngModelChange)="onSelectiondepartamento()" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el Departamento --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
-                                <option value="3">30</option>
+                                <option *ngFor="let item of sdepartamento" value={{item.id_departamento}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                    <div class="row clearfix" *ngIf="!sdepartamento">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick"  name="selectdpto" #selectdpto="ngModel" [(ngModel)]="comercio.ndep" [ngModelOptions]="{standalone: true}" required>
+                                <option value="">-- Elija el Departamento --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="sciudad">
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="selectciudad" #selectciudad="ngModel" [(ngModel)]="comercio.nciu" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija la Ciudad --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
+                                <option *ngFor="let item of sciudad" value={{item.id_ciudad}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="!sciudad">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" name="selectciudad" #selectciudad="ngModel" [(ngModel)]="comercio.nciu" [ngModelOptions]="{standalone: true}" required>
+                                <option value="">-- Elija la Ciudad --</option>
                             </select>
                         </div>
                     </div>
@@ -113,8 +128,7 @@
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="selectregimen" #selectregimen="ngModel" [(ngModel)]="comercio.nregimen" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el regimen --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
+                                <option *ngFor="let item of sregimen" value={{item.id_regimen}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
@@ -122,9 +136,7 @@
                         <div class="col-sm-12">
                            <select class="form-control show-tick" name="selectiva" #selectiva="ngModel" [(ngModel)]="comercio.viva" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija el iva --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
-                                <option value="3">30</option>
+                                <option *ngFor="let item of siva" value={{item.id_iva}}>{{item.valor}}</option>
                           </select>
                         </div>
                     </div>
@@ -136,7 +148,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!nsucursal.valid && nsucursal.touched" class="label label-danger">El nombre es obligatorio</span>
-                            <input type="text" class="form-control" name="nsucursal" #nsucursal="ngModel" [(ngModel)]="comercio.nsucursal" placeholder="Ingrese el nombre de la sucursal" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$" required>
+                            <input type="text" class="form-control" name="nsucursal" #nsucursal="ngModel" [(ngModel)]="comercio.nsucursal" placeholder="Ingrese el nombre de la sucursal" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
                     <!--<div class="form-group form-float">
@@ -168,13 +180,13 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!nuser.valid && nuser.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
-                            <input type="text" class="form-control" name="nuser" #nuser="ngModel" [(ngModel)]="comercio.nombreuser"  required placeholder="Ingrese el nombre del Usuario" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
+                            <input type="text" class="form-control" name="nuser" #nuser="ngModel" [(ngModel)]="comercio.nombreuser"  required placeholder="Ingrese el nombre del Usuario" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$">
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!ceuser.valid && ceuser.touched" class="label label-danger">El celular es obligatorio</span>
-                            <input type="number" class="form-control" name="ceuser" #ceuser="ngModel" [(ngModel)]="comercio.celularuser" required placeholder="Ingrese el celular del Usuario" maxlength="10" pattern="[0-9]">
+                            <input type="number" class="form-control" name="ceuser" #ceuser="ngModel" [(ngModel)]="comercio.celularuser" required placeholder="Ingrese el celular del Usuario" maxlength="10" pattern="[0-9]+">
                         </div>
                     </div>
                     <div class="form-group form-float">
@@ -187,7 +199,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!claveuser.valid && claveuser.touched" class="label label-danger">La clave es obligatorios</span>
-                            <input type="password" class="form-control" name="claveuser" #claveuser="ngModel" [(ngModel)]="comercio.clave" required placeholder="Ingrese la clave" minlength="8" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
+                            <input type="password" class="form-control" name="claveuser" #claveuser="ngModel" [(ngModel)]="comercio.clave" required placeholder="Ingrese la clave" minlength="8" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$">
                         </div>
                     </div>
                     <!--<div class="form-group form-float">
@@ -199,8 +211,7 @@
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="selectrol" #selectrol="ngModel" [(ngModel)]="comercio.roluser" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">-- Elija rol en la empresa --</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
+                                <option *ngFor="let item of srol" value={{item.id_rol}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>    
@@ -212,7 +223,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!namecaja.valid && namecaja.touched" class="label label-danger">El nombre es obligatorio</span>
-                            <input type="text" class="form-control" name="namecaja" #namecaja="ngModel" [(ngModel)]="comercio.ncaja" required placeholder="Ingrese nombre de la caja" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1]+$">
+                            <input type="text" class="form-control" name="namecaja" #namecaja="ngModel" [(ngModel)]="comercio.ncaja" required placeholder="Ingrese nombre de la caja" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$">
                         </div>
                     </div>
                     <!--<div class="form-group form-float">

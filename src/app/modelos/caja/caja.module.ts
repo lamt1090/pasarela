@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class CajaModule { 
   constructor(
     public nombre: String,
-    public sucursal: String
+    public sucursal: String,
+    public comercio: String
   ){}
 }

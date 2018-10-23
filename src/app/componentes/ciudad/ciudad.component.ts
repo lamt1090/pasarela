@@ -11,6 +11,7 @@ import { CiudadService } from '../../servicios/ciudad.service';
 })
 export class CiudadComponent implements OnInit {
   sdepartamento : any[];
+  data: any[];
   public ciudad : CiudadModule;
 
   constructor(
@@ -42,7 +43,13 @@ export class CiudadComponent implements OnInit {
     .subscribe(
       result => {
           if(result.code != 200){
-            this.sdepartamento=result;
+            this.data=result;
+          
+            if(this.data['status']== false){
+              alert("No existen monedas en la base de datos")
+            }else{
+              this.sdepartamento=this.data;
+            }
           }else{
               cate = result.data;
           }

@@ -8,18 +8,30 @@
                 <form #formcaja=ngForm (ngSubmit)="onsubmit()">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control"  name="ncaja" #nombre="ngModel" [(ngModel)]="caja.nombre" required placeholder="Ingrese nombre de la caja">
+                            <input type="text" class="form-control"  name="ncaja" #ncaja="ngModel" [(ngModel)]="caja.nombre" required placeholder="Ingrese nombre de la caja">
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
-                            <select class="form-control show-tick" #selsuc="ngModel" [(ngModel)]="caja.sucursal" [ngModelOptions]="{standalone: true}">
-                                <option value="" >-- Elija la sucursal --</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
+                            <select class="form-control show-tick" #selcom="ngModel" [(ngModel)]="caja.comercio" (ngModelChange)="onSelectioncomercio()" [ngModelOptions]="{standalone: true}">
+                                <option value="" >-- Elija el Comercio --</option>
+                                <option *ngFor="let item of scomercio" value={{item.id_comercio}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="ssucursal">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" name="selsuc" #selsuc="ngModel" [(ngModel)]="caja.sucursal" [ngModelOptions]="{standalone: true}">
+                                <option value="" >-- Elija la Sucursal --</option>
+                                <option *ngFor="let item of ssucursal" value={{item.id_sucursal}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="!ssucursal">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" name="selsuc" #selsuc="ngModel" [(ngModel)]="caja.sucursal" [ngModelOptions]="{standalone: true}">
+                                <option value="" >-- Elija la Sucursal --</option>
+                                <option *ngFor="let item of ssucursal" value={{item.id_sucursal}}>{{item.nombre}}</option>
                             </select>
                         </div>
                     </div>
