@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CajaModule } from '../../modelos/caja/caja.module';
 import { CajaService } from '../../servicios/caja.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-caja',
@@ -26,16 +27,16 @@ export class CajaComponent implements OnInit {
     
   }
 
-  onsubmit(){
+  onsubmit(formcaja: NgForm){
     let vm = this;
     vm._cajaservice.addcaja(vm.caja)
     .subscribe(
       res => {
         alert("Datos registrados correctamente");
-        location.reload();
-        console.log(res);
+        formcaja.reset();
       },
       err =>{
+        alert("Error al registrar en la base de datos");
         console.log(err);
       } 
     )

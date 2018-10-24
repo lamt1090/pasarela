@@ -6,7 +6,7 @@
             </div>
             <div class="body">
                 <!--{{countries | json}}-->
-                <form #formsubcategoria=ngForm (ngSubmit)="onsubmit()">
+                <form #formsubcategoria=ngForm (ngSubmit)="onsubmit(formsubcategoria)">
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_categoria" #id_categoria="ngModel" [(ngModel)]="subcategoria.categoria" [ngModelOptions]="{standalone: true}" required>

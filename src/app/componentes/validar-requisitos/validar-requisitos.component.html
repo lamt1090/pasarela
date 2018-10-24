@@ -5,7 +5,7 @@
                 <h2>Validar Requisitos</h2>
             </div>
             <div class="body">
-              <form #formvalidarestado=ngForm (ngSubmit)="onsubmit()"><!--formvalidarestado.reset();-->
+              <form #formvalidarestado=ngForm (ngSubmit)="onsubmit(formvalidarestado)"><!--formvalidarestado.reset();-->
                 <div class="row clearfix">
                   <div class="col-sm-12">
                     <select class="form-control show-tick" name="selrequisito" #selrequisito="ngModel" [(ngModel)]="validarrequisito.nrequisito" [ngModelOptions]="{standalone: true}" required>

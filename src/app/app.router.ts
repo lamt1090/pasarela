@@ -25,7 +25,7 @@ import { SubcategoriaComponent } from './componentes/subcategoria/subcategoria.c
 import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
-
+import { LoginComponent } from './principales/login/login.component';
 
 
 export const app_Routes: Routes = [
@@ -52,8 +52,9 @@ export const app_Routes: Routes = [
 	{path : 'usuario', component : UsuarioComponent },
 	{path : 'retiro', component : RetiroComponent },
 	{path : 'orden', component : OrdenComponent },
-	{path : 'validarrequisitos', component : ValidarRequisitosComponent}
-
+	{path : 'validarrequisitos', component : ValidarRequisitosComponent},
+	{path : 'login', component : LoginComponent },
+	{path : '**', component : LoginComponent }
 ];
 
 export const appRouting = RouterModule.forRoot(app_Routes,{useHash:true});

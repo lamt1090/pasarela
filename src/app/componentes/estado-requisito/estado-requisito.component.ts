@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstadoRequisitoModule } from '../../modelos/estado-requisito/estado-requisito.module';
 import { EstadoRequisitoService } from '../../servicios/estado-requisito.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -22,15 +23,17 @@ export class EstadoRequisitoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formestadorequisito: NgForm){
     let vm = this;
 
     vm._estadorequisitoservice.addestado(vm.estadorequisito)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formestadorequisito.reset();
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

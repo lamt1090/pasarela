@@ -5,7 +5,7 @@
                 <h2>Registrar Departamento</h2>
             </div>
             <div class="body">
-                <form #formdepartamento=ngForm (ngSubmit)="onsubmit()">
+                <form #formdepartamento=ngForm (ngSubmit)="onsubmit(formdepartamento)">
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_pais" #id_pais="ngModel" [(ngModel)]="departamento.npais" [ngModelOptions]="{standalone: true}" required>

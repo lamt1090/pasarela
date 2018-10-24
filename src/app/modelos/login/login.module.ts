@@ -7,10 +7,9 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class CuentaBancariaModule {
+export class LoginModule { 
   constructor(
-    public numero: String,
-    public nombre: String,
-    public comercio: String
-    ){}
- }
+    public username: String,
+    public password : string
+  ){}
+}

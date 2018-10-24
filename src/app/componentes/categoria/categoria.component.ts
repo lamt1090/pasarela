@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaModule } from '../../modelos/categoria/categoria.module';
 import { CategoriaService } from '../../servicios/categoria.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -22,15 +23,18 @@ export class CategoriaComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formcategoria: NgForm){
     let vm = this;
 
     vm._categoriaservice.addcategoria(vm.categoria)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formcategoria.reset();
+        
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

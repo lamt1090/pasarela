@@ -5,10 +5,10 @@
                 <h2>Registrar Rol</h2>
             </div>
             <div class="body">
-                <form #formrol=ngForm (ngSubmit)="onsubmit()">
+                <form #formrol=ngForm (ngSubmit)="onsubmit(formrol)">
                     <div class="form-group form-float">
                         <div class="form-line">
-                                <span *ngIf="!name_rol.valid && name_rol.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                            <span *ngIf="!name_rol.valid && name_rol.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
                             <input type="text" class="form-control" name="name_rol" #name_rol="ngModel" [(ngModel)]="rol.nombre" placeholder="Ingrese el nombre del rol" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequisitoModule } from '../../modelos/requisito/requisito.module';
 import { RequisitoService } from '../../servicios/requisito.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-requisito',
@@ -21,14 +22,17 @@ export class RequisitoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formrequisito: NgForm){
     let vm = this;
     vm._requisitoservice.addrequisito(vm.requisito)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formrequisito.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

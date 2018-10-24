@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartamentoModule } from '../../modelos/departamento/departamento.module';
 import { DepartamentoService } from '../../servicios/departamento.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-departamento',
@@ -10,6 +11,7 @@ import { DepartamentoService } from '../../servicios/departamento.service';
 })
 export class DepartamentoComponent implements OnInit {
   pais: any[];
+  data: any[];
   public departamento: DepartamentoModule;
 
   constructor(
@@ -22,14 +24,17 @@ export class DepartamentoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formdepartamento: NgForm){
     let vm = this;
     vm._departamentoservice.adddepartamento(vm.departamento)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formdepartamento.reset();
+        
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )
@@ -41,7 +46,13 @@ export class DepartamentoComponent implements OnInit {
     .subscribe(
       result => {
           if(result.code != 200){
-            this.pais=result;
+            this.data=result;
+          
+            if(this.data['status']== false){
+              alert("No existen datos en la base de datos")
+            }else{
+              this.pais=result;
+            }
           }else{
               cate = result.data;
           }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IvaModule } from '../../modelos/iva/iva.module';
 import { IvaService } from '../../servicios/iva.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -22,15 +23,18 @@ export class IvaComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formiva: NgForm){
     let vm = this;
 
     vm._ivaservice.addiva(vm.iva)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formiva.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

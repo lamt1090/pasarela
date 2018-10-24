@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RolModule } from '../../modelos/rol/rol.module';
 import { RolService } from '../../servicios/rol.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-rol',
@@ -21,16 +22,19 @@ export class RolComponent implements OnInit {
   ngOnInit() {
   }
 
-    onsubmit(){
+  onsubmit(formrol: NgForm){
       let vm = this;
     vm._rolservice.addrol(vm.rol)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formrol.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )
-    }
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComercioModule } from '../../modelos/comercio/comercio.module';
 import { ComercioService } from '../../servicios/comercio.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -46,14 +47,17 @@ export class ComercioComponent implements OnInit {
     console.log("prueba");
   }
 
-  onsubmit(){
+  onsubmit(formcomercio: NgForm){
     let vm = this;
     vm._comercioservice.addcomercio(vm.comercio)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formcomercio.reset();
+        
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     ) 
@@ -77,7 +81,7 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay subcategorias para esta opción")
+              alert("No hay subcategorias para esta opción");
             }else{
               this.ssubcategoria=this.data;
             }
@@ -111,7 +115,7 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay departamento para esta opción")
+              alert("No hay departamento para esta opción");
             }else{
               this.sdepartamento=this.data;
             }
@@ -145,7 +149,7 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay ciudades para esta opción")
+              alert("No hay ciudades para ese departamento");
             }else{
               this.sciudad=this.data;
             }
@@ -169,7 +173,7 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen datos en la base de datos")
             }else{
               this.sregimen=result;
             }
@@ -192,7 +196,7 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen datos en la base de datos")
             }else{
               this.siva=result;
             }
@@ -215,7 +219,7 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen datos en la base de datos")
             }else{
               this.srol=result;
             }
@@ -238,7 +242,7 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen datos en la base de datos")
             }else{
               this.scategoria=this.data;
             }
@@ -261,7 +265,7 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen datos en la base de datos")
             }else{
               this.spais=this.data;
             }

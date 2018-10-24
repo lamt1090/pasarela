@@ -5,7 +5,7 @@
                 <h2>Registrar Ciudad</h2>
             </div>
             <div class="body">
-                <form #formciudad=ngForm (ngSubmit)="onsubmit()">
+                <form #formciudad=ngForm (ngSubmit)="onsubmit(formciudad)">
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_departamento" #id_departamento="ngModel" [(ngModel)]="ciudad.dep" [ngModelOptions]="{standalone: true}" required>

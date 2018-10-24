@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PaisModule } from '../../modelos/pais/pais.module';
 import { PaisService } from '../../servicios/pais.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pais',
@@ -21,14 +22,17 @@ export class PaisComponent implements OnInit {
   ngOnInit() {
   }
 
-    onsubmit(){
+  onsubmit(formpais: NgForm){
       let vm = this;
     vm._paisservice.addpais(vm.pais)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formpais.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

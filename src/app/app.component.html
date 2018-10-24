@@ -1,4 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<span *ngIf="preloader == 0">
+    <app-header></app-header>
+    <app-login></app-login>
+</span>
+<span *ngIf="preloader>0">
 <!--header-->
 <app-header></app-header>
 <!--ENd header-->
@@ -12,6 +17,6 @@
 
 <!--body-->
 <!--<app-contenido></app-contenido-->
-
+</span>
 
 

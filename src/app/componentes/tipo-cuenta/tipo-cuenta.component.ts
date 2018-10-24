@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoCuentaModule } from '../../modelos/tipo-cuenta/tipo-cuenta.module';
 import { TipoCuentaService } from '../../servicios/tipo-cuenta.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-tipo-cuenta',
@@ -21,14 +22,17 @@ export class TipoCuentaComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formtipocuenta: NgForm){
     let vm = this;
     vm._tipocuentaservice.addtipocuenta(vm.tipocuenta)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formtipocuenta.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

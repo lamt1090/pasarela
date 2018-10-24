@@ -5,7 +5,7 @@
                 <h2>Registrar Caja</h2>
             </div>
             <div class="body">
-                <form #formcaja=ngForm (ngSubmit)="onsubmit()">
+                <form #formcaja=ngForm (ngSubmit)="onsubmit(formcaja)">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control"  name="ncaja" #ncaja="ngModel" [(ngModel)]="caja.nombre" required placeholder="Ingrese nombre de la caja">

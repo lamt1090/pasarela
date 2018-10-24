@@ -12,7 +12,7 @@ export class CuentaBancariaComponent implements OnInit {
   public cuentabancaria: CuentaBancariaModule;
   
   constructor() { 
-    this.cuentabancaria = new CuentaBancariaModule();
+    this.cuentabancaria = new CuentaBancariaModule("","","");
   }
 
   ngOnInit() {

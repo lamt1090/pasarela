@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BancoModule } from '../../modelos/banco/banco.module';
 import { BancoService } from '../../servicios/banco.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -21,42 +22,22 @@ export class BancoComponent implements OnInit {
   }
 
   ngOnInit() {
-    //alert(this._bancoservice.getBanco());// -- msm de prueba
-    /*this._bancoservice.getBanco().subscribe(
-      result =>{
-        this.bancos = result.data;
-
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    )*/
   }
 
-  onsubmit(){
+  onsubmit(formbanco: NgForm){
     let vm = this;
 
     vm._bancoservice.addbanco(vm.banco)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formbanco.reset();
       },
       err =>{
+        alert("Erro al guardar en la base de datos");
         console.log(err);
       } 
     )
-    /*this._bancoservice.addbanco(this.banco).subscribe(
-      result =>{
-        if(result.code == 200){
-          alert(this._bancoservice.getBanco());
-        }else{
-          console.log(result);
-        }
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    );*/
   }
 
 }

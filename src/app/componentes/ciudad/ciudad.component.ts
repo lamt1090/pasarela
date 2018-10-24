@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CiudadModule } from '../../modelos/ciudad/ciudad.module';
 import { CiudadService } from '../../servicios/ciudad.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -24,14 +25,17 @@ export class CiudadComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formciudad: NgForm){
     let vm = this;
     vm._ciudadservice.addciudad(vm.ciudad)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formciudad.reset();
+        
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )
@@ -46,7 +50,7 @@ export class CiudadComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
+              alert("No existen ciudades para ese departamento")
             }else{
               this.sdepartamento=this.data;
             }

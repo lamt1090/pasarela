@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
 /*rutas*/
-import {app_Routes} from './app.router';
+import { app_Routes } from './app.router';
 
 //component
 import { HeaderComponent } from './principales/header/header.component';
@@ -40,12 +39,13 @@ import { SubcategoriaComponent } from './componentes/subcategoria/subcategoria.c
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
-
+import { LoginComponent } from './principales/login/login.component';
 
 
 
 //servicios
 import { BancoService } from './servicios/banco.service';
+
 
 
 
@@ -81,6 +81,7 @@ import { BancoService } from './servicios/banco.service';
     UsuarioComponent,
     SucursalComponent,
     ValidarRequisitosComponent,
+    LoginComponent,
   
   ],
   imports: [
@@ -89,7 +90,6 @@ import { BancoService } from './servicios/banco.service';
     FormsModule,
     HttpClientModule,
     NgSelectModule,
-    
 
   ],
   providers: [],

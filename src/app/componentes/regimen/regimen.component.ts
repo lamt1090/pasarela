@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegimenModule } from '../../modelos/regimen/regimen.module';
 import { RegimenService } from '../../servicios/regimen.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-regimen',
@@ -21,14 +22,17 @@ export class RegimenComponent implements OnInit {
   ngOnInit() {
   }
 
-  onsubmit(){
+  onsubmit(formregimen: NgForm){
     let vm = this;
     vm._regimenservice.addregimen(vm.regimen)
     .subscribe(
       res => {
-        console.log(res);
+        alert("Datos Guardados correctamente");
+        formregimen.reset();
+  
       },
       err =>{
+        alert("Error al guardar en la base de datos")
         console.log(err);
       } 
     )

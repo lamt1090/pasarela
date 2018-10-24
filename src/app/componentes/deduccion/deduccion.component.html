@@ -5,7 +5,7 @@
                 <h2>Registrar Deducción</h2>
             </div>
             <div class="body">
-                <form #formdeduccion=ngForm (ngSubmit)="onsubmit()">
+                <form #formdeduccion=ngForm (ngSubmit)="onsubmit(formdeduccion)">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!name_deduccion.valid && name_deduccion.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>

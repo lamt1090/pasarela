@@ -5,7 +5,7 @@
                 <h2>Registrar País</h2>
             </div>
             <div class="body">
-                <form #formpais=ngForm (ngSubmit)="onsubmit()">
+                <form #formpais=ngForm (ngSubmit)="onsubmit(formpais)">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!name_pais.valid && name_pais.touched" class="label label-danger">El nombre es obligatorio</span>

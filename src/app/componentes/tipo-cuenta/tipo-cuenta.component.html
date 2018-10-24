@@ -7,7 +7,7 @@
                 <h2>Registrar Tipo de Cuenta</h2>
             </div>
             <div class="body">
-                <form #formtipocuenta=ngForm (ngSubmit)="onsubmit()">
+                <form #formtipocuenta=ngForm (ngSubmit)="onsubmit(formtipocuenta)">
                     <div class="form-group form-float">
                         <div class="form-line">
                                 <span *ngIf="!name_cuenta.valid && name_cuenta.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>

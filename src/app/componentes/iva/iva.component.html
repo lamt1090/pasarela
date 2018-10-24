@@ -5,7 +5,7 @@
                 <h2>Registrar Iva</h2>
             </div>
             <div class="body">
-                <form #formiva=ngForm (ngSubmit)="onsubmit()" >
+                <form #formiva=ngForm (ngSubmit)="onsubmit(formiva)" >
                     <div class="form-group form-float">
                         <div class="form-line">
                                 <span *ngIf="!name_iva.valid && name_iva.touched" class="label label-danger">El valor es obligatorio </span>
