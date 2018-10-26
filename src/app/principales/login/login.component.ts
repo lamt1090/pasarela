@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginModule } from '../../modelos/login/login.module';
 import { LoginService } from '../../servicios/login.service';
-import { NgForm } from '@angular/forms';
-import { appRouting, app_Routes } from '../../app.router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,10 +12,11 @@ import { appRouting, app_Routes } from '../../app.router';
 })
 export class LoginComponent implements OnInit {
   data: any;
-  lg1: any;
   public login : LoginModule;
-
+  
   constructor(
+    public rt : Router,
+    public rtac: ActivatedRoute,
     private _loginservice: LoginService,
   ) { 
     this.login = new LoginModule("","");
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
             alert("Usuario o clave incorrecta");
           }else{
           alert("Datos correctos");
-          
+          this.rt.navigateByUrl('comercio');
           }
         }else{
             vm = res.data;
