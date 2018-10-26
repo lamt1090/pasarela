@@ -54,6 +54,8 @@ export const app_Routes: Routes = [
 	{path : 'orden', component : OrdenComponent },
 	{path : 'validarrequisitos', component : ValidarRequisitosComponent},
 	{path : 'login', component : LoginComponent },
+	{path : '**', component : LoginComponent },
+	{path : '', component : LoginComponent },
 	
 ];
 
