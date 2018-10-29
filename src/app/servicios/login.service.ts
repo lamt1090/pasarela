@@ -8,7 +8,7 @@ import { GLOBAL } from './global';
   providedIn: 'root'
 })
 export class LoginService {
-
+  public token: any;
   public url2: string;
 
   constructor(
@@ -22,7 +22,25 @@ export class LoginService {
     const body = new HttpParams().set('username',login.username)
                                   .set('userpassword',login.password);
     return this._http.post(this.url2+'?opcion=validarlogin',body,{headers: headers,responseType:'text'});
-    
   }
   
+  logout() {
+    return localStorage.removeItem('algo');
+  }
+
+public isLoggedIn() {
+    if("algo" in localStorage){
+      return true;
+    }else{
+      return false;
+    }
+    /*this.token= JSON.parse(localStorage.getItem("algo"));
+    return this.token;*/
+      // moment().isBefore(this.getExpiration());
+}
+
+isLoggedOut() {
+  return this.isLoggedIn();
+}
+
 }
