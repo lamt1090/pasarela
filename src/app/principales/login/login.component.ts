@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   cooki: any;
   loading = false;
+  loggedIn: boolean;
   public login : LoginModule;
   
   constructor(    
@@ -41,17 +41,21 @@ export class LoginComponent implements OnInit {
         if(res.code != 200){
             
           this.data=JSON.parse(res);
-          
+
           if(this.data['status']== false){
-            console.log(this._loginservice.isLoggedOut());
-            alert("Usuario o clave incorrecta");
+            
+            alert("Usuario o clave incorrectos");
           }else{
+            console.log("entre positivo al else");
             this.loading= true
             if(this.loading== true){
               localStorage.setItem("algo",JSON.stringify(this.data));
               alert("Datos correctos");
-              this.cooki= JSON.parse(localStorage.getItem("algo"));
-              this.rt.navigateByUrl('comercio');
+              //this._loginservice.isLoggedIn()
+              this._loginservice.changeAuthStatus(true);
+              //console.log(this._loginservice.s)
+              console.log("antes del url");
+              this.rt.navigateByUrl('/comercio');
             }
           }
         }else{

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import  'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,20 @@ import { GLOBAL } from './global';
 export class LoginService {
   public token: any;
   public url2: string;
+  private sesion = new BehaviorSubject<boolean>(this.isLoggedIn());
+
+
+  authStatus = this.sesion.asObservable();
+
+  changeAuthStatus(value: boolean){
+    console.log(value);
+    this.sesion.next(value);
+    console.log(this.sesion);
+  }
 
   constructor(
-    public _http: HttpClient
+    public _http: HttpClient,
+   
   ) { 
     this.url2 = GLOBAL.url2;
   }
@@ -24,9 +36,16 @@ export class LoginService {
     return this._http.post(this.url2+'?opcion=validarlogin',body,{headers: headers,responseType:'text'});
   }
   
-  logout() {
-    return localStorage.removeItem('algo');
+  logout(){
+    localStorage.removeItem('algo');
+    if("algo" in localStorage){
+      return true;
+    }else{
+      return false;
+    }
   }
+
+ 
 
 public isLoggedIn() {
     if("algo" in localStorage){
