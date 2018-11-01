@@ -46,5 +46,12 @@ export class BancoService {
   getbancos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=banco');
   }
+
+  getbancoid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('id_banco',id);
+    return this._http.post(this.url2+'?opcion=getbanco',body,{headers: headers,responseType:'text'});
+    
+  }
 }
 

@@ -40,13 +40,8 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
 import { LoginComponent } from './principales/login/login.component';
-
-
-
-//servicios
-import { BancoService } from './servicios/banco.service';
-
-
+import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarbanco.component';
+import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
 
 
 @NgModule({
@@ -82,6 +77,8 @@ import { BancoService } from './servicios/banco.service';
     SucursalComponent,
     ValidarRequisitosComponent,
     LoginComponent,
+    EditarbancoComponent,
+    MostrarbancoComponent,
   
   ],
   imports: [

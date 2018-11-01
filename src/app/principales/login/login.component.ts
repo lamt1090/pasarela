@@ -3,6 +3,9 @@ import { LoginModule } from '../../modelos/login/login.module';
 import { LoginService } from '../../servicios/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { TokenService } from '../../servicios/token.service';
+import { IsloginService } from '../../servicios/islogin.service';
+import { ValidoModule } from '../../modelos/valido/valido.module';
 
 
 @Component({
@@ -18,14 +21,23 @@ export class LoginComponent implements OnInit {
   cooki: any;
   loading = false;
   loggedIn: boolean;
+  public tokenuser: any;
   public login : LoginModule;
   
   constructor(    
     public rt : Router,
     public rtac: ActivatedRoute,
+    private tokens: TokenService,
     private _loginservice: LoginService,
+    private islogin: IsloginService
   ) { 
     this.login = new LoginModule("","");
+    if(!tokens.get()){
+      this.loggedIn=false;
+      console.log("estoy en login component ="+this.loggedIn);
+    }else{
+      alert("ya has iniciado sessión");
+    }
   }
 
   ngOnInit() {
@@ -41,20 +53,18 @@ export class LoginComponent implements OnInit {
         if(res.code != 200){
             
           this.data=JSON.parse(res);
-
+          
           if(this.data['status']== false){
-            
             alert("Usuario o clave incorrectos");
           }else{
-            console.log("entre positivo al else");
             this.loading= true
             if(this.loading== true){
-              localStorage.setItem("algo",JSON.stringify(this.data));
+              this.tokens.set(this.data['token']);
+              this.tokens.setuser(this.data['usnmlogin']);
               alert("Datos correctos");
-              //this._loginservice.isLoggedIn()
-              this._loginservice.changeAuthStatus(true);
-              //console.log(this._loginservice.s)
-              console.log("antes del url");
+
+              this.islogin.setData({success:true});
+             
               this.rt.navigateByUrl('/comercio');
             }
           }

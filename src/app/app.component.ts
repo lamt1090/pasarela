@@ -1,30 +1,29 @@
 import { Component } from '@angular/core';
 import { LoginService } from './servicios/login.service';
-
-
+import { ValidoModule } from './modelos/valido/valido.module';
+import { IsloginService } from './servicios/islogin.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [LoginService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   
   title = 'portafolio';
-  //private sesion = new BehaviorSubject<boolean>(this.login.isLoggedOut());
+  data: ValidoModule;
   public loggedIn: boolean;
-
-  //authStatus = this.sesion.asObservable();
   
   constructor(
-    private login: LoginService
-  ){}
+    private login: LoginService,
+    private islogin: IsloginService
+  ){
+    this.islogin.dataChange.subscribe((data)=>{this.loggedIn=data})
+  }
 
   ngOnInit() {
-    console.log(this.login.authStatus.subscribe(value =>this.loggedIn = value));  
-    console.log(this.loggedIn);
+    this.islogin.dataChange.subscribe((data)=>{this.loggedIn=data})
   }
 
   

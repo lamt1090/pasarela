@@ -1,12 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!--header-->
-<div *ngIf="loggedIn">
+<ng-template [ngIf]="!loggedIn">
 <app-header></app-header>
 <!--ENd header-->
 
 <!--menu principal-->
 <app-desplegar></app-desplegar>
-</div>
+</ng-template>
 <div class="container">
     <router-outlet></router-outlet>
 </div>

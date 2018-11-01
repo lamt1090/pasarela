@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../servicios/login.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { TokenService } from '../../servicios/token.service';
+import { IsloginService } from '../../servicios/islogin.service';
+
 
 @Component({
   selector: 'app-info-user',
@@ -9,25 +11,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class InfoUserComponent implements OnInit {
 
-  public loggedIn: boolean;
+  public loggedIn: any;
+  public user: any;
 
   constructor(
     public rt : Router,
-    private login: LoginService
+    private tokens: TokenService,
+    private islogin: IsloginService
+    
   ) { }
 
   ngOnInit() {
+    
   }
 
 
   cerrarsesion(){
-    this.loggedIn=this.login.logout();
-    if(this.loggedIn==false){
+    this.tokens.remove();
+    if(!this.tokens.get()){
       alert("La sesión se ha cerrado");
-      this.rt.navigateByUrl('login');
+      this.islogin.setData({success:false});
+      this.rt.navigateByUrl('/login');
     }else{
       alert("Todavia esta iniciada la sesión");
     }
   }
+
+  
 
 }

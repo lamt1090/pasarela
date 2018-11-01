@@ -4,6 +4,7 @@ import  'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,19 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class LoginService {
   public token: any;
   public url2: string;
-  private sesion = new BehaviorSubject<boolean>(this.isLoggedIn());
+
+  private sesion$ = new BehaviorSubject<any>(this.tokens.loggedIn());
 
 
-  authStatus = this.sesion.asObservable();
+  authStatus = this.sesion$.asObservable();
 
   changeAuthStatus(value: boolean){
-    console.log(value);
-    this.sesion.next(value);
-    console.log(this.sesion);
+    this.sesion$.next(value);
   }
 
   constructor(
     public _http: HttpClient,
-   
+    private tokens: TokenService,
   ) { 
     this.url2 = GLOBAL.url2;
   }
@@ -36,7 +36,15 @@ export class LoginService {
     return this._http.post(this.url2+'?opcion=validarlogin',body,{headers: headers,responseType:'text'});
   }
   
-  logout(){
+
+
+
+
+
+
+
+
+  /*logout(){
     localStorage.removeItem('algo');
     if("algo" in localStorage){
       return true;
@@ -53,13 +61,10 @@ public isLoggedIn() {
     }else{
       return false;
     }
-    /*this.token= JSON.parse(localStorage.getItem("algo"));
-    return this.token;*/
+    this.token= JSON.parse(localStorage.getItem("algo"));
+    return this.token;
       // moment().isBefore(this.getExpiration());
-}
+}*/
 
-isLoggedOut() {
-  return this.isLoggedIn();
-}
 
 }
