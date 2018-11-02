@@ -42,6 +42,8 @@ import { ValidarRequisitosComponent } from './componentes/validar-requisitos/val
 import { LoginComponent } from './principales/login/login.component';
 import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarbanco.component';
 import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
+import { EditarcategoriaComponent } from './componentes/categorias/editarcategoria/editarcategoria.component';
+import { ModificarcategoriaComponent } from './componentes/categorias/modificarcategoria/modificarcategoria.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrar
     LoginComponent,
     EditarbancoComponent,
     MostrarbancoComponent,
+    EditarcategoriaComponent,
+    ModificarcategoriaComponent,
   
   ],
   imports: [

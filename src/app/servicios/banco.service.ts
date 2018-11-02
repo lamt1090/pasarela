@@ -39,7 +39,8 @@ export class BancoService {
 
   editbanco(banco):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
-    const body = new HttpParams().set('nombre_banco',banco.nombre);
+    const body = new HttpParams().set('nombre_banco',banco.nombre)
+                                  .set('id_banco',banco.id_banco);
     return this._http.post(this.url3+'editbanco.php',body,{headers: headers,responseType:'text'});
   }
 

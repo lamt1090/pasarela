@@ -1,45 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { BancoService } from '../../../servicios/banco.service';
-import { BancoModule } from '../../../modelos/banco/banco.module';
 import { Router } from '@angular/router';
-import { MostrarbancoService } from '../../../servicios/mostrarbanco.service';
+import { MostrarcategoriaService } from '../../../servicios/mostrarcategoria.service';
+import { CategoriaService } from '../../../servicios/categoria.service';
 
 
 @Component({
-  selector: 'app-mostrarbanco',
-  templateUrl: './mostrarbanco.component.html',
-  styleUrls: ['./mostrarbanco.component.css']
+  selector: 'app-modificarcategoria',
+  templateUrl: './modificarcategoria.component.html',
+  styleUrls: ['./modificarcategoria.component.css']
 })
-export class MostrarbancoComponent implements OnInit {
-  sbanco: any[];
-  idb: any;
-  bancoid: any[];
+export class ModificarcategoriaComponent implements OnInit {
+  scategoria: any[];
+  idct: any;
+  categoriaid: any[];
   data: any;
-  public banco: BancoModule;
-
   constructor(
     private rt: Router,
-    private _mbservice: MostrarbancoService, 
-    private _bancoservice: BancoService
-  ) {
+    private _mctservice: MostrarcategoriaService, 
+    private _categoriaservice: CategoriaService
+  ) { 
     this.mostrar();
-   }
+  }
 
   ngOnInit() {
   }
 
   mostrar(){
     let cate=this;
-    cate._bancoservice.getbancos()
+    cate._categoriaservice.getcategorias()
     .subscribe(
       result => {
           if(result.code != 200){
             this.data=result;
-            
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sbanco=this.data;
+              this.scategoria=this.data;
             }
           }else{
               cate = result.data;
@@ -52,17 +48,17 @@ export class MostrarbancoComponent implements OnInit {
   }
 
   modificar(data){
-    this.idb= data;
-    if(this.idb!=0){
-      this.idbn(this.idb);
+    this.idct= data;
+    if(this.idct!=0){
+      this.idbn(this.idct);
     }else{
-      alert("Error al elegir el banco");
+      alert("Error al elegir categoria");
     }
   }
 
-  idbn(idb){
+  idbn(idct){
     let bn=this;
-    bn._bancoservice.getbancoid(idb)
+    bn._categoriaservice.getcategoriaid(idct)
     .subscribe(
       result => {
           if(result.code != 200){
@@ -71,9 +67,12 @@ export class MostrarbancoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.bancoid=this.data;
-              this._mbservice.set(this.bancoid);
-              this.rt.navigateByUrl('editarbanco');
+              this.categoriaid=this.data;
+              console.log(this.categoriaid);
+              console.log("lo guarde en bancoid");
+              this._mctservice.set(this.categoriaid);
+              console.log("llegue del servicio voy para editar");
+              this.rt.navigateByUrl('editarcategoria');
             }
           }else{
               bn = result.data;

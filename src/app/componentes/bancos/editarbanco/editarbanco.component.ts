@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 import { BancoModule } from '../../../modelos/banco/banco.module';
 import { BancoService } from '../../../servicios/banco.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MostrarbancoService } from '../../../servicios/mostrarbanco.service';
-import { EditarbancoModule } from '../../../modelos/editar/editarbanco/editarbanco.module';
+
 
 
 @Component({
@@ -12,25 +13,27 @@ import { EditarbancoModule } from '../../../modelos/editar/editarbanco/editarban
   styleUrls: ['./editarbanco.component.css']
 })
 export class EditarbancoComponent implements OnInit {
-
+  model:any = {};
   public banco : BancoModule;
-  sidbanco: any[];
+  public sidbanco : any[];
+  public m_editar:any[];
 
   constructor(
     public rt : Router,
     private mostrar: MostrarbancoService,
     private _bancoservice: BancoService,
-    public m_editar: EditarbancoModule
   ) { }
 
   ngOnInit() {
-    this.sidbanco=this.mostrar.get();
+    let sidata = this.mostrar.get();
+    this.model=sidata[0];
+    
   }
 
-  onsubmit(){
+  onsubmit(f:NgForm){
     let vm = this;
-
-    vm._bancoservice.editbanco(vm.banco)
+    console.log(vm.model);
+    vm._bancoservice.editbanco(vm.model)
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
@@ -41,6 +44,11 @@ export class EditarbancoComponent implements OnInit {
         console.log(err);
       } 
     )
+  }
+
+  cancelar(formeditarbanco:NgForm){
+      formeditarbanco.reset();
+      this.rt.navigateByUrl('/banco');
   }
 
 }

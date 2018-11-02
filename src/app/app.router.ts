@@ -28,6 +28,7 @@ import { ValidarRequisitosComponent } from './componentes/validar-requisitos/val
 import { LoginComponent } from './principales/login/login.component';
 import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarbanco.component';
 import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
+import { EditarcategoriaComponent } from './componentes/categorias/editarcategoria/editarcategoria.component';
 
 
 export const app_Routes: Routes = [
@@ -56,7 +57,7 @@ export const app_Routes: Routes = [
 	{path : 'orden', component : OrdenComponent },
 	{path : 'validarrequisitos', component : ValidarRequisitosComponent},
 	{path : 'editarbanco', component : EditarbancoComponent },
-	{path : 'mostrarbancos', component : MostrarbancoComponent},
+	{path : 'editarcategoria', component : EditarcategoriaComponent },
 	{path : 'login', component : LoginComponent },
 	{path : '**', component : LoginComponent },
 	{path : '', component : LoginComponent },
