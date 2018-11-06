@@ -5,7 +5,7 @@
                 <h2>Actualizar información de las categorias</h2>
             </div>
             <div class="body">
-                <form #formeditarbanco=ngForm (ngSubmit)="onsubmit()" >
+                <form #formeditarcategoria=ngForm (ngSubmit)="onsubmit()" >
                     <div class="form-group form-float">
                         <div class="form-line">
                             <span *ngIf="!nbanco.valid && nbanco.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     
-                    <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarbanco.form.valid" >ACTUALIZAR</button>
-                    <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarbanco)">CANCELAR</button>
+                    <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarcategoria.form.valid" >ACTUALIZAR</button>
+                    <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarcategoria)">CANCELAR</button>
                 </form>
             </div>
         </div>

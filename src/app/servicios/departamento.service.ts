@@ -28,4 +28,8 @@ export class DepartamentoService {
   getpaises(): Observable<any>{
     return this._http.get(this.url2+'?opcion=pais');
   }
+
+  getdepartamentos(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getdepartamento');
+  }
 }

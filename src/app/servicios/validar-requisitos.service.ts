@@ -39,4 +39,14 @@ export class ValidarRequisitosService {
   getestadorequisitos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=estadorequisito');
   }
+
+  getvalidarrequisitos(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getvalidarrequisitos');
+  }
+
+  getvalidarrequisitosid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idvalreq',id);
+    return this._http.post(this.url2+'?opcion=getvalidarrequisitosid',body,{headers: headers,responseType:'text'});
+  }
 }

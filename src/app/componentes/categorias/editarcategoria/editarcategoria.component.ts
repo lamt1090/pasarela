@@ -42,8 +42,8 @@ export class EditarcategoriaComponent implements OnInit {
     )
   }
 
-  cancelar(formeditarbanco:NgForm){
-      formeditarbanco.reset();
+  cancelar(formeditarcategoria:NgForm){
+    formeditarcategoria.reset();
       this.rt.navigateByUrl('/banco');
   }
 

@@ -44,6 +44,35 @@ import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarban
 import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
 import { EditarcategoriaComponent } from './componentes/categorias/editarcategoria/editarcategoria.component';
 import { ModificarcategoriaComponent } from './componentes/categorias/modificarcategoria/modificarcategoria.component';
+import { EditarciudadComponent } from './componentes/ciudad/editarciudad/editarciudad.component';
+import { MostrarciudadComponent } from './componentes/ciudad/mostrarciudad/mostrarciudad.component';
+import { MostrarcomercioComponent } from './componentes/comercio/mostrarcomercio/mostrarcomercio.component';
+import { EditarcomercioComponent } from './componentes/comercio/editarcomercio/editarcomercio.component';
+import { EditardeduccionComponent } from './componentes/deduccion/editardeduccion/editardeduccion.component';
+import { MostrardeduccionComponent } from './componentes/deduccion/mostrardeduccion/mostrardeduccion.component';
+import { MostrardepartamentoComponent } from './componentes/departamento/mostrardepartamento/mostrardepartamento.component';
+import { EditardepartamentoComponent } from './componentes/departamento/editardepartamento/editardepartamento.component';
+import { EditarestadoComponent } from './componentes/estado-requisito/editarestado/editarestado.component';
+import { MostrarestadoComponent } from './componentes/estado-requisito/mostrarestado/mostrarestado.component';
+import { MostrarivaComponent } from './componentes/iva/mostrariva/mostrariva.component';
+import { EditarivaComponent } from './componentes/iva/editariva/editariva.component';
+import { EditarmonedaComponent } from './componentes/moneda/editarmoneda/editarmoneda.component';
+import { MostrarmonedaComponent } from './componentes/moneda/mostrarmoneda/mostrarmoneda.component';
+import { MostrarpaisComponent } from './componentes/pais/mostrarpais/mostrarpais.component';
+import { EditarpaisComponent } from './componentes/pais/editarpais/editarpais.component';
+import { EditarregimenComponent } from './componentes/regimen/editarregimen/editarregimen.component';
+import { MostrarregimenComponent } from './componentes/regimen/mostrarregimen/mostrarregimen.component';
+import { MostrarrequisitoComponent } from './componentes/requisito/mostrarrequisito/mostrarrequisito.component';
+import { EditarrequisitoComponent } from './componentes/requisito/editarrequisito/editarrequisito.component';
+import { EditarrolComponent } from './componentes/rol/editarrol/editarrol.component';
+import { MostrarrolComponent } from './componentes/rol/mostrarrol/mostrarrol.component';
+import { MostrarsubcategoriaComponent } from './componentes/subcategoria/mostrarsubcategoria/mostrarsubcategoria.component';
+import { EditarsubcategoriaComponent } from './componentes/subcategoria/editarsubcategoria/editarsubcategoria.component';
+import { EditartipocuentaComponent } from './componentes/tipo-cuenta/editartipocuenta/editartipocuenta.component';
+import { MostrartipocuentaComponent } from './componentes/tipo-cuenta/mostrartipocuenta/mostrartipocuenta.component';
+import { MostrarvalidarrequisitosComponent } from './componentes/validar-requisitos/mostrarvalidarrequisitos/mostrarvalidarrequisitos.component';
+import { EditarvalidarrequisitosComponent } from './componentes/validar-requisitos/editarvalidarrequisitos/editarvalidarrequisitos.component';
+import { MostrarcategoriaComponent } from './componentes/categoria/mostrarcategoria/mostrarcategoria.component';
 
 
 @NgModule({
@@ -83,6 +112,35 @@ import { ModificarcategoriaComponent } from './componentes/categorias/modificarc
     MostrarbancoComponent,
     EditarcategoriaComponent,
     ModificarcategoriaComponent,
+    EditarciudadComponent,
+    MostrarciudadComponent,
+    MostrarcomercioComponent,
+    EditarcomercioComponent,
+    EditardeduccionComponent,
+    MostrardeduccionComponent,
+    MostrardepartamentoComponent,
+    EditardepartamentoComponent,
+    EditarestadoComponent,
+    MostrarestadoComponent,
+    MostrarivaComponent,
+    EditarivaComponent,
+    EditarmonedaComponent,
+    MostrarmonedaComponent,
+    MostrarpaisComponent,
+    EditarpaisComponent,
+    EditarregimenComponent,
+    MostrarregimenComponent,
+    MostrarrequisitoComponent,
+    EditarrequisitoComponent,
+    EditarrolComponent,
+    MostrarrolComponent,
+    MostrarsubcategoriaComponent,
+    EditarsubcategoriaComponent,
+    EditartipocuentaComponent,
+    MostrartipocuentaComponent,
+    MostrarvalidarrequisitosComponent,
+    EditarvalidarrequisitosComponent,
+    MostrarcategoriaComponent,
   
   ],
   imports: [

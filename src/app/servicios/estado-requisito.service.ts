@@ -10,17 +10,29 @@ import { GLOBAL } from './global';
 export class EstadoRequisitoService {
 
   public url: string;
+  public url2: string;
 
   constructor(
     public _http: HttpClient
   ) { 
     this.url = GLOBAL.url;
+    this.url2 = GLOBAL.url2;
   }
 
   addestado(estadorequisito):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('nombre_estado',estadorequisito.nombre);
     return this._http.post(this.url+'insertestadorequisito.php',body,{headers: headers,responseType:'text'});
+  }
+
+  getestado(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=estadorequisito');
+  }
+
+  getestadoid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idestadoreq',id);
+    return this._http.post(this.url2+'?opcion=getestadorequisitoid',body,{headers: headers,responseType:'text'});
   }
 
 }
