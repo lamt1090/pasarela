@@ -26,10 +26,22 @@ import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
 import { LoginComponent } from './principales/login/login.component';
-import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarbanco.component';
-import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
-import { EditarcategoriaComponent } from './componentes/categorias/editarcategoria/editarcategoria.component';
-
+import { EditarcategoriaComponent } from './componentes/categoria/editarcategoria/editarcategoria.component';
+import { EditarbancoComponent } from './componentes/banco/editarbanco/editarbanco.component';
+import { EditarciudadComponent } from './componentes/ciudad/editarciudad/editarciudad.component';
+import { EditarcomercioComponent } from './componentes/comercio/editarcomercio/editarcomercio.component';
+import { EditardeduccionComponent } from './componentes/deduccion/editardeduccion/editardeduccion.component';
+import { EditardepartamentoComponent } from './componentes/departamento/editardepartamento/editardepartamento.component';
+import { EditarestadoComponent } from './componentes/estado-requisito/editarestado/editarestado.component';
+import { EditarivaComponent } from './componentes/iva/editariva/editariva.component';
+import { EditarmonedaComponent } from './componentes/moneda/editarmoneda/editarmoneda.component';
+import { EditarpaisComponent } from './componentes/pais/editarpais/editarpais.component';
+import { EditarregimenComponent } from './componentes/regimen/editarregimen/editarregimen.component';
+import { EditarrequisitoComponent } from './componentes/requisito/editarrequisito/editarrequisito.component';
+import { EditarrolComponent } from './componentes/rol/editarrol/editarrol.component';
+import { EditarsubcategoriaComponent } from './componentes/subcategoria/editarsubcategoria/editarsubcategoria.component';
+import { EditartipocuentaComponent } from './componentes/tipo-cuenta/editartipocuenta/editartipocuenta.component';
+import { EditarvalidarrequisitosComponent } from './componentes/validar-requisitos/editarvalidarrequisitos/editarvalidarrequisitos.component';
 
 export const app_Routes: Routes = [
     {path : 'banco', component : BancoComponent },
@@ -58,6 +70,20 @@ export const app_Routes: Routes = [
 	{path : 'validarrequisitos', component : ValidarRequisitosComponent},
 	{path : 'editarbanco', component : EditarbancoComponent },
 	{path : 'editarcategoria', component : EditarcategoriaComponent },
+	{path : 'editarciudad', component : EditarciudadComponent },
+	{path : 'editarcomercio', component : EditarcomercioComponent },
+	{path : 'editardeduccion', component : EditardeduccionComponent },
+	{path : 'editardepartamento', component : EditardepartamentoComponent },
+	{path : 'editarestadorequisito', component : EditarestadoComponent },
+	{path : 'editariva', component : EditarivaComponent },
+	{path : 'editarmoneda', component : EditarmonedaComponent },
+	{path : 'editarpais', component : EditarpaisComponent },
+	{path : 'editarregimen', component : EditarregimenComponent },
+	{path : 'editarrequisito', component : EditarrequisitoComponent },
+	{path : 'editarrol', component : EditarrolComponent },
+	{path : 'editarsubcategoria', component : EditarsubcategoriaComponent },
+	{path : 'editartipocuenta', component : EditartipocuentaComponent },
+	{path : 'editarvalidarrequisito', component : EditarvalidarrequisitosComponent },
 	{path : 'login', component : LoginComponent },
 	{path : '**', component : LoginComponent },
 	{path : '', component : LoginComponent },

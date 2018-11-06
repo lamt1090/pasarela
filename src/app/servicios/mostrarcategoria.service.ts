@@ -8,9 +8,7 @@ export class MostrarcategoriaService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editct= data;
-    console.log("lo recibi y lo guarde:="+this.editct);
   }
 
   get(){

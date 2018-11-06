@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
     private islogin: IsloginService
   ) { 
     this.login = new LoginModule("","");
-    if(!tokens.get()){
+    /*if(!tokens.get()){
       this.loggedIn=false;
       console.log("estoy en login component ="+this.loggedIn);
     }else{
       alert("ya has iniciado sessión");
-    }
+    }*/
   }
 
   ngOnInit() {

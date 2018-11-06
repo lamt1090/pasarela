@@ -40,10 +40,6 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { SucursalComponent } from './componentes/sucursal/sucursal.component';
 import { ValidarRequisitosComponent } from './componentes/validar-requisitos/validar-requisitos.component';
 import { LoginComponent } from './principales/login/login.component';
-import { EditarbancoComponent } from './componentes/bancos/editarbanco/editarbanco.component';
-import { MostrarbancoComponent } from './componentes/bancos/mostrarbanco/mostrarbanco.component';
-import { EditarcategoriaComponent } from './componentes/categorias/editarcategoria/editarcategoria.component';
-import { ModificarcategoriaComponent } from './componentes/categorias/modificarcategoria/modificarcategoria.component';
 import { EditarciudadComponent } from './componentes/ciudad/editarciudad/editarciudad.component';
 import { MostrarciudadComponent } from './componentes/ciudad/mostrarciudad/mostrarciudad.component';
 import { MostrarcomercioComponent } from './componentes/comercio/mostrarcomercio/mostrarcomercio.component';
@@ -73,6 +69,9 @@ import { MostrartipocuentaComponent } from './componentes/tipo-cuenta/mostrartip
 import { MostrarvalidarrequisitosComponent } from './componentes/validar-requisitos/mostrarvalidarrequisitos/mostrarvalidarrequisitos.component';
 import { EditarvalidarrequisitosComponent } from './componentes/validar-requisitos/editarvalidarrequisitos/editarvalidarrequisitos.component';
 import { MostrarcategoriaComponent } from './componentes/categoria/mostrarcategoria/mostrarcategoria.component';
+import { MostrarbancoComponent } from './componentes/banco/mostrarbanco/mostrarbanco.component';
+import { EditarbancoComponent } from './componentes/banco/editarbanco/editarbanco.component';
+import { EditarcategoriaComponent } from './componentes/categoria/editarcategoria/editarcategoria.component';
 
 
 @NgModule({
@@ -108,10 +107,6 @@ import { MostrarcategoriaComponent } from './componentes/categoria/mostrarcatego
     SucursalComponent,
     ValidarRequisitosComponent,
     LoginComponent,
-    EditarbancoComponent,
-    MostrarbancoComponent,
-    EditarcategoriaComponent,
-    ModificarcategoriaComponent,
     EditarciudadComponent,
     MostrarciudadComponent,
     MostrarcomercioComponent,
@@ -141,6 +136,10 @@ import { MostrarcategoriaComponent } from './componentes/categoria/mostrarcatego
     MostrarvalidarrequisitosComponent,
     EditarvalidarrequisitosComponent,
     MostrarcategoriaComponent,
+    MostrarbancoComponent,
+    EditarbancoComponent,
+    EditarcategoriaComponent,
+    
   
   ],
   imports: [

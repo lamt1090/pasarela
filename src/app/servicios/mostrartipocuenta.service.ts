@@ -8,9 +8,7 @@ export class MostrartipocuentaService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.edittpcuenta= data;
-    console.log("lo recibi y lo guarde:="+this.edittpcuenta);
   }
 
   get(){

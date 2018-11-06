@@ -11,12 +11,14 @@ export class CiudadService {
 
   public url: string;
   public url2: string;
+  public url3: string;
 
   constructor(
     public _http: HttpClient
   ) { 
     this.url = GLOBAL.url;
     this.url2 = GLOBAL.url2;
+    this.url3 = GLOBAL.url3;
   }
 
   addciudad(ciudad):Observable<any>{
@@ -25,7 +27,25 @@ export class CiudadService {
     return this._http.post(this.url+'insertciudad.php',body,{headers: headers,responseType:'text'});
   }
 
+  editciudad(ciudad):Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('id_ciudad',ciudad.id_ciudad)
+                                .set('id_departamento',ciudad.dep)
+                                .set('name_ciudad',ciudad.nombre);
+    return this._http.post(this.url3+'editciudad.php',body,{headers: headers,responseType:'text'});
+  }
+
   getdepartamentos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=departamento');
+  }
+
+  getciudades(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getciudad');
+  }
+
+  getciudadid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idciudad',id);
+    return this._http.post(this.url2+'?opcion=getciudadid',body,{headers: headers,responseType:'text'});
   }
 }

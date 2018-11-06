@@ -1,3 +1,23 @@
-<p>
-  editarrequisito works!
-</p>
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="header">
+              <h2>Actualizar información del Requisito</h2>
+          </div>
+          <div class="body">
+              <form #formeditarrequisito=ngForm (ngSubmit)="onsubmit()" >
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <span *ngIf="!nrequisito.valid && nrequisito.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
+                          <input type="text" [(ngModel)]="model.nombre" class="form-control" placeholder="Ingrese el nombre del requisito" #nrequisito="ngModel" name="nrequisito" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                      </div>
+                  </div>
+                  
+                  <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarrequisito.form.valid" >ACTUALIZAR</button>
+                  <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarrequisito)">CANCELAR</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->

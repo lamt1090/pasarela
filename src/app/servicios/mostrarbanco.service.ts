@@ -8,9 +8,7 @@ export class MostrarbancoService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editbn= data;
-    console.log("lo recibi y lo guarde:="+this.editbn);
   }
 
   get(){
