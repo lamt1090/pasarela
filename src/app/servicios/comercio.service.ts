@@ -90,4 +90,14 @@ export class ComercioService {
     return this._http.get(this.url2+'?opcion=moneda');
   }
 
+  getcomercios(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getcomercio');
+  }
+
+  getcomercioid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idcomercio',id);
+    return this._http.post(this.url2+'?opcion=getcomercioid',body,{headers: headers,responseType:'text'});
+  }
+
 }

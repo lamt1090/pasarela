@@ -30,7 +30,7 @@ export class CiudadService {
   editciudad(ciudad):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_ciudad',ciudad.id_ciudad)
-                                .set('id_departamento',ciudad.dep)
+                                .set('id_departamento',ciudad.id_departamento)
                                 .set('name_ciudad',ciudad.nombre);
     return this._http.post(this.url3+'editciudad.php',body,{headers: headers,responseType:'text'});
   }

@@ -1,3 +1,22 @@
-<p>
-  editarrol works!
-</p>
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="header">
+              <h2>Actualizar información del Rol</h2>
+          </div>
+          <div class="body">
+              <form #formeditarrol=ngForm (ngSubmit)="onsubmit()" >
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                        <span *ngIf="!name_rol.valid && name_rol.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                        <input type="text" class="form-control" name="name_rol" #name_rol="ngModel" [(ngModel)]="model.nombre" placeholder="Ingrese el nombre del rol" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarrol.form.valid" >ACTUALIZAR</button>
+                  <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarrol)">CANCELAR</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->

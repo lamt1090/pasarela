@@ -4,8 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 //component
 import { BancoComponent } from './componentes/banco/banco.component';
 import { TipoCuentaComponent } from './componentes/tipo-cuenta/tipo-cuenta.component';
-import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
-import { CajaComponent } from './componentes/caja/caja.component';
 import { CategoriaComponent } from './componentes/categoria/categoria.component';
 import { CiudadComponent } from './componentes/ciudad/ciudad.component';
 import { ComercioComponent } from './componentes/comercio/comercio.component';
@@ -42,15 +40,14 @@ import { EditarrolComponent } from './componentes/rol/editarrol/editarrol.compon
 import { EditarsubcategoriaComponent } from './componentes/subcategoria/editarsubcategoria/editarsubcategoria.component';
 import { EditartipocuentaComponent } from './componentes/tipo-cuenta/editartipocuenta/editartipocuenta.component';
 import { EditarvalidarrequisitosComponent } from './componentes/validar-requisitos/editarvalidarrequisitos/editarvalidarrequisitos.component';
+import { MostrarcomercioComponent } from './componentes/comercio/mostrarcomercio/mostrarcomercio.component';
+
 
 export const app_Routes: Routes = [
     {path : 'banco', component : BancoComponent },
-    {path : 'cuentabancaria', component : CuentaBancariaComponent },
-    {path : 'caja', component : CajaComponent },
 	{path : 'categoria', component : CategoriaComponent },
 	{path : 'ciudad', component : CiudadComponent },
 	{path : 'comercio', component : ComercioComponent },
-	{path : 'cuentabancaria', component : CuentaBancariaComponent },
 	{path : 'deduccion', component : DeduccionComponent },
 	{path : 'departamento', component : DepartamentoComponent },
 	{path : 'estadorequisito', component : EstadoRequisitoComponent },
@@ -84,6 +81,7 @@ export const app_Routes: Routes = [
 	{path : 'editarsubcategoria', component : EditarsubcategoriaComponent },
 	{path : 'editartipocuenta', component : EditartipocuentaComponent },
 	{path : 'editarvalidarrequisito', component : EditarvalidarrequisitosComponent },
+	{path : 'mostrarcomercio', component : MostrarcomercioComponent },
 	{path : 'login', component : LoginComponent },
 	{path : '**', component : LoginComponent },
 	{path : '', component : LoginComponent },

@@ -17,6 +17,7 @@ export class BancoService {
   public url: string;
   public url2: string;
   public url3: string;
+  public url4 : string;
 
   constructor(
     public _http: HttpClient
@@ -24,6 +25,7 @@ export class BancoService {
       this.url = GLOBAL.url;
       this.url2 = GLOBAL.url2;
       this.url3 = GLOBAL.url3;
+      this.url4 = GLOBAL.url4;
    }
 
   getBanco(){
@@ -54,5 +56,13 @@ export class BancoService {
     return this._http.post(this.url2+'?opcion=getbanco',body,{headers: headers,responseType:'text'});
     
   }
+
+  eliminarbanco(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idbanco',id);
+    return this._http.post(this.url4+'?opcion=eliminarbanco',body,{headers: headers,responseType:'text'});
+    
+  }
+
 }
 

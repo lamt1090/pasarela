@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { BancoModule } from '../../../modelos/banco/banco.module';
 import { BancoService } from '../../../servicios/banco.service';
 import { Router } from '@angular/router';
@@ -30,7 +30,6 @@ export class EditarbancoComponent implements OnInit {
 
   onsubmit(f:NgForm){
     let vm = this;
-    console.log(vm.model);
     vm._bancoservice.editbanco(vm.model)
     .subscribe(
       res => {

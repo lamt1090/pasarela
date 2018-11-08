@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MostrarciudadService } from '../../../servicios/mostrarciudad.service';
+import { CiudadService } from '../../../servicios/ciudad.service';
 
 @Component({
   selector: 'app-mostrarciudad',
@@ -7,9 +10,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MostrarciudadComponent implements OnInit {
 
-  constructor() { }
+  sciudad: any[];
+  idcd: any;
+  ciudadid: any[];
+  data: any;
+  constructor(
+    private rt: Router,
+    private _mcdservice: MostrarciudadService, 
+    private _ciudadservice: CiudadService
+  ) { 
+    this.mostrar();
+  }
 
   ngOnInit() {
+  }
+
+  mostrar(){
+    let cd=this;
+    cd._ciudadservice.getciudades()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=result;
+            if(this.data['status']== false){
+              alert("No existen datos en la base de datos")
+            }else{
+              this.sciudad=this.data;
+            }
+          }else{
+              cd = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  modificar(data){
+    this.idcd= data;
+    if(this.idcd!=0){
+      this.idbn(this.idcd);
+    }else{
+      alert("Error al elegir ciudad");
+    }
+  }
+
+  idbn(idcd){
+    let bn=this;
+    bn._ciudadservice.getciudadid(idcd)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hat datos para esta opción");
+            }else{
+              this.ciudadid=this.data;
+              this._mcdservice.set(this.ciudadid);
+              this.rt.navigateByUrl('editarciudad');
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  actualizar(){
+    location.reload();
   }
 
 }

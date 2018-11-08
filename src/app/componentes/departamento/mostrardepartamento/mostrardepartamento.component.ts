@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MostrardepartamentoService } from '../../../servicios/mostrardepartamento.service';
+import { DepartamentoService } from '../../../servicios/departamento.service';
 
 @Component({
   selector: 'app-mostrardepartamento',
@@ -7,9 +10,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MostrardepartamentoComponent implements OnInit {
 
-  constructor() { }
+  sdepartamento: any[];
+  iddpto: any;
+  departamentoid: any[];
+  data: any;
+  constructor(
+    private rt: Router,
+    private _mdptoservice: MostrardepartamentoService, 
+    private _departamentoservice: DepartamentoService
+  ) { 
+    this.mostrar();
+  }
 
   ngOnInit() {
+  }
+
+  mostrar(){
+    let dpto=this;
+    dpto._departamentoservice.getdepartamentos()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=result;
+            if(this.data['status']== false){
+              alert("No existen datos en la base de datos")
+            }else{
+              this.sdepartamento=this.data;
+            }
+          }else{
+              dpto = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  modificar(data){
+    this.iddpto= data;
+    if(this.iddpto!=0){
+      this.idbn(this.iddpto);
+    }else{
+      alert("Error al elegir departamento");
+    }
+  }
+
+  idbn(iddpto){
+    let bn=this;
+    bn._departamentoservice.getdepartamentoid(iddpto)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hat datos para esta opción");
+            }else{
+              this.departamentoid=this.data;
+              this._mdptoservice.set(this.departamentoid);
+              this.rt.navigateByUrl('editardepartamento');
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  actualizar(){
+    location.reload();
   }
 
 }

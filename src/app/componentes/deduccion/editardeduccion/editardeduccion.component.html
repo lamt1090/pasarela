@@ -1,3 +1,30 @@
-<p>
-  editardeduccion works!
-</p>
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="header">
+              <h2>Actualizar información de la Deducción</h2>
+          </div>
+          <div class="body">
+              <form #formeditardeduccion=ngForm (ngSubmit)="onsubmit()" >
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                        <span *ngIf="!name_deduccion.valid && name_deduccion.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                        <input type="text" class="form-control" #name_deduccion="ngModel" [(ngModel)]="model.nombre" placeholder="Ingrese nombre de la deducción" name="name_deduccion" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <span *ngIf="!valor_deduccion.valid && valor_deduccion.touched" class="label label-danger">El valor es obligatorio</span>
+                        <input type="number" #valor_deduccion="ngModel" [(ngModel)]="model.valor" placeholder="Ingrese el valor de la deducción" class="form-control" name="valor_deduccion" pattern="[0-9]+" required>
+                    </div>
+                    <!--<div class="help-info">En porcentaje (%)</div>-->
+                </div>
+                  
+                  <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditardeduccion.form.valid" >ACTUALIZAR</button>
+                  <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditardeduccion)">CANCELAR</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->

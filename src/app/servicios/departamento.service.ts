@@ -35,7 +35,6 @@ export class DepartamentoService {
     return this._http.post(this.url3+'editdepartamento.php',body,{headers: headers,responseType:'text'});
   }
 
-
   getpaises(): Observable<any>{
     return this._http.get(this.url2+'?opcion=pais');
   }
@@ -43,4 +42,13 @@ export class DepartamentoService {
   getdepartamentos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=getdepartamento');
   }
+
+  getdepartamentoid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('iddpto',id);
+    return this._http.post(this.url2+'?opcion=getdepartamentoid',body,{headers: headers,responseType:'text'});
+    
+  }
+
+
 }

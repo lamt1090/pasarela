@@ -17,9 +17,7 @@ import { DesplegarComponent } from './principales/desplegar/desplegar.component'
 import { FooterComponent } from './principales/footer/footer.component';
 import { BancoComponent } from './componentes/banco/banco.component';
 import { TipoCuentaComponent } from './componentes/tipo-cuenta/tipo-cuenta.component';
-import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
 import { ContenidoComponent } from './principales/contenido/contenido.component';
-import { CajaComponent } from './componentes/caja/caja.component';
 import { CategoriaComponent } from './componentes/categoria/categoria.component';
 import { CiudadComponent } from './componentes/ciudad/ciudad.component';
 import { ComercioComponent } from './componentes/comercio/comercio.component';
@@ -73,7 +71,6 @@ import { MostrarbancoComponent } from './componentes/banco/mostrarbanco/mostrarb
 import { EditarbancoComponent } from './componentes/banco/editarbanco/editarbanco.component';
 import { EditarcategoriaComponent } from './componentes/categoria/editarcategoria/editarcategoria.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,9 +81,7 @@ import { EditarcategoriaComponent } from './componentes/categoria/editarcategori
     FooterComponent,
     BancoComponent,
     TipoCuentaComponent,
-    CuentaBancariaComponent,
     ContenidoComponent,
-    CajaComponent,
     CategoriaComponent,
     CiudadComponent,
     ComercioComponent,
@@ -138,8 +133,7 @@ import { EditarcategoriaComponent } from './componentes/categoria/editarcategori
     MostrarcategoriaComponent,
     MostrarbancoComponent,
     EditarbancoComponent,
-    EditarcategoriaComponent,
-    
+    EditarcategoriaComponent,    
   
   ],
   imports: [

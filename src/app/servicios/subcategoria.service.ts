@@ -29,14 +29,24 @@ export class SubcategoriaService {
 
   editsubcategoria(subcateg):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
-    const body = new HttpParams().set('id_subcategoria',subcateg.id)
-                                .set('id_categoria',subcateg.idcate)
+    const body = new HttpParams().set('id_subcategoria',subcateg.id_sub_cat)
+                                .set('id_categoria',subcateg.id_categoria)
                                 .set('name_subcategoria',subcateg.nombre);
     return this._http.post(this.url3+'editsubcategoria.php',body,{headers: headers,responseType:'text'});
   }
 
   getcategorias(): Observable<any>{
     return this._http.get(this.url2+'?opcion=subcategoria');
+  }
+
+  getsubcategorias(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getsubcategorias');
+  }
+
+  getsubcategoriaid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idsubcat',id);
+    return this._http.post(this.url2+'?opcion=getsubcategoriaid',body,{headers: headers,responseType:'text'});
   }
 
 }

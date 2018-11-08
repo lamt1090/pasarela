@@ -52,7 +52,7 @@ export class MostrarmonedaComponent implements OnInit {
     if(this.idmd!=0){
       this.idbn(this.idmd);
     }else{
-      alert("Error al elegir categoria");
+      alert("Error al elegir moneda");
     }
   }
 

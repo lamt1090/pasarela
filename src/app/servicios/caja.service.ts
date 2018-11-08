@@ -30,8 +30,8 @@ export class CajaService {
 
   editcaja(caja):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
-    const body = new HttpParams().set('idcaja',caja.id)
-                                .set('id_categoria',caja.idsucursal)
+    const body = new HttpParams().set('idcaja',caja.id_caja)
+                                .set('id_categoria',caja.id_sucursal)
                                 .set('selsuc',caja.nombre);
     return this._http.post(this.url3+'editcaja.php',body,{headers: headers,responseType:'text'});
   }
@@ -47,5 +47,14 @@ export class CajaService {
     
   }
 
+  getcajas(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getcaja');
+  }
+
+  getcajaid(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idcaja',id);
+    return this._http.post(this.url2+'?opcion=getcajaid',body,{headers: headers,responseType:'text'});
+  }
 
 }

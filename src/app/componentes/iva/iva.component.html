@@ -9,7 +9,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                                 <span *ngIf="!name_iva.valid && name_iva.touched" class="label label-danger">El valor es obligatorio </span>
-                            <input type="number" #name_iva="ngModel" [(ngModel)]="iva.valor" placeholder="Ingrese el valor del IVA" class="form-control" name="name_iva" pattern="[0-9]+" required>
+                            <input type="number" #name_iva="ngModel" [(ngModel)]="iva.valor" placeholder="Ingrese el valor del IVA" class="form-control" name="name_iva" required>
                         </div>
                     </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formiva.form.valid">GUARDAR</button>

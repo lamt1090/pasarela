@@ -14,6 +14,7 @@
                       <th>código</th>
                       <th>nombre</th>
                       <th>Acción</th>
+                      <th>Acción</th>
                       </tr>
                   </thead>
                   <tbody >
@@ -21,6 +22,7 @@
                           <td>{{item.id_banco}}</td>
                           <td>{{item.nombre}}</td>
                           <td (click)="modificar(item.id_banco)"><a>editar</a></td>
+                          <td (click)="eliminar(item.id_banco)"><a>eliminar</a></td>
                       </tr>
                   </tbody>
               </table>

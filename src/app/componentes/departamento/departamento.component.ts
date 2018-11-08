@@ -17,11 +17,12 @@ export class DepartamentoComponent implements OnInit {
   constructor(
     private _departamentoservice: DepartamentoService
   ) { 
-    this.paises();
+    
     this.departamento = new DepartamentoModule("","");
   }
 
   ngOnInit() {
+    this.paises();
   }
 
   onsubmit(formdepartamento: NgForm){

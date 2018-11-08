@@ -18,11 +18,11 @@ export class CiudadComponent implements OnInit {
   constructor(
     private _ciudadservice: CiudadService
   ) {
-    this.departamentos();
     this.ciudad = new CiudadModule("","");
    }
 
   ngOnInit() {
+    this.departamentos();
   }
 
   onsubmit(formciudad: NgForm){

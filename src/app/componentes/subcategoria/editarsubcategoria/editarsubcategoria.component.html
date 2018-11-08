@@ -1,3 +1,32 @@
-<p>
-  editarsubcategoria works!
-</p>
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="header">
+              <h2>Actualizar información de la Subcategoria</h2>
+          </div>
+          <div class="body">
+              <form #formeditarsubcategoria=ngForm (ngSubmit)="onsubmit()" >
+                <!--<div class="help-info">En porcentaje (%)</div>-->
+                <div class="row clearfix">
+                  <div class="col-sm-12">
+                      <select class="form-control show-tick" name="id_categoria" #id_categoria="ngModel" [(ngModel)]="model.id_categoria" [ngModelOptions]="{standalone: true}" required>
+                          <option value="">--Elija una categoria--</option>
+                          <option *ngFor="let item of scategoria" value={{item.id_categoria}}>{{item.nombre}}</option>
+                      </select>
+                  </div>
+              </div> 
+              <div class="form-group form-float">
+                  <div class="form-line">
+                          <span *ngIf="!name_subcategoria.valid && name_subcategoria.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
+                      <input type="text" class="form-control" #name_subcategoria="ngModel" [(ngModel)]="model.nombre" name="name_subcategoria" placeholder="Ingrese el nombre de la subcategoria" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                  </div>
+              </div>
+                  
+                  <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarsubcategoria.form.valid" >ACTUALIZAR</button>
+                  <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarsubcategoria)">CANCELAR</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->
