@@ -14,7 +14,7 @@
                       <th>Código</th>
                       <th>Nombre</th>
                       <th>Valor</th>
-                      <th>Acción</th>
+                      <th style="text-align: center">Acción</th>
                       </tr>
                   </thead>
                   <tbody >
@@ -22,7 +22,7 @@
                           <td>{{item.id_deduccion}}</td>
                           <td>{{item.nombre}}</td>
                           <td>{{item.valor}}</td>
-                          <td (click)="modificar(item.id_deduccion)"><a>editar</a></td>
+                          <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_deduccion)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_deduccion)">eliminar</button></td>
                       </tr>
                   </tbody>
               </table>

@@ -85,4 +85,60 @@ export class MostrarivaComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idiva= data;
+    if(this.idiva!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._ivaservice.existeiva(this.idiva)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar el iva, un comercio tiene este valor");
+              }else{
+                this.eliminaridiva(this.idiva);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el banco");
+    }
+  }
+
+  eliminaridiva(idiva){
+    let bn=this;
+    bn._ivaservice.eliminariva(idiva)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar esta categoria");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

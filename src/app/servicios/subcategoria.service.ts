@@ -12,6 +12,8 @@ export class SubcategoriaService {
   public url: string;
   public url2: string;
   public url3: string;
+  public url4 : string;
+  public url5: string;
 
   constructor(
     public _http: HttpClient
@@ -19,6 +21,8 @@ export class SubcategoriaService {
     this.url = GLOBAL.url;
     this.url2 = GLOBAL.url2;
     this.url3 = GLOBAL.url3;
+    this.url4 = GLOBAL.url4;
+    this.url5 = GLOBAL.url5;
     }
 
    addsubcategoria(subcategoria):Observable<any>{
@@ -47,6 +51,18 @@ export class SubcategoriaService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idsubcat',id);
     return this._http.post(this.url2+'?opcion=getsubcategoriaid',body,{headers: headers,responseType:'text'});
+  }
+
+  eliminarsubcategoria(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idsubcat',id);
+    return this._http.post(this.url4+'?opcion=eliminarsubcategoria',body,{headers: headers,responseType:'text'});
+  }
+
+  existesubcategoria(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idsubcat',id);
+    return this._http.post(this.url5+'?opcion=existesubcategoria',body,{headers: headers,responseType:'text'});
   }
 
 }

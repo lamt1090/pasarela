@@ -12,6 +12,8 @@ export class RequisitoService {
   public url: string;
   public url2: string;
   public url3: string;
+  public url4: string;
+  public url5: string;
 
   constructor(
     public _http: HttpClient
@@ -19,6 +21,8 @@ export class RequisitoService {
     this.url= GLOBAL.url;
     this.url2 = GLOBAL.url2;
     this.url3 = GLOBAL.url3;
+    this.url4 = GLOBAL.url4;
+    this.url5 = GLOBAL.url5;
   }
 
   addrequisito(requisito):Observable<any>{
@@ -42,5 +46,17 @@ export class RequisitoService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idrequisito',id);
     return this._http.post(this.url2+'?opcion=getrequisitoid',body,{headers: headers,responseType:'text'});
+  }
+
+  eliminarrequisito(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idrequisito',id);
+    return this._http.post(this.url4+'?opcion=eliminarrequisito',body,{headers: headers,responseType:'text'});
+  }
+
+  existerequisito(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idrequisito',id);
+    return this._http.post(this.url5+'?opcion=existerequisito',body,{headers: headers,responseType:'text'});
   }
 }

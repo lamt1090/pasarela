@@ -86,4 +86,60 @@ export class MostrarregimenComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idrg= data;
+    if(this.idrg!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._regimenservice.existeregimen(this.idrg)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar esta regimen, un comercio lo esta usando");
+              }else{
+                this.eliminaridregimen(this.idrg);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el banco");
+    }
+  }
+
+  eliminaridregimen(idrg){
+    let bn=this;
+    bn._regimenservice.eliminarregimen(idrg)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar esta regimen");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

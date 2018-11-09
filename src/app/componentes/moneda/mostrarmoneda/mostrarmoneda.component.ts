@@ -85,4 +85,39 @@ export class MostrarmonedaComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idmd= data;
+    if(this.idmd!=0){
+      if(confirm("seguro")== true){
+        this.eliminaridmoneda(this.idmd);
+      }
+    }else{
+      alert("Error al elegir el banco");
+    }
+  }
+
+  eliminaridmoneda(idmd){
+    let bn=this;
+    bn._monedaservice.eliminarmoneda(idmd)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hay datos para esta opción");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

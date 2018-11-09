@@ -1,3 +1,63 @@
-<p>
-  editarcomercio works!
-</p>
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="body"> 
+              <form #formeditarcomercio=ngForm (ngSubmit)="onsubmit()">
+                  <!--Star comercio-->
+                  <div class="header">
+                      <h2>Registrar Comercio</h2>
+                  </div>    
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <span *ngIf="!namecomercio.valid && namecomercio.touched" class="label label-danger">El nombre es obligatorio</span>
+                          <input type="text" class="form-control" name="namecomercio" #namecomercio="ngModel" [(ngModel)]="model.nombre" placeholder="Ingrese nombre del comercio" minlength="3" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                      </div>
+                  </div>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <span *ngIf="!nit.valid && nit.touched" class="label label-danger">El nit es obligatorio</span>
+                          <input type="text" class="form-control" name="nit" #nit="ngModel" [(ngModel)]="model.nit"  placeholder="Ingrese el nit" maxlength="12" required>
+                      </div>
+                  </div>
+                  <div class="row clearfix" >
+                    <div class="col-sm-12">
+                        <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="model.catc"   (ngModelChange)="onSelection()" required>
+                            <option value="">-- Elija la categoria --</option>
+                            <option *ngFor="let item of scategoria" value={{item.id_categoria}}>{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row clearfix" >
+                    <div class="col-sm-12">
+                        <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="model.sub_cat"  required>
+                            <option value="">-- Elija la subcategoria --</option>
+                            <option *ngFor="let item of ssubcategoria" value={{item.id_sub_cat}}>{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                  <div class="row clearfix">
+                      <div class="col-sm-12">
+                          <select class="form-control show-tick" name="selectregimen" #selectregimen="ngModel" [(ngModel)]="model.id_regimen" [ngModelOptions]="{standalone: true}" required>
+                              <option value="">-- Elija el regimen --</option>
+                              <option *ngFor="let item of sregimen" value={{item.id_regimen}}>{{item.nombre}}</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="col-sm-12">
+                         <select class="form-control show-tick" name="selectiva" #selectiva="ngModel" [(ngModel)]="model.id_iva" [ngModelOptions]="{standalone: true}" required>
+                              <option value="">-- Elija el iva --</option>
+                              <option *ngFor="let item of siva" value={{item.id_iva}}>{{item.valor}}</option>
+                        </select>
+                      </div>
+                  </div>
+              <!--END registro comercio-->
+              <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarcomercio.form.valid" >ACTUALIZAR</button>
+              <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarcomercio)">CANCELAR</button>
+              </form>
+          </div>            
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->

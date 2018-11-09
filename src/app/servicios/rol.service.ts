@@ -12,6 +12,8 @@ export class RolService {
   public url: string;
   public url2: string;
   public url3: string;
+  public url4: string;
+  public url5: string;
 
   constructor(
     public _http: HttpClient
@@ -19,6 +21,8 @@ export class RolService {
     this.url = GLOBAL.url;
     this.url2 = GLOBAL.url2;
     this.url3 = GLOBAL.url3;
+    this.url4 = GLOBAL.url4;
+    this.url5 = GLOBAL.url5;
   }
 
   addrol(rol):Observable<any>{
@@ -42,5 +46,17 @@ export class RolService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idrol',id);
     return this._http.post(this.url2+'?opcion=getrolid',body,{headers: headers,responseType:'text'});
+  }
+
+  eliminarrol(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idrol',id);
+    return this._http.post(this.url4+'?opcion=eliminarrol',body,{headers: headers,responseType:'text'});
+  }
+
+  existerol(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idrol',id);
+    return this._http.post(this.url5+'?opcion=existerol',body,{headers: headers,responseType:'text'});
   }
 }

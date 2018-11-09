@@ -85,4 +85,60 @@ export class MostrarrolComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idrol= data;
+    if(this.idrol!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._rolservice.existerol(this.idrol)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar esta rol, ya está asignado a un usuario");
+              }else{
+                this.eliminaridrol(this.idrol);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el rol");
+    }
+  }
+
+  eliminaridrol(idrol){
+    let bn=this;
+    bn._rolservice.eliminarrol(idrol)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar este rol");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

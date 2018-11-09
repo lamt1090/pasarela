@@ -84,6 +84,62 @@ export class MostrarcategoriaComponent implements OnInit {
   actualizar(){
     location.reload();
   }
+
+  eliminar(data){
+    this.idct= data;
+    if(this.idct!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._categoriaservice.existecategoria(this.idct)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar esta categoria, tiene una subcategoria");
+              }else{
+                this.eliminaridcategoria(this.idct);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir la categoria");
+    }
+  }
+
+  eliminaridcategoria(idct){
+    let bn=this;
+    bn._categoriaservice.eliminarcategoria(idct)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar esta categoria");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
   
 
 }

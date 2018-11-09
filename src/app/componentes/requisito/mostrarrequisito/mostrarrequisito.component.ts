@@ -85,4 +85,60 @@ export class MostrarrequisitoComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idrq= data;
+    if(this.idrq!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._requisitoservice.existerequisito(this.idrq)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar este requisito, es utilizado en la tabla validar estado");
+              }else{
+                this.eliminaridrequisito(this.idrq);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el banco");
+    }
+  }
+
+  eliminaridrequisito(idrq){
+    let bn=this;
+    bn._requisitoservice.eliminarrequisito(idrq)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar este requisito");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

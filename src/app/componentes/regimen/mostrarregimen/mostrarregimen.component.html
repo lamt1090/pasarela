@@ -11,16 +11,16 @@
               <table class="table table-striped">
                   <thead>
                       <tr>
-                      <th>código</th>
-                      <th>nombre</th>
-                      <th>Acción</th>
+                      <th>Código</th>
+                      <th>Nombre</th>
+                      <th style="text-align: center">Acciones</th>
                       </tr>
                   </thead>
                   <tbody >
                       <tr *ngFor="let item of sregimen">
                           <td>{{item.id_regimen}}</td>
                           <td>{{item.nombre}}</td>
-                          <td (click)="modificar(item.id_regimen)"><a>editar</a></td>
+                          <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_regimen)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_regimen)">eliminar</button></td>
                       </tr>
                   </tbody>
               </table>

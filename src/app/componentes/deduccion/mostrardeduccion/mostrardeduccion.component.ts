@@ -85,4 +85,39 @@ export class MostrardeduccionComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.iddc= data;
+    if(this.iddc!=0){
+      if(confirm("seguro")== true){
+        this.eliminariddeduccion(this.iddc);
+      }
+    }else{
+      alert("Error al elegir la deducción");
+    }
+  }
+
+  eliminariddeduccion(iddc){
+    let bn=this;
+    bn._deduccionservice.eliminardeduccion(iddc)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hay datos para esta opción");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

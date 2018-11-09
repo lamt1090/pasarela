@@ -11,16 +11,16 @@
               <table class="table table-striped">
                   <thead>
                       <tr>
-                      <th>código</th>
-                      <th>nombre</th>
-                      <th>Acción</th>
+                      <th>Código</th>
+                      <th>Valor</th>
+                      <th style="text-align: center">Acciones</th>
                       </tr>
                   </thead>
                   <tbody >
                       <tr *ngFor="let item of siva">
                           <td>{{item.id_iva}}</td>
                           <td>{{item.valor}}</td>
-                          <td (click)="modificar(item.id_iva)"><a>editar</a></td>
+                          <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_iva)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_iva)">eliminar</button></td>
                       </tr>
                   </tbody>
               </table>

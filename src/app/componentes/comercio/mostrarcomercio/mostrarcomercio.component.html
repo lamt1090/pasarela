@@ -16,7 +16,7 @@
                       <th>Representante legal</th>
                       <th>Regimen</th>
                       <th>Valor iva </th>
-                      <th>Acción</th>
+                      <th style="text-align: center">Acciones</th>
                       </tr>
                   </thead>
                   <tbody >
@@ -26,7 +26,7 @@
                           <td>{{item.representante}}</td>
                           <td>{{item.regimen}}</td>
                           <td>{{item.valor}}</td>
-                          <td (click)="modificar(item.id_comercio)"><a>editar</a></td>
+                          <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_comercio)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_comercio)">eliminar</button></td>
                       </tr>
                   </tbody>
               </table>

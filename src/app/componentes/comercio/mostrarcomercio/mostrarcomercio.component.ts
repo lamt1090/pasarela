@@ -32,7 +32,6 @@ export class MostrarcomercioComponent implements OnInit {
       result => {
           if(result.code != 200){
             this.data=result;
-            console.log(this.data);
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
@@ -51,13 +50,13 @@ export class MostrarcomercioComponent implements OnInit {
   modificar(data){
     this.idcm= data;
     if(this.idcm!=0){
-      this.idbn(this.idcm);
+      this.idcom(this.idcm);
     }else{
       alert("Error al elegir un comercio");
     }
   }
 
-  idbn(idcm){
+  idcom(idcm){
     let bn=this;
     bn._comercioservice.getcomercioid(idcm)
     .subscribe(
@@ -84,6 +83,62 @@ export class MostrarcomercioComponent implements OnInit {
 
   actualizar(){
     location.reload();
+  }
+
+  eliminar(data){
+    this.idcm= data;
+    if(this.idcm!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._comercioservice.existecomercio(this.idcm)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar este comercio, tiene sucarsales actualmente");
+              }else{
+                this.eliminaridcomercio(this.idcm);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el comercio");
+    }
+  }
+
+  eliminaridcomercio(idcm){
+    let bn=this;
+    bn._comercioservice.eliminarcomercio(idcm)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar este comercio");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
   }
 
 }

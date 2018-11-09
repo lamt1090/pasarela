@@ -12,6 +12,8 @@ export class CiudadService {
   public url: string;
   public url2: string;
   public url3: string;
+  public url4: string;
+  public url5: string;
 
   constructor(
     public _http: HttpClient
@@ -19,6 +21,8 @@ export class CiudadService {
     this.url = GLOBAL.url;
     this.url2 = GLOBAL.url2;
     this.url3 = GLOBAL.url3;
+    this.url4 = GLOBAL.url4;
+    this.url5 = GLOBAL.url5;
   }
 
   addciudad(ciudad):Observable<any>{
@@ -47,5 +51,17 @@ export class CiudadService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idciudad',id);
     return this._http.post(this.url2+'?opcion=getciudadid',body,{headers: headers,responseType:'text'});
+  }
+
+  eliminarciudad(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idciudad',id);
+    return this._http.post(this.url4+'?opcion=eliminarciudad',body,{headers: headers,responseType:'text'});
+  }
+
+  existeciudad(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idciudad',id);
+    return this._http.post(this.url5+'?opcion=existeciudad',body,{headers: headers,responseType:'text'});
   }
 }

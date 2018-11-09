@@ -85,4 +85,60 @@ export class MostrardepartamentoComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.iddpto= data;
+    if(this.iddpto!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._departamentoservice.existedepartamento(this.iddpto)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar este departamento, tiene ciudades ");
+              }else{
+                this.eliminariddepartamento(this.iddpto);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir el departamento");
+    }
+  }
+
+  eliminariddepartamento(iddpto){
+    let bn=this;
+    bn._departamentoservice.eliminardepartamento(iddpto)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar este departamento");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

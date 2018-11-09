@@ -85,4 +85,60 @@ export class MostrarciudadComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idcd= data;
+    if(this.idcd!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._ciudadservice.existeciudad(this.idcd)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar esta ciudad, esta asignada en una sucursal");
+              }else{
+                this.eliminaridciudad(this.idcd);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir la ciudad");
+    }
+  }
+
+  eliminaridciudad(idcd){
+    let bn=this;
+    bn._ciudadservice.eliminarciudad(idcd)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar esta ciudad");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

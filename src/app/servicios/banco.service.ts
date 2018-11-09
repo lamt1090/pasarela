@@ -61,7 +61,6 @@ export class BancoService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idbanco',id);
     return this._http.post(this.url4+'?opcion=eliminarbanco',body,{headers: headers,responseType:'text'});
-    
   }
 
 }

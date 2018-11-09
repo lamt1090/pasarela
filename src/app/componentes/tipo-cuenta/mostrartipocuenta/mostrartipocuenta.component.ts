@@ -84,4 +84,39 @@ export class MostrartipocuentaComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.idtpc= data;
+    if(this.idtpc!=0){
+      if(confirm("seguro")== true){
+        this.eliminaridtpcuenta(this.idtpc);
+      }
+    }else{
+      alert("Error al elegir el banco");
+    }
+  }
+
+  eliminaridtpcuenta(idtpc){
+    let bn=this;
+    bn._tpcuentaservice.eliminartpcuenta(idtpc)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hat datos para esta opción");
+            }else{
+              alert("Los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }

@@ -12,6 +12,8 @@ export class IvaService {
   public url:string;
   public url2: string;
   public url3: string;
+  public url4: string;
+  public url5: string;
 
   constructor(
     public _http: HttpClient
@@ -19,6 +21,8 @@ export class IvaService {
     this.url = GLOBAL.url;
     this.url2 = GLOBAL.url2;
     this.url3 = GLOBAL.url3;
+    this.url4 = GLOBAL.url4;
+    this.url5 = GLOBAL.url5;
    }
 
    addiva(iva):Observable<any>{
@@ -42,7 +46,18 @@ export class IvaService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idiva',id);
     return this._http.post(this.url2+'?opcion=getivaid',body,{headers: headers,responseType:'text'});
-    
+  }
+
+  eliminariva(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idiva',id);
+    return this._http.post(this.url4+'?opcion=eliminariva',body,{headers: headers,responseType:'text'});
+  }
+
+  existeiva(id): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('idiva',id);
+    return this._http.post(this.url5+'?opcion=existeiva',body,{headers: headers,responseType:'text'});
   }
 
 }

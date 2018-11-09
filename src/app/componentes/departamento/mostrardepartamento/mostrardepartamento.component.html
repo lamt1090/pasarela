@@ -13,14 +13,14 @@
                       <tr>
                       <th>Nombre del País</th>
                       <th>Nombre del Departamento</th>
-                      <th>Acción</th>
+                      <th style="text-align: center">Acciones</th>
                       </tr>
                   </thead>
                   <tbody >
                       <tr *ngFor="let item of sdepartamento">
                           <td>{{item.pais}}</td>
                           <td>{{item.nombre}}</td>
-                          <td (click)="modificar(item.id_departamento)"><a>editar</a></td>
+                          <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_departamento)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_departamento)">eliminar</button></td>
                       </tr>
                   </tbody>
               </table>

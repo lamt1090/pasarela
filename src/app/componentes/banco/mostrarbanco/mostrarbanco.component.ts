@@ -90,11 +90,11 @@ export class MostrarbancoComponent implements OnInit {
   }
 
   eliminar(data){
-    console.log("estoy aqui");
     this.idb= data;
     if(this.idb!=0){
-      alert("seguro que desea eliminar esta opción");
-      this.eliminaridbn(this.idb);
+      if(confirm("seguro")== true){
+        this.eliminaridbn(this.idb);
+      }
     }else{
       alert("Error al elegir el banco");
     }
@@ -109,7 +109,7 @@ export class MostrarbancoComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hat datos para esta opción");
+              alert("No hay datos para esta opción");
             }else{
               alert("los datos se han borrado correctamente");
               location.reload();

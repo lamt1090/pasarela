@@ -3,5 +3,6 @@ export var GLOBAL = {
     url: 'http://localhost/backendcomerciantes/insert/',
     url2: 'http://localhost/backendcomerciantes/consult/consulta.php',
     url3: 'http://localhost/backendcomerciantes/edit/',
-    url4: 'http://localhost/backendcomerciantes/eliminar/remove.php'
+    url4: 'http://localhost/backendcomerciantes/eliminar/remove.php',
+    url5: 'http://localhost/backendcomerciantes/consult/consulta2.php'
 };

@@ -85,4 +85,60 @@ export class MostrarestadoComponent implements OnInit {
     location.reload();
   }
 
+  eliminar(data){
+    this.ider= data;
+    if(this.ider!=0){
+      if(confirm("seguro")== true){
+        let cat =this;
+        cat._estadoservice.existeestado(this.ider)
+        .subscribe(
+          result => {
+            if(result.code != 200){
+              this.data=JSON.parse(result);
+              
+              if(this.data['status']== true){
+                alert("No se puede eliminar este estado, esta siendo utilizado en la tabla validar estado");
+              }else{
+                this.eliminaridestado(this.ider);
+              }
+            }else{
+                cat = result.data;
+            }
+        },
+        error => {
+            console.log(<any>error);
+        }
+        )
+        
+      }
+    }else{
+      alert("Error al elegir estado");
+    }
+  }
+
+  eliminaridestado(ider){
+    let bn=this;
+    bn._estadoservice.eliminarestado(ider)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No se puede eliminar este estado");
+            }else{
+              alert("los datos se han borrado correctamente");
+              location.reload();
+            }
+          }else{
+              bn = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
 }
