@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MostrarregimenService } from '../../../servicios/mostrarregimen.service';
-import { RegimenService } from '../../../servicios/regimen.service';
+import { MostrarrepresentantelegalService } from '../../../servicios/mostrarrepresentantelegal.service';
+import { RepresentanteLegalService } from '../../../servicios/representante-legal.service';
 
 @Component({
-  selector: 'app-mostrarregimen',
-  templateUrl: './mostrarregimen.component.html',
-  styleUrls: ['./mostrarregimen.component.css']
+  selector: 'app-mostrarrepresentantelegal',
+  templateUrl: './mostrarrepresentantelegal.component.html',
+  styleUrls: ['./mostrarrepresentantelegal.component.css']
 })
-export class MostrarregimenComponent implements OnInit {
+export class MostrarrepresentantelegalComponent implements OnInit {
 
-  sregimen: any[];
-  idrg: any;
-  regimenid: any[];
+  sreplegal: any[];
+  idrp: any;
+  replegalid: any[];
   data: any;
-
   constructor(
     private rt: Router,
-    private _mrgservice: MostrarregimenService, 
-    private _regimenservice: RegimenService
+    private _mrpservice: MostrarrepresentantelegalService, 
+    private _replegalservice: RepresentanteLegalService
   ) { 
     this.mostrar();
   }
@@ -27,8 +26,8 @@ export class MostrarregimenComponent implements OnInit {
   }
 
   mostrar(){
-    let rg=this;
-    rg._regimenservice.getregimen()
+    let cate=this;
+    cate._replegalservice.getrepresentante()
     .subscribe(
       result => {
           if(result.code != 200){
@@ -36,10 +35,10 @@ export class MostrarregimenComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sregimen=this.data;
+              this.sreplegal=this.data;
             }
           }else{
-              rg = result.data;
+              cate = result.data;
           }
       },
       error => {
@@ -49,17 +48,17 @@ export class MostrarregimenComponent implements OnInit {
   }
 
   modificar(data){
-    this.idrg= data;
-    if(this.idrg!=0){
-      this.idbn(this.idrg);
+    this.idrp= data;
+    if(this.idrp!=0){
+      this.idrep(this.idrp);
     }else{
-      alert("Error al elegir regimen");
+      alert("Error al elegir el representante legal");
     }
   }
 
-  idbn(idrg){
+  idrep(idrp){
     let bn=this;
-    bn._regimenservice.getregimenid(idrg)
+    bn._replegalservice.getrepresentanteid(idrp)
     .subscribe(
       result => {
           if(result.code != 200){
@@ -68,9 +67,9 @@ export class MostrarregimenComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.regimenid=this.data;
-              this._mrgservice.set(this.regimenid);
-              this.rt.navigateByUrl('editarregimen');
+              this.replegalid=this.data;
+              this._mrpservice.set(this.replegalid);
+              this.rt.navigateByUrl('editarrepresentantelegal');
             }
           }else{
               bn = result.data;
@@ -87,20 +86,20 @@ export class MostrarregimenComponent implements OnInit {
   }
 
   eliminar(data){
-    this.idrg= data;
-    if(this.idrg!=0){
+    this.idrp= data;
+    if(this.idrp!=0){
       if(confirm("seguro")== true){
         let cat =this;
-        cat._regimenservice.existeregimen(this.idrg)
+        cat._replegalservice.existerepresentante(this.idrp)
         .subscribe(
           result => {
             if(result.code != 200){
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta regimen, un comercio lo esta usando");
+                alert("No se puede eliminar este representante, tiene un comercio asignado");
               }else{
-                this.eliminaridregimen(this.idrg);
+                this.eliminaridreplegal(this.idrp);
               }
             }else{
                 cat = result.data;
@@ -113,13 +112,13 @@ export class MostrarregimenComponent implements OnInit {
         
       }
     }else{
-      alert("Error al elegir el regimen");
+      alert("Error al elegir el representante legal");
     }
   }
 
-  eliminaridregimen(idrg){
+  eliminaridreplegal(idrp){
     let bn=this;
-    bn._regimenservice.eliminarregimen(idrg)
+    bn._replegalservice.eliminarrepresentante(idrp)
     .subscribe(
       result => {
           if(result.code != 200){
@@ -127,7 +126,7 @@ export class MostrarregimenComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No se puede eliminar este regimen");
+              alert("No se puede eliminar este representante");
             }else{
               alert("los datos se han borrado correctamente");
               location.reload();

@@ -8,9 +8,7 @@ export class MostrarciudadService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editciudad= data;
-    console.log("lo recibi y lo guarde:="+this.editciudad);
   }
 
   get(){

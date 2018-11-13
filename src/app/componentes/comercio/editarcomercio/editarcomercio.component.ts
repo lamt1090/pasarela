@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 export class EditarcomercioComponent implements OnInit {
 
   model:any = {};
-  sciudad: any[];
   data: any;
 
   sc: any;
@@ -23,9 +22,9 @@ export class EditarcomercioComponent implements OnInit {
   siva : any[];
   srol : any[];
   scategoria : any[];
-  spais : any[];
   ssubcategoria : any[];
-  sdepartamento : any[];
+  smsubcat : any[];
+  
   
   constructor(
     public rt : Router,
@@ -36,6 +35,7 @@ export class EditarcomercioComponent implements OnInit {
   ngOnInit() {
     let sidata = this.mostrar.get();
     this.model=sidata[0];
+    this.subcategoria();
     this.categoria();
     this.regimen();
     this.iva();
@@ -100,12 +100,9 @@ export class EditarcomercioComponent implements OnInit {
       result => {
           if(result.code != 200){
             this.data=JSON.parse(result);
-            
-            if(this.data['status']== false){
-              alert("No hay subcategorias para esta opción");
-            }else{
+
               this.ssubcategoria=this.data;
-            }
+            
           }else{
               cate = result.data;
           }
@@ -164,6 +161,28 @@ export class EditarcomercioComponent implements OnInit {
     );
   }
 
+  subcategoria(){
+    let cate=this;
+    cate._comercioservice.getsubcategoria()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=result;
+
+            if(this.data['status']== false){
+              alert("No existen datos en la base de datos")
+            }else{
+              this.smsubcat=this.data;
+            }
+          }else{
+              cate = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
   
 
 }

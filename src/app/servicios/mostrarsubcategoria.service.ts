@@ -8,9 +8,7 @@ export class MostrarsubcategoriaService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editsubcat= data;
-    console.log("lo recibi y lo guarde:="+this.editsubcat);
   }
 
   get(){

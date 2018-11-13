@@ -8,9 +8,7 @@ export class MostrarmonedasService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editcoin= data;
-    console.log("lo recibi y lo guarde:="+this.editcoin);
   }
 
   get(){

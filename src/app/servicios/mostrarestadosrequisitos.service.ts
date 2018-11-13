@@ -8,9 +8,7 @@ export class MostrarestadosrequisitosService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editestreq= data;
-    console.log("lo recibi y lo guarde:="+this.editestreq);
   }
 
   get(){

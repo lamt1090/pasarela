@@ -14,6 +14,7 @@
                       <th>Nombre Comercio</th>
                       <th>Nit Comercio </th>
                       <th>Representante legal</th>
+                      <th>Subcategoria</th>
                       <th>Regimen</th>
                       <th>Valor iva </th>
                       <th style="text-align: center">Acciones</th>
@@ -24,6 +25,7 @@
                           <td>{{item.nombre}}</td>
                           <td>{{item.nit}}</td>
                           <td>{{item.representante}}</td>
+                          <td>{{item.subcategoria}}</td>
                           <td>{{item.regimen}}</td>
                           <td>{{item.valor}}</td>
                           <td style="text-align: center"><button class="btn btn-primary" type="submit" (click)="modificar(item.id_comercio)">editar</button>&nbsp;<button class="btn btn-danger" type="submit" (click)="eliminar(item.id_comercio)">eliminar</button></td>

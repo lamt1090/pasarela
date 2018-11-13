@@ -8,9 +8,7 @@ export class MostrarrequisitoService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editreq= data;
-    console.log("lo recibi y lo guarde:="+this.editreq);
   }
 
   get(){

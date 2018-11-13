@@ -8,9 +8,7 @@ export class MostrarrolesService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editrol= data;
-    console.log("lo recibi y lo guarde:="+this.editrol);
   }
 
   get(){

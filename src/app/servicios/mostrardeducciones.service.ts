@@ -8,9 +8,7 @@ export class MostrardeduccionesService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editdeduccion= data;
-    console.log("lo recibi y lo guarde:="+this.editdeduccion);
   }
 
   get(){

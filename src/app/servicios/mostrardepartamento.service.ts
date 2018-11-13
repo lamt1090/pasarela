@@ -8,9 +8,7 @@ export class MostrardepartamentoService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editdpto= data;
-    console.log("lo recibi y lo guarde:="+this.editdpto);
   }
 
   get(){

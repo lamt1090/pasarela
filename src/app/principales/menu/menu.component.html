@@ -71,6 +71,9 @@
                 <li>
                     <a [routerLink]="[ 'mostrarcomercio' ]">Ver comercios</a>
                 </li>
+                <li>
+                    <a [routerLink]="[ 'mostrarrepresentantelegal' ]">Ver representantes de los comercio</a>
+                </li>
             </ul>
         </li> 
         <li>
@@ -89,13 +92,21 @@
                     <a [routerLink]="[ 'ciudad' ]">Ciudad</a>
                 </li>
             </ul>
-        </li> 
-        <!--<li>
-            <a [routerLink]="[ 'login' ]">
-                <i class="material-icons">text_fields</i>
-                <span>login</span>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">layers</i>
+                <span>Sucursales</span>
             </a>
-        </li>-->      
+            <ul class="ml-menu">
+                <li>
+                    <a [routerLink]="[ 'sucursal' ]">Adicionar sucursal</a>
+                </li>
+                <li>
+                    <a [routerLink]="[ 'mostrarsucursales' ]">Ver sucursales</a>
+                </li>
+            </ul>
+        </li>       
     </ul>
 </div>
 <!-- #Menu -->

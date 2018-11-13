@@ -8,9 +8,7 @@ export class MostrarcomercioService {
   constructor() { }
 
   set(data){
-    console.log(data);
     this.editcomercio= data;
-    console.log("lo recibi y lo guarde:="+this.editcomercio);
   }
 
   get(){

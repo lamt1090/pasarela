@@ -52,27 +52,14 @@ export class ComercioService {
 
   editcomercio(comercio):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
-    const body = new HttpParams().set('creplegal',comercio.cedularl)
-                                .set('nrl',comercio.nombrerpl)
-                                .set('ereplegal',comercio.emailrl)
-                                .set('cereplegal',comercio.celularrl)
-                                .set('telreplegal',comercio.telefonorl)
-                                .set('namecomercio',comercio.nombrecomercio)
+    const body = new HttpParams().set('id_comercio',comercio.id_comercio)
+                                .set('namecomercio',comercio.nombre)
                                 .set('nit',comercio.nit)
-                                .set('selectsubcateg',comercio.subcatc)
-                                .set('selectregimen',comercio.nregimen)
-                                .set('selectiva',comercio.viva)
-                                .set('selectciudad',comercio.nciu)
-                                .set('address',comercio.dirsucu)
-                                .set('nsucursal',comercio.nsucursal)
-                                .set('cuser',comercio.cedulauser)
-                                .set('nuser',comercio.nombreuser)
-                                .set('ceuser',comercio.celularuser)
-                                .set('euser',comercio.emailuser)
-                                .set('claveuser',comercio.clave)
-                                .set('selectrol',comercio.roluser)
-                                .set('namecaja',comercio.ncaja);
-    return this._http.post(this.url+'insertcomercio.php',body,{headers: headers,responseType:'text'});
+                                .set('selectsubcateg',comercio.id_sub_cat)
+                                .set('selectregimen',comercio.id_regimen)
+                                .set('selectiva',comercio.id_iva)
+                                .set('cedreplegal',comercio.cedula_rep_legal);
+    return this._http.post(this.url3+'editcomercio.php',body,{headers: headers,responseType:'text'});
   }
 
   getregimen(): Observable<any>{
@@ -140,6 +127,10 @@ export class ComercioService {
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idcomercio',id);
     return this._http.post(this.url5+'?opcion=existecomercio',body,{headers: headers,responseType:'text'});
+  }
+
+  getsubcategoria(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=getsubcategorias');
   }
 
 }

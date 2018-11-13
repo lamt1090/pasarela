@@ -7,4 +7,16 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class SucursalModule { }
+export class SucursalModule { 
+  constructor(
+    public nombre: String,
+    public direccion: String,
+    public ciudad: String,
+    public comercio: String,
+    public npais: String,
+    public ndep: String,
+    public nciu: String,
+    public dirsucu: String,
+    public ncomercio: String,
+  ){}
+}

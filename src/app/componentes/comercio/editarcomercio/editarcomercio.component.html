@@ -22,7 +22,6 @@
                   <div class="row clearfix" >
                     <div class="col-sm-12">
                         <select class="form-control show-tick" name="selectcateg" #selectcateg="ngModel" [(ngModel)]="model.catc"   (ngModelChange)="onSelection()" required>
-                            <option value="">-- Elija la categoria --</option>
                             <option *ngFor="let item of scategoria" value={{item.id_categoria}}>{{item.nombre}}</option>
                         </select>
                     </div>
@@ -30,7 +29,7 @@
                 
                 <div class="row clearfix" >
                     <div class="col-sm-12">
-                        <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="model.sub_cat"  required>
+                        <select class="form-control show-tick" name="selectsubcateg" #selectsubcateg="ngModel" [(ngModel)]="model.id_sub_cat"  required>
                             <option value="">-- Elija la subcategoria --</option>
                             <option *ngFor="let item of ssubcategoria" value={{item.id_sub_cat}}>{{item.nombre}}</option>
                         </select>

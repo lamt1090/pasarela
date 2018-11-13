@@ -1,0 +1,38 @@
+<div class="row clearfix" style="padding-top: 60px">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="header">
+              <h2>Actualizar Representante Legal</h2>
+          </div>
+          <div class="body">
+              <form #formeditarrepresentante=ngForm (ngSubmit)="onsubmit()" >
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <span *ngIf="!nrl.valid && nrl.touched" class="label label-danger">El nombre es obligatorio, no acepta números</span>
+                          <input type="text" class="form-control" #nrl="ngModel" name="nrl" [(ngModel)]="model.nombre" required placeholder="Ingrese el nombre del Representante Legal"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                      </div>
+                  </div>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <span *ngIf="!ereplegal.valid && ereplegal.touched" class="label label-danger">El correo es obligatorio</span>
+                          <input type="email" class="form-control" name="ereplegal"  #ereplegal="ngModel"  [(ngModel)]="model.email" placeholder="Ingrese el email del Representate legal" required >
+                      </div>
+                  </div>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <input type="text" class="form-control" name="cereplegal" #cereplegal="ngModel" [(ngModel)]="model.celular" placeholder="Ingrese el celular del Representante Legal" maxlength="10" pattern="[0-9]+">
+                      </div>
+                  </div>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <input type="text" class="form-control" name="telreplegal"  #telreplegal="ngModel" [(ngModel)]="model.telefono" placeholder="Ingrese el teléfono del Representante Legal" maxlength="10" pattern="[0-9]+">
+                      </div>
+                  </div>
+                  <button class="btn btn-primary waves-effect" style="margin-right: 50px " type="submit" [disabled]="!formeditarrepresentante.form.valid" >ACTUALIZAR</button>
+                  <button class="btn btn-danger waves-effect"  type="submit" (click)="cancelar(formeditarrepresentante)">CANCELAR</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- #END# Advanced Validation -->
