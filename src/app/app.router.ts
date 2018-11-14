@@ -40,6 +40,8 @@ import { EditarvalidarrequisitosComponent } from './componentes/validar-requisit
 import { MostrarcomercioComponent } from './componentes/comercio/mostrarcomercio/mostrarcomercio.component';
 import { MostrarrepresentantelegalComponent } from './componentes/representante-legal/mostrarrepresentantelegal/mostrarrepresentantelegal.component';
 import { EditarrepresentantelegalComponent } from './componentes/representante-legal/editarrepresentantelegal/editarrepresentantelegal.component';
+import { EditarsucursalComponent } from './componentes/sucursal/editarsucursal/editarsucursal.component';
+import { MostrarsucursalComponent } from './componentes/sucursal/mostrarsucursal/mostrarsucursal.component';
 
 
 export const app_Routes: Routes = [
@@ -80,6 +82,8 @@ export const app_Routes: Routes = [
 	{path : 'mostrarcomercio', component : MostrarcomercioComponent },
 	{path : 'mostrarrepresentantelegal', component : MostrarrepresentantelegalComponent },
 	{path : 'editarrepresentantelegal', component : EditarrepresentantelegalComponent },
+	{path : 'editarsucursal', component : EditarsucursalComponent},
+	{path : 'mostrarsucursal', component : MostrarsucursalComponent},
 	{path : 'login', component : LoginComponent },
 	{path : '**', component : LoginComponent },
 	{path : '', component : LoginComponent },

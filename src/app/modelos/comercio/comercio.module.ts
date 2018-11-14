@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ComercioModule {
   constructor(
+    //campos utilizados en el formulario html y declarados en el componente 
     public cedularl: String,
     public nombrerpl: String,
     public emailrl: String,

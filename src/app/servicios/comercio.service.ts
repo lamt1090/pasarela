@@ -9,15 +9,16 @@ import { GLOBAL } from './global';
 })
 export class ComercioService {
 
-  public url: string;
-  public url2: string;
-  public url3: string;
-  public url4: string;
-  public url5: string;
+  public url: string; //url para insertar
+  public url2: string; //url para hacer consultas y traer datos
+  public url3: string; //url para editar registros
+  public url4 : string; //url para eliminar registros
+  public url5: string; //url para saber si se puede eliminar un registro, es decir si no es foranea en otra tabla
 
   constructor(
     public _http: HttpClient
-  ) {
+  ) { 
+    //se asina a cada url la ruta que viene de el servicio global.ts
     this.url = GLOBAL.url;
     this.url2= GLOBAL.url2;
     this.url3 = GLOBAL.url3;
@@ -25,6 +26,7 @@ export class ComercioService {
     this.url5 = GLOBAL.url5;
    }
 
+  //metodo para insertar comercios
   addcomercio(comercio):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('creplegal',comercio.cedularl)
@@ -50,6 +52,7 @@ export class ComercioService {
     return this._http.post(this.url+'insertcomercio.php',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para editar un comercio
   editcomercio(comercio):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_comercio',comercio.id_comercio)
@@ -62,26 +65,32 @@ export class ComercioService {
     return this._http.post(this.url3+'editcomercio.php',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para obtener el listado de regimen 
   getregimen(): Observable<any>{
     return this._http.get(this.url2+'?opcion=regimen');
   }
 
+  //metodo para obtener los valores de iva que hay en la base de datos
   getiva(): Observable<any>{
     return this._http.get(this.url2+'?opcion=iva');
   }
 
+  //metodo para obtener los roles
   getrol(): Observable<any>{
     return this._http.get(this.url2+'?opcion=rol');
   }
 
+  //metodo para obtener las categorias
   getcategoria(): Observable<any>{
     return this._http.get(this.url2+'?opcion=categoria');
   }
 
+  //metodo para obtener los paises
   getpais(): Observable<any>{
     return this._http.get(this.url2+'?opcion=pais');
   }
 
+  //metodo para obtener la sucursal segun la categoria elegida
   getsubcategoriaopcional(sc): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_categoria',sc);
@@ -89,6 +98,7 @@ export class ComercioService {
     
   }
 
+  //metodo para obtener el departamento segun el país elegido
   getpaisopcional(sp): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_pais',sp);
@@ -96,6 +106,7 @@ export class ComercioService {
     
   }
 
+  //metodo para obtener la ciudad según el departamento elegido
   getciudadopcional(scd): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_departamento',scd);
@@ -103,32 +114,38 @@ export class ComercioService {
     
   }
 
+  //metodo para obtener las monedas
   getmoneda(): Observable<any>{
     return this._http.get(this.url2+'?opcion=moneda');
   }
 
+  //metodo para obtener los comercios registrados
   getcomercios(): Observable<any>{
     return this._http.get(this.url2+'?opcion=getcomercio');
   }
 
+  //metodo para un comercio en especifico
   getcomercioid(id): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idcomercio',id);
     return this._http.post(this.url2+'?opcion=getcomercioid',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para eliminar un comercio
   eliminarcomercio(id): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idcomercio',id);
     return this._http.post(this.url4+'?opcion=eliminarcomercio',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para saber si el codigo de un comercio es forenea en otra tabla
   existecomercio(id): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idcomercio',id);
     return this._http.post(this.url5+'?opcion=existecomercio',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para obterner las subcategorias que existan en la base de datos
   getsubcategoria(): Observable<any>{
     return this._http.get(this.url2+'?opcion=getsubcategorias');
   }

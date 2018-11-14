@@ -4,24 +4,21 @@ import  'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
 
-//modelo
-import { BancoModule } from '../modelos/banco/banco.module';
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class BancoService {
   
-  public url: string;
-  public url2: string;
-  public url3: string;
-  public url4 : string;
+  public url: string; //url para insertar
+  public url2: string; //url para hacer consultas y traer datos
+  public url3: string; //url para editar registros
+  public url4 : string; //url para eliminar registros
 
   constructor(
     public _http: HttpClient
   ) {
+    //se asina a cada url la ruta que viene de el servicio global.ts
       this.url = GLOBAL.url;
       this.url2 = GLOBAL.url2;
       this.url3 = GLOBAL.url3;
@@ -29,16 +26,16 @@ export class BancoService {
    }
 
   getBanco(){
-    return "los datos se han guardado correctamente"; //--msm de prueba
-   //return this._http.get(this.url+'banco').map(res =>res.json());
+    return "los datos se han guardado correctamente"; 
   } 
-
+  //metodo para insertar nuevos bancos
   addbanco(banco):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('nombre_banco',banco.nombre);
     return this._http.post(this.url+'insertbanco.php',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para hacer las actualizaciones de los bancos
   editbanco(banco):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('nombre_banco',banco.nombre)
@@ -46,10 +43,12 @@ export class BancoService {
     return this._http.post(this.url3+'editbanco.php',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para obtener los bancos que existen en la base de datos
   getbancos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=banco');
   }
 
+  //metodo para obtener un banco en especifico
   getbancoid(id): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_banco',id);
@@ -57,6 +56,7 @@ export class BancoService {
     
   }
 
+  //metodo para eliminar un banco
   eliminarbanco(id): Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('idbanco',id);

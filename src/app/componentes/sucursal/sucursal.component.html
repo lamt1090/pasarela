@@ -6,14 +6,14 @@
             </div>
             <div class="body">
                     <form #formsucursal=ngForm (ngSubmit)="onsubmit(formsucursal)">
-                            <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                      <select class="form-control show-tick" name="selcomercio" #selcomercio="ngModel" [(ngModel)]="sucursal.ncomercio" [ngModelOptions]="{standalone: true}" required>
-                                        <option value="">-- Elija el comercio --</option>
-                                        <option *ngFor="let item of scomercio" value={{item.id_comercio}}>{{item.nombre}}</option>
-                                      </select>
-                                    </div>
-                                  </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <select class="form-control show-tick" name="selcomercio" #selcomercio="ngModel" [(ngModel)]="sucursal.ncomercio" [ngModelOptions]="{standalone: true}" required>
+                                    <option value="">-- Elija el comercio --</option>
+                                    <option *ngFor="let item of scomercio" value={{item.id_comercio}}>{{item.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <span *ngIf="!name_sucursal.valid && name_sucursal.touched" class="label label-danger">El nombre es obligatorio y no acepta números</span>
@@ -71,3 +71,21 @@
     </div>
 </div>
 <!-- #END# Advanced Validation -->
+<div class="card">
+    <div class="header">
+        <h2>ver Sucursales por comercio</h2>
+    </div>
+    <div class="body">
+        <form #formopcionsucursal=ngForm (ngSubmit)="onselectioncomercio(formopcionsucursal)">
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <select class="form-control show-tick" name="selcomercio" #selcomercio="ngModel" [(ngModel)]="sucursal.ncomercio" [ngModelOptions]="{standalone: true}" required>
+                        <option value="">-- Elija el comercio --</option>
+                        <option *ngFor="let item of scomercio" value={{item.id_comercio}}>{{item.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formopcionsucursal.form.valid">VER</button>
+        </form>
+    </div>
+</div>

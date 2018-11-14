@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class TipoCuentaComponent implements OnInit {
 
-  public tipocuenta: TipoCuentaModule;
+  public tipocuenta: TipoCuentaModule; 
 
   constructor(
-    private _tipocuentaservice: TipoCuentaService
+    private _tipocuentaservice: TipoCuentaService //declarando el objeto para acceder al servicio
   ) {
     this.tipocuenta= new TipoCuentaModule("");
    }
@@ -22,9 +22,10 @@ export class TipoCuentaComponent implements OnInit {
   ngOnInit() {
   }
 
+   // metodo enviado desde el formulario
   onsubmit(formtipocuenta: NgForm){
     let vm = this;
-    vm._tipocuentaservice.addtipocuenta(vm.tipocuenta)
+    vm._tipocuentaservice.addtipocuenta(vm.tipocuenta)//envio de datos al servicio para hacer la inserción
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");

@@ -69,6 +69,8 @@ import { EditarbancoComponent } from './componentes/banco/editarbanco/editarbanc
 import { EditarcategoriaComponent } from './componentes/categoria/editarcategoria/editarcategoria.component';
 import { MostrarrepresentantelegalComponent } from './componentes/representante-legal/mostrarrepresentantelegal/mostrarrepresentantelegal.component';
 import { EditarrepresentantelegalComponent } from './componentes/representante-legal/editarrepresentantelegal/editarrepresentantelegal.component';
+import { MostrarsucursalComponent } from './componentes/sucursal/mostrarsucursal/mostrarsucursal.component';
+import { EditarsucursalComponent } from './componentes/sucursal/editarsucursal/editarsucursal.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +133,9 @@ import { EditarrepresentantelegalComponent } from './componentes/representante-l
     EditarbancoComponent,
     EditarcategoriaComponent,
     MostrarrepresentantelegalComponent,
-    EditarrepresentantelegalComponent,    
+    EditarrepresentantelegalComponent,
+    MostrarsucursalComponent,
+    EditarsucursalComponent,    
   
   ],
   imports: [

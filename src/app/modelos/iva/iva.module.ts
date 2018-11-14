@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class IvaModule { 
   constructor(
+    //campo utilizado en el formulario html y declarados en el componente
     public valor: String
   ){}
 }

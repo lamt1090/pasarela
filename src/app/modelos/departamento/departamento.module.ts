@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DepartamentoModule { 
   constructor(
+    //campos utilizados en el formulario html y declarados en el componente
     public npais: String,
     public nombre: String
   ){}

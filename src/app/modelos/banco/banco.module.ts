@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BancoModule {
   constructor(
+    //campo utilizado en el formulario html y declarados en el componente
     public nombre: String
   ){}
  }

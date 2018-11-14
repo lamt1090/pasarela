@@ -12,27 +12,26 @@ import { MostrartipocuentaService } from '../../../servicios/mostrartipocuenta.s
 })
 export class EditartipocuentaComponent implements OnInit {
 
-  model:any = {};
-  public sidtpcuenta : any[];
+  model:any = {}; //variable para obtener el dato que se va a editar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrartipocuentaService,
-    private _tpcuentaservice: TipoCuentaService
+    private mostrar: MostrartipocuentaService, //objeto para asociar el servicio mostrar
+    private _tpcuentaservice: TipoCuentaService //objeto para asociar el srvicio 
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se obtienen los datos para editar
+    this.model=sidata[0]; //se guardan para mostrar en el formulario
   }
 
   onsubmit(f:NgForm){
     let vm = this;
-    vm._tpcuentaservice.edittpcuenta(vm.model)
+    vm._tpcuentaservice.edittpcuenta(vm.model)//petición al servicio para enviar los datos que se va a editar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/tipocuenta');
+        this.rt.navigateByUrl('/tipocuenta'); //nueva vista 
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -41,9 +40,10 @@ export class EditartipocuentaComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditartpcuenta:NgForm){
-    formeditartpcuenta.reset();
-      this.rt.navigateByUrl('/tipocuenta');
+    formeditartpcuenta.reset(); //se borrar los datos del formulario
+      this.rt.navigateByUrl('/tipocuenta'); //se ubica en nueva vista
   }
 
 }

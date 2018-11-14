@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SucursalModule { 
   constructor(
+    //campos utilizados en el formulario html y declarados en el componente
     public nombre: String,
     public direccion: String,
     public ciudad: String,

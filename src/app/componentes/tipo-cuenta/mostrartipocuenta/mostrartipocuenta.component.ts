@@ -9,16 +9,16 @@ import { TipoCuentaService } from '../../../servicios/tipo-cuenta.service';
   styleUrls: ['./mostrartipocuenta.component.css']
 })
 export class MostrartipocuentaComponent implements OnInit {
-  stpcuenta: any[];
-  idtpc: any;
-  tpcuentaid: any[];
+  stpcuenta: any[]; //guarda los tipos de cuenta
+  idtpc: any; //variable para saber cual es el tipo de cuenta a modificar
+  tpcuentaid: any[]; //guarda el resultado de la consulta
   data: any;
   constructor(
     private rt: Router,
-    private _mtpcservice: MostrartipocuentaService, 
-    private _tpcuentaservice: TipoCuentaService
+    private _mtpcservice: MostrartipocuentaService, //objeto para asociar el servicio mostrar
+    private _tpcuentaservice: TipoCuentaService //objeto para asociar el srvicio 
   ) { 
-    this.mostrar();
+    this.mostrar(); //inicialización del mostrar, consulta los tipo de cuenta de la base de datos
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class MostrartipocuentaComponent implements OnInit {
 
   mostrar(){
     let tp=this;
-    tp._tpcuentaservice.gettpcuenta()
+    tp._tpcuentaservice.gettpcuenta()//petición al servicio para buscar los tipos de cuenta
     .subscribe(
       result => {
           if(result.code != 200){
@@ -34,7 +34,7 @@ export class MostrartipocuentaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.stpcuenta=this.data;
+              this.stpcuenta=this.data; //se guarda en la variable
             }
           }else{
               tp = result.data;
@@ -49,7 +49,7 @@ export class MostrartipocuentaComponent implements OnInit {
   modificar(data){
     this.idtpc= data;
     if(this.idtpc!=0){
-      this.idbn(this.idtpc);
+      this.idbn(this.idtpc);//se llama al metodo que va ha realizar la consulta a la selección
     }else{
       alert("Error al elegir tipo de cuenta");
     }
@@ -57,7 +57,7 @@ export class MostrartipocuentaComponent implements OnInit {
 
   idbn(idtpc){
     let bn=this;
-    bn._tpcuentaservice.gettpcuentaid(idtpc)
+    bn._tpcuentaservice.gettpcuentaid(idtpc)//petición al servicio para usar el metodo
     .subscribe(
       result => {
           if(result.code != 200){
@@ -66,9 +66,9 @@ export class MostrartipocuentaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.tpcuentaid=this.data;
-              this._mtpcservice.set(this.tpcuentaid);
-              this.rt.navigateByUrl('editartipocuenta');
+              this.tpcuentaid=this.data; //se guarda en la variable
+              this._mtpcservice.set(this.tpcuentaid); // se envia al mostrarservice para que se guarde
+              this.rt.navigateByUrl('editartipocuenta'); //se dirigue a la vista
             }
           }else{
               bn = result.data;
@@ -81,23 +81,23 @@ export class MostrartipocuentaComponent implements OnInit {
   }
 
   actualizar(){
-    location.reload();
+    location.reload(); //recarga la página
   }
 
   eliminar(data){
-    this.idtpc= data;
+    this.idtpc= data; //guarda el dato a eliminar
     if(this.idtpc!=0){
       if(confirm("seguro")== true){
-        this.eliminaridtpcuenta(this.idtpc);
+        this.eliminaridtpcuenta(this.idtpc); //se llama al metodo que va ha realizar la eliminación
       }
     }else{
-      alert("Error al elegir el banco");
+      alert("Error al elegir el tipo de cuenta");
     }
   }
 
   eliminaridtpcuenta(idtpc){
     let bn=this;
-    bn._tpcuentaservice.eliminartpcuenta(idtpc)
+    bn._tpcuentaservice.eliminartpcuenta(idtpc)//petición al servicio para eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -106,8 +106,8 @@ export class MostrartipocuentaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              alert("Los datos se han borrado correctamente");
-              location.reload();
+              alert("Los datos se han borrado correctamente"); //datos eliminados
+              location.reload(); //recarga la página
             }
           }else{
               bn = result.data;
