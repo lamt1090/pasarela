@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class RolComponent implements OnInit {
   
-  public rol: RolModule;
+  public rol: RolModule; //objeto del modelo
 
   constructor(
-    private _rolservice: RolService
+    private _rolservice: RolService// objeto del servico
   ) {
     this.rol= new RolModule("");
    }
@@ -22,13 +22,14 @@ export class RolComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo pasa insertar a la BD
   onsubmit(formrol: NgForm){
       let vm = this;
-    vm._rolservice.addrol(vm.rol)
+    vm._rolservice.addrol(vm.rol)//petición al sevicio para enciar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formrol.reset();
+        formrol.reset();//reseteo del formulario
   
       },
       err =>{

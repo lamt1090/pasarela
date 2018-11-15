@@ -49,7 +49,7 @@ export class EditarsucursalComponent implements OnInit {
   //metodo para cancelar la modificación
   cancelar(formeditarsucursal:NgForm){
     formeditarsucursal.reset(); //se resetea el formulario
-      this.rt.navigateByUrl('/mostrarsucursal'); //redirección a otra vista
+      this.rt.navigateByUrl('/mostrarsucursal'); //redirecciona a otra vista
   }
 
   

@@ -8,6 +8,22 @@
                 <form #formciudad=ngForm (ngSubmit)="onsubmit(formciudad)">
                     <div class="row clearfix">
                         <div class="col-sm-12">
+                            <select class="form-control show-tick" name="selectpais" #selectpais="ngModel" [(ngModel)]="ciudad.npais" (ngModelChange)="onSelectionpais()" [ngModelOptions]="{standalone: true}" required>
+                                <option value="">-- Elija el País --</option>
+                                <option *ngFor="let item of spais" value={{item.id_pais}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="sdepartamento">
+                        <div class="col-sm-12">
+                            <select class="form-control show-tick" name="id_departamento" #id_departamento="ngModel" [(ngModel)]="ciudad.dep" [ngModelOptions]="{standalone: true}" required>
+                                <option value="">--Elija el departamento --</option>
+                                <option *ngFor="let item of sdepartamento" value={{item.id_departamento}}>{{item.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row clearfix" *ngIf="!sdepartamento">
+                        <div class="col-sm-12">
                             <select class="form-control show-tick" name="id_departamento" #id_departamento="ngModel" [(ngModel)]="ciudad.dep" [ngModelOptions]="{standalone: true}" required>
                                 <option value="">--Elija el departamento --</option>
                                 <option *ngFor="let item of sdepartamento" value={{item.id_departamento}}>{{item.nombre}}</option>

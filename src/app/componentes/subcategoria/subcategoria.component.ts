@@ -10,14 +10,14 @@ import { NgForm } from '@angular/forms';
   providers: [SubcategoriaService]
 })
 export class SubcategoriaComponent implements OnInit {
-  scategoria: any[];
+  scategoria: any[]; //variable para guardar las categorias
   data: any[];
-  public subcategoria: SubcategoriaModule;
+  public subcategoria: SubcategoriaModule; //objeto de conexión con el modelo
 
   constructor(
-    private _subcategoriaservice: SubcategoriaService
+    private _subcategoriaservice: SubcategoriaService //objeto de conexión con el servicio
   ) {
-    this.categorias();
+    this.categorias(); //inicialización del metodo
     this.subcategoria = new SubcategoriaModule("","");
    }
 
@@ -26,13 +26,14 @@ export class SubcategoriaComponent implements OnInit {
     //this.categorias();
   }
 
+  //metodo para realizar la inserción en la tabla categoria
   onsubmit(formsubcategoria: NgForm){
     let vm = this;
-    vm._subcategoriaservice.addsubcategoria(vm.subcategoria)
+    vm._subcategoriaservice.addsubcategoria(vm.subcategoria)//petición al servicio para acceder al metodo de insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formsubcategoria.reset();
+        formsubcategoria.reset();//se resetea el formulario 
   
       },
       err =>{
@@ -42,9 +43,10 @@ export class SubcategoriaComponent implements OnInit {
     )
   }
 
+  //metodo que trae las categorias de la BD
   categorias(){
     let cate=this;
-    cate._subcategoriaservice.getcategorias()
+    cate._subcategoriaservice.getcategorias()//petición al servicio para llamar el metodo de buscar categorias
     .subscribe(
       result => {
           if(result.code != 200){
@@ -53,7 +55,7 @@ export class SubcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.scategoria=result;
+              this.scategoria=result;//se guardan las categorias
             }
           }else{
               cate = result.data;

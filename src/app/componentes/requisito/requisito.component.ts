@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class RequisitoComponent implements OnInit {
   
-  public requisito: RequisitoModule;
+  public requisito: RequisitoModule; //objeto de conexión con el modelo
 
   constructor(
-    private _requisitoservice: RequisitoService
+    private _requisitoservice: RequisitoService //objeto de conexión con el servicio 
   ) {
     this.requisito= new RequisitoModule("");
    }
@@ -22,13 +22,14 @@ export class RequisitoComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para guardar
   onsubmit(formrequisito: NgForm){
     let vm = this;
-    vm._requisitoservice.addrequisito(vm.requisito)
+    vm._requisitoservice.addrequisito(vm.requisito)//petición al servicio para enviar los datos a guardar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formrequisito.reset();
+        formrequisito.reset();//se setea el formulario
   
       },
       err =>{

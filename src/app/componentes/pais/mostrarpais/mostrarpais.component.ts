@@ -10,24 +10,25 @@ import { PaisService } from '../../../servicios/pais.service';
 })
 export class MostrarpaisComponent implements OnInit {
 
-  spais: any[];
-  idpais: any;
-  paisid: any[];
+  spais: any[]; //variable para guardar los paises de la BD
+  idpais: any; //variable para saber que pais escogio en el formulario
+  paisid: any[]; //variable para guardar los datos de un país en especifico
   data: any;
   constructor(
     private rt: Router,
-    private _mpaisservice: MostrarpaisService, 
-    private _paisservice: PaisService
+    private _mpaisservice: MostrarpaisService, //objeto de conexión con el mostrar
+    private _paisservice: PaisService //objeto de conexión con el servicio
   ) { 
-    this.mostrar();
+    this.mostrar();//inicalización del metodo
   }
 
   ngOnInit() {
   }
 
+  //metodo para mostrar
   mostrar(){
     let ps=this;
-    ps._paisservice.getpaises()
+    ps._paisservice.getpaises()//petición al servicio para obtener los datos de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -35,7 +36,7 @@ export class MostrarpaisComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.spais=this.data;
+              this.spais=this.data;//e fuardan los datos obtenidos en la consulta
             }
           }else{
               ps = result.data;
@@ -47,18 +48,20 @@ export class MostrarpaisComponent implements OnInit {
     );
   }
 
+  //metodo para saber la elección del país
   modificar(data){
     this.idpais= data;
     if(this.idpais!=0){
-      this.idbn(this.idpais);
+      this.idbn(this.idpais);//se llama el metodo que traer los datos a editar
     }else{
       alert("Error al elegir el país");
     }
   }
 
+  //metodo para traer los datos a editar
   idbn(idpais){
     let bn=this;
-    bn._paisservice.getpaisid(idpais)
+    bn._paisservice.getpaisid(idpais)//petició al servicio para obtener los datos a editar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -67,9 +70,9 @@ export class MostrarpaisComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.paisid=this.data;
-              this._mpaisservice.set(this.paisid);
-              this.rt.navigateByUrl('editarpais');
+              this.paisid=this.data; //se obtienen los datos
+              this._mpaisservice.set(this.paisid);// se envian al mostrar para ser guardados
+              this.rt.navigateByUrl('editarpais');//se redireciona a otra vista
             }
           }else{
               bn = result.data;
@@ -81,16 +84,18 @@ export class MostrarpaisComponent implements OnInit {
     );
   }
 
+  //medoto actualizar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la vista actual
   }
 
+  //metodo para saber si esposible eliminar un país o no
   eliminar(data){
     this.idpais= data;
     if(this.idpais!=0){
       if(confirm("seguro")== true){
         let cat =this;
-        cat._paisservice.existepais(this.idpais)
+        cat._paisservice.existepais(this.idpais)//petición para hacer la consulta si un país se pued eliminar
         .subscribe(
           result => {
             if(result.code != 200){
@@ -99,7 +104,7 @@ export class MostrarpaisComponent implements OnInit {
               if(this.data['status']== true){
                 alert("No se puede eliminar esta país, tiene departamentos");
               }else{
-                this.eliminaridpais(this.idpais);
+                this.eliminaridpais(this.idpais);//se llama aal metodo eliminar
               }
             }else{
                 cat = result.data;
@@ -116,9 +121,10 @@ export class MostrarpaisComponent implements OnInit {
     }
   }
 
+  //metodo eliminar
   eliminaridpais(idpais){
     let bn=this;
-    bn._paisservice.eliminarpais(idpais)
+    bn._paisservice.eliminarpais(idpais)//petición al servicio para enviar el dato a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -129,7 +135,7 @@ export class MostrarpaisComponent implements OnInit {
               alert("No se puede eliminar este país");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();//se redireciona la vista
             }
           }else{
               bn = result.data;

@@ -11,26 +11,27 @@ import { RolService } from '../../../servicios/rol.service';
 })
 export class EditarrolComponent implements OnInit {
 
-  model:any = {};
+  model:any = {}; //variable para guardar los datos obtenidos del servicio mostrar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrarrolesService,
-    private _rolservice: RolService
+    private mostrar: MostrarrolesService, //objeto de conexión con al mostrarrol
+    private _rolservice: RolService // objeto de conexión al servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se obtienen los datos del servicio mostrar
+    this.model=sidata[0];//se guardan los datos traidos del mostrar
   }
 
+  //metodo para modificar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._rolservice.editrol(vm.model)
+    vm._rolservice.editrol(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/rol');
+        this.rt.navigateByUrl('/rol');//se redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -39,9 +40,10 @@ export class EditarrolComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar la modificación
   cancelar(formeditarrol:NgForm){
-    formeditarrol.reset();
-      this.rt.navigateByUrl('/rol');
+    formeditarrol.reset(); //se resetea el formulario
+      this.rt.navigateByUrl('/rol');//se redirecciona la vista
   }
 
 }

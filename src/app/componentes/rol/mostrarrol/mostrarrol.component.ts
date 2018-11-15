@@ -10,24 +10,25 @@ import { RolService } from '../../../servicios/rol.service';
 })
 export class MostrarrolComponent implements OnInit {
 
-  srol: any[];
-  idrol: any;
-  rolid: any[];
+  srol: any[]; //variable para guardar roles
+  idrol: any; //variable el codigo del rol va a modificar
+  rolid: any[]; //guarda los datos del rol traidos de la BD
   data: any;
   constructor(
     private rt: Router,
-    private _mrolservice: MostrarrolesService, 
-    private _rolservice: RolService
+    private _mrolservice: MostrarrolesService, //objeto de conexión al mostrar
+    private _rolservice: RolService //objeto de coonexión al servicio
   ) { 
-    this.mostrar();
+    this.mostrar();//inicalización del metodo
   }
 
   ngOnInit() {
   }
 
+  //metodo para mostrar los roles 
   mostrar(){
     let rol=this;
-    rol._rolservice.getrol()
+    rol._rolservice.getrol()//petición al servicio y obtener los roles de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -35,7 +36,7 @@ export class MostrarrolComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.srol=this.data;
+              this.srol=this.data;//se guardan los datos traido de la BD
             }
           }else{
               rol = result.data;
@@ -47,18 +48,20 @@ export class MostrarrolComponent implements OnInit {
     );
   }
 
+  //metodo para saber que dato se va a modificar
   modificar(data){
     this.idrol= data;
     if(this.idrol!=0){
-      this.idbn(this.idrol);
+      this.idbn(this.idrol);//llamado al metodo de modificar
     }else{
       alert("Error al elegir el rol");
     }
   }
 
+  //metodo para s
   idbn(idrol){
     let bn=this;
-    bn._rolservice.getrolid(idrol)
+    bn._rolservice.getrolid(idrol)//petición al servicio para traer los datos a modificar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -67,9 +70,9 @@ export class MostrarrolComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.rolid=this.data;
-              this._mrolservice.set(this.rolid);
-              this.rt.navigateByUrl('editarrol');
+              this.rolid=this.data; //se guardan en la variable
+              this._mrolservice.set(this.rolid); //se envia al servicio para guardar
+              this.rt.navigateByUrl('editarrol');//redirección a otra vista
             }
           }else{
               bn = result.data;
@@ -81,16 +84,18 @@ export class MostrarrolComponent implements OnInit {
     );
   }
 
+  //metod para actualizar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la linea
   }
 
+  //metodo para confirmar si se puede eliminar
   eliminar(data){
     this.idrol= data;
     if(this.idrol!=0){
       if(confirm("seguro")== true){
         let cat =this;
-        cat._rolservice.existerol(this.idrol)
+        cat._rolservice.existerol(this.idrol)//petición al servicio para saber si se puede eliminar o no
         .subscribe(
           result => {
             if(result.code != 200){
@@ -99,7 +104,7 @@ export class MostrarrolComponent implements OnInit {
               if(this.data['status']== true){
                 alert("No se puede eliminar esta rol, ya está asignado a un usuario");
               }else{
-                this.eliminaridrol(this.idrol);
+                this.eliminaridrol(this.idrol);//llamado al metodo de eliminar 
               }
             }else{
                 cat = result.data;
@@ -116,9 +121,10 @@ export class MostrarrolComponent implements OnInit {
     }
   }
 
+  //metodo eliminar
   eliminaridrol(idrol){
     let bn=this;
-    bn._rolservice.eliminarrol(idrol)
+    bn._rolservice.eliminarrol(idrol)//petición al servicio para enviar el dato a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -129,7 +135,7 @@ export class MostrarrolComponent implements OnInit {
               alert("No se puede eliminar este rol");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();// se recarga la vista
             }
           }else{
               bn = result.data;

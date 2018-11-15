@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class RegimenComponent implements OnInit {
   
-  public regimen: RegimenModule;
+  public regimen: RegimenModule; //objeto de conexión con el modelo
 
   constructor(
-    private _regimenservice: RegimenService
+    private _regimenservice: RegimenService //objeto de conexión con el servicio
   ) {
     this.regimen = new RegimenModule("");
    }
@@ -22,13 +22,14 @@ export class RegimenComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para insertar
   onsubmit(formregimen: NgForm){
     let vm = this;
-    vm._regimenservice.addregimen(vm.regimen)
+    vm._regimenservice.addregimen(vm.regimen)//petición al servicio para enviar los datos a registrar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formregimen.reset();
+        formregimen.reset();//se resetea el formualrio
   
       },
       err =>{

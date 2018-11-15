@@ -11,26 +11,27 @@ import { MostrarrequisitoService } from '../../../servicios/mostrarrequisito.ser
 })
 export class EditarrequisitoComponent implements OnInit {
 
-  model:any = {};
+  model:any = {};//variable para guardar los datos obtenidos
  
   constructor(
     public rt : Router,
-    private mostrar: MostrarrequisitoService,
-    private _requisitoservice: RequisitoService
+    private mostrar: MostrarrequisitoService, //objeto de conexión con mostrar
+    private _requisitoservice: RequisitoService//objeto de conexión con el servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se extrae los datos del mostrar
+    this.model=sidata[0];//se guardan en la variable
   }
 
+  //metodo para editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._requisitoservice.editrequisito(vm.model)
+    vm._requisitoservice.editrequisito(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/requisitos');
+        this.rt.navigateByUrl('/requisitos');//redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -39,9 +40,10 @@ export class EditarrequisitoComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar la modificación
   cancelar(formeditarrequisito:NgForm){
-    formeditarrequisito.reset();
-      this.rt.navigateByUrl('/requisitos');
+    formeditarrequisito.reset();//se resetea el formulario
+      this.rt.navigateByUrl('/requisitos');//redirecciona la vista
   }
 
 }

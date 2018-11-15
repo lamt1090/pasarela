@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class PaisComponent implements OnInit {
   
-  public pais: PaisModule;
+  public pais: PaisModule; //objeto de conexión al modelo
 
   constructor(
-    private _paisservice: PaisService
+    private _paisservice: PaisService // objeto de conexión al servicio
   ) { 
     this.pais= new PaisModule("");
   }
@@ -22,13 +22,14 @@ export class PaisComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para insertar
   onsubmit(formpais: NgForm){
       let vm = this;
-    vm._paisservice.addpais(vm.pais)
+    vm._paisservice.addpais(vm.pais)//petición al servico para eviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formpais.reset();
+        formpais.reset();//se resetea el formulario
   
       },
       err =>{

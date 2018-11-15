@@ -42,6 +42,18 @@ export class CiudadService {
     return this._http.post(this.url3+'editciudad.php',body,{headers: headers,responseType:'text'});
   }
 
+  //metodo para obtener los paises
+  getpais(): Observable<any>{
+    return this._http.get(this.url2+'?opcion=pais');
+  }
+
+  //metodo para obtener el departamento segun el país elegido
+  getpaisopcional(sp): Observable<any>{
+    let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
+    const body = new HttpParams().set('id_pais',sp);
+    return this._http.post(this.url2+'?opcion=paisopcional',body,{headers: headers,responseType:'text'});
+  }
+
   //metodo para obtener los departamentos y poder insertar una ciudad
   getdepartamentos(): Observable<any>{
     return this._http.get(this.url2+'?opcion=departamento');

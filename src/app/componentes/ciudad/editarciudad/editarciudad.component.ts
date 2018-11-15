@@ -13,6 +13,8 @@ export class EditarciudadComponent implements OnInit {
 
   model:any = {};
   sciudad: any[];
+  spais: any[];
+  sp: any;
   data: any;
 
   constructor(
@@ -24,7 +26,7 @@ export class EditarciudadComponent implements OnInit {
   ngOnInit() {
     let sidata = this.mostrar.get();
     this.model=sidata[0];
-    this.departamentos();
+    this.pais();
   }
 
   onsubmit(f:NgForm){
@@ -47,7 +49,63 @@ export class EditarciudadComponent implements OnInit {
       this.rt.navigateByUrl('/ciudad');
   }
 
-  departamentos(){
+  pais(){
+    let cate=this;
+    cate._ciudadservice.getpais()
+    .subscribe(
+      result => {
+          if(result.code != 200){
+            this.data=result;
+
+            if(this.data['status']== false){
+              alert("No existen datos en la base de datos")
+            }else{
+              this.spais=this.data;
+            }
+          }else{
+              cate = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  onSelectionpais(){
+    this.sp= this.model.npais;
+    if(this.sp!=0){
+      this.sd(this.sp);
+    }else{
+      alert("Error al elegir el país");
+    }
+  }
+
+  sd(sp){
+    let pais=this;
+    pais._ciudadservice.getpaisopcional(sp)
+    .subscribe(
+      result => {
+          if(result.code != 200){
+                       
+            this.data=JSON.parse(result);
+            
+            if(this.data['status']== false){
+              alert("No hay departamento para esta opción");
+            }else{
+              this.sciudad=this.data;
+            }
+          }else{
+              pais = result.data;
+          }
+      },
+      error => {
+          console.log(<any>error);
+      }
+    );
+  }
+
+  /*departamentos(){
     let cate=this;
     cate._ciudadservice.getdepartamentos()
     .subscribe(
@@ -68,6 +126,6 @@ export class EditarciudadComponent implements OnInit {
           console.log(<any>error);
       }
     );
-  }
+  }*/
 
 }

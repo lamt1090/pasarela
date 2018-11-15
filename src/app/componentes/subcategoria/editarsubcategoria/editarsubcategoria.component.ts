@@ -11,29 +11,30 @@ import { SubcategoriaService } from '../../../servicios/subcategoria.service';
 })
 export class EditarsubcategoriaComponent implements OnInit {
 
-  model:any = {};
-  scategoria: any[];
+  model:any = {};//variable para guardar lo obtenido del servicio mostrar
+  scategoria: any[]; //variable para guardar las categorias
   data: any;
 
   constructor(
     public rt : Router,
-    private mostrar: MostrarsubcategoriaService,
-    private _subcategoriaservice: SubcategoriaService
+    private mostrar: MostrarsubcategoriaService,//objeto de conexión con el servicio mostrar
+    private _subcategoriaservice: SubcategoriaService //objeto de conexión con el servicio subcategoria
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
-    this.categorias();
+    let sidata = this.mostrar.get();//se trae los datos del servicio mostrar
+    this.model=sidata[0];//se guardan los datos del servico mostrar
+    this.categorias();//inicialización del metodo
   }
 
+  //metodo que va editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._subcategoriaservice.editsubcategoria(vm.model)
+    vm._subcategoriaservice.editsubcategoria(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/subcategoria');
+        this.rt.navigateByUrl('/subcategoria');//se actualiza la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -42,14 +43,16 @@ export class EditarsubcategoriaComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditarsubcategoria:NgForm){
-    formeditarsubcategoria.reset();
-      this.rt.navigateByUrl('/subcategoria');
+    formeditarsubcategoria.reset();//se resetea el formulario
+      this.rt.navigateByUrl('/subcategoria');//se recarga la vista
   }
 
+  //metodo para obtener las categorias
   categorias(){
     let cate=this;
-    cate._subcategoriaservice.getcategorias()
+    cate._subcategoriaservice.getcategorias()//petición al servicio para obtener las categorias
     .subscribe(
       result => {
           if(result.code != 200){
@@ -58,7 +61,7 @@ export class EditarsubcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.scategoria=result;
+              this.scategoria=result;//se guardan las categorias obtenidas
             }
           }else{
               cate = result.data;
