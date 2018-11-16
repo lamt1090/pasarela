@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarpaisService } from '../../../servicios/mostrarpais.service';
 import { PaisService } from '../../../servicios/pais.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarpais',
@@ -30,7 +31,12 @@ export class EditarpaisComponent implements OnInit {
     vm._paisservice.editpais(vm.model)//petición al servico para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/pais');//se redirecciona la vista
       },
       err =>{

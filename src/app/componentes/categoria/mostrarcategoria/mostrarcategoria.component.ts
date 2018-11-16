@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarcategoriaService } from '../../../servicios/mostrarcategoria.service';
 import { CategoriaService } from '../../../servicios/categoria.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarcategoria',
@@ -34,7 +36,12 @@ export class MostrarcategoriaComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scategoria=this.data;// se guardan los datos obtenidos 
             }
@@ -102,7 +109,12 @@ export class MostrarcategoriaComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta categoria, tiene una subcategoria");
+                swal({
+                  type: 'error',
+                  title: 'No se puede elimimar esta categoria',
+                  text: 'tiene subcategorias asignadas',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridcategoria(this.idct);//lamado al metodo eliminar
               }
@@ -134,7 +146,12 @@ export class MostrarcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar esta categoria");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la página
             }
           }else{

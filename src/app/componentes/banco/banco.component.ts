@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BancoModule } from '../../modelos/banco/banco.module';
 import { BancoService } from '../../servicios/banco.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -33,7 +34,12 @@ export class BancoComponent implements OnInit {
     vm._bancoservice.addbanco(vm.banco)//petición para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formbanco.reset();//se resetea el formulario
       },
       err =>{

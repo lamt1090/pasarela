@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrartipocuentaService } from '../../../servicios/mostrartipocuenta.service';
 import { TipoCuentaService } from '../../../servicios/tipo-cuenta.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrartipocuenta',
@@ -32,7 +34,12 @@ export class MostrartipocuentaComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay datos disponobles en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.stpcuenta=this.data; //se guarda en la variable
             }
@@ -106,7 +113,12 @@ export class MostrartipocuentaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              alert("Los datos se han borrado correctamente"); //datos eliminados
+              swal({
+                type: 'success',
+                title: 'Datos eliminados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              }); //datos eliminados
               location.reload(); //recarga la página
             }
           }else{

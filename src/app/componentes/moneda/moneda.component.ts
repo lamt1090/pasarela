@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MonedaModule } from '../../modelos/moneda/moneda.module';
 import { MonedaService } from '../../servicios/moneda.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class MonedaComponent implements OnInit {
     vm._monedaservice.addmoneda(vm.moneda)//petición al servico para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formmoneda.reset();//se resetea el formulario
   
       },

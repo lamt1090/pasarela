@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PaisModule } from '../../modelos/pais/pais.module';
 import { PaisService } from '../../servicios/pais.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-pais',
@@ -28,7 +30,12 @@ export class PaisComponent implements OnInit {
     vm._paisservice.addpais(vm.pais)//petición al servico para eviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formpais.reset();//se resetea el formulario
   
       },

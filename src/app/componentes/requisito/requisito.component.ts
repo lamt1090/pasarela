@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RequisitoModule } from '../../modelos/requisito/requisito.module';
 import { RequisitoService } from '../../servicios/requisito.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-requisito',
@@ -28,7 +30,12 @@ export class RequisitoComponent implements OnInit {
     vm._requisitoservice.addrequisito(vm.requisito)//petición al servicio para enviar los datos a guardar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formrequisito.reset();//se setea el formulario
   
       },

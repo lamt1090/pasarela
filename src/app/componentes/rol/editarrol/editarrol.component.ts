@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarrolesService } from '../../../servicios/mostrarroles.service';
 import { RolService } from '../../../servicios/rol.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editarrol',
@@ -30,7 +32,12 @@ export class EditarrolComponent implements OnInit {
     vm._rolservice.editrol(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/rol');//se redirecciona la vista
       },
       err =>{

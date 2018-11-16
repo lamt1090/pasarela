@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DepartamentoModule } from '../../modelos/departamento/departamento.module';
 import { DepartamentoService } from '../../servicios/departamento.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-departamento',
@@ -30,7 +32,12 @@ export class DepartamentoComponent implements OnInit {
     vm._departamentoservice.adddepartamento(vm.departamento)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formdepartamento.reset();//se reseteael formulario
         
       },
@@ -51,7 +58,12 @@ export class DepartamentoComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay paises en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.pais=result;//se guardan los datos obtenidos
             }

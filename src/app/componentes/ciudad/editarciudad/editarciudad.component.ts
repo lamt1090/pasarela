@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarciudadService } from '../../../servicios/mostrarciudad.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarciudad',
@@ -35,7 +36,12 @@ export class EditarciudadComponent implements OnInit {
     vm._ciudadservice.editciudad(vm.model)//petición al servico para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/ciudad');//se redirecciona la vista
       },
       err =>{
@@ -61,7 +67,12 @@ export class EditarciudadComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.spais=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -96,7 +107,12 @@ export class EditarciudadComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay departamento para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay departamentos para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sciudad=this.data;//se guardan los datos obtenidos en la consulta
             }

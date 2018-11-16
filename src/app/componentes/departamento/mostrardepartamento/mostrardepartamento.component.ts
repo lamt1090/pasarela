@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrardepartamentoService } from '../../../servicios/mostrardepartamento.service';
 import { DepartamentoService } from '../../../servicios/departamento.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrardepartamento',
@@ -34,7 +36,12 @@ export class MostrardepartamentoComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay departamentos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdepartamento=this.data;//se guardan los datos obtenidos
             }
@@ -102,7 +109,12 @@ export class MostrardepartamentoComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar este departamento, tiene ciudades asignadas");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este departamento',
+                  text: 'Tiene ciudades asignadas',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminariddepartamento(this.iddpto);//lamado al metodo eliminar
               }
@@ -134,7 +146,12 @@ export class MostrardepartamentoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este departamento");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la vista
             }
           }else{

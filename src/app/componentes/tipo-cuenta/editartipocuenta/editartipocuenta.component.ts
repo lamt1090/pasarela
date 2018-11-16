@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TipoCuentaService } from '../../../servicios/tipo-cuenta.service';
 import { MostrartipocuentaService } from '../../../servicios/mostrartipocuenta.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class EditartipocuentaComponent implements OnInit {
     vm._tpcuentaservice.edittpcuenta(vm.model)//petición al servicio para enviar los datos que se va a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/tipocuenta'); //nueva vista 
       },
       err =>{

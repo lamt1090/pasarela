@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router} from '@angular/router';
 import { CategoriaService } from '../../../servicios/categoria.service';
 import { MostrarcategoriaService } from '../../../servicios/mostrarcategoria.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarcategoria',
@@ -30,7 +31,12 @@ export class EditarcategoriaComponent implements OnInit {
     vm._categoriaservice.editcategoria(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/categoria');//se redirecciona la vista
       },
       err =>{

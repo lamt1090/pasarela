@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SubcategoriaModule } from '../../modelos/subcategoria/subcategoria.module';
 import { SubcategoriaService } from '../../servicios/subcategoria.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-subcategoria',
@@ -32,7 +34,12 @@ export class SubcategoriaComponent implements OnInit {
     vm._subcategoriaservice.addsubcategoria(vm.subcategoria)//petición al servicio para acceder al metodo de insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formsubcategoria.reset();//se resetea el formulario 
   
       },
@@ -53,7 +60,12 @@ export class SubcategoriaComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scategoria=result;//se guardan las categorias
             }

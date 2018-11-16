@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarsubcategoriaService } from '../../../servicios/mostrarsubcategoria.service';
 import { SubcategoriaService } from '../../../servicios/subcategoria.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editarsubcategoria',
@@ -33,7 +35,12 @@ export class EditarsubcategoriaComponent implements OnInit {
     vm._subcategoriaservice.editsubcategoria(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/subcategoria');//se actualiza la vista
       },
       err =>{
@@ -59,7 +66,12 @@ export class EditarsubcategoriaComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay categorias en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scategoria=result;//se guardan las categorias obtenidas
             }

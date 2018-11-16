@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrardeduccionesService } from '../../../servicios/mostrardeducciones.service';
 import { DeduccionService } from '../../../servicios/deduccion.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editardeduccion',
@@ -30,7 +32,12 @@ export class EditardeduccionComponent implements OnInit {
     vm._deduccionservice.editdeduccion(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/deduccion');//se redirecciona la vista
       },
       err =>{

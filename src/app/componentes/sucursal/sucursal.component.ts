@@ -4,6 +4,7 @@ import { SucursalModule } from '../../modelos/sucursal/sucursal.module';
 import { SucursalService } from '../../servicios/sucursal.service';
 import { Router } from '@angular/router';
 import { MostrarsucursalService } from '../../servicios/mostrarsucursal.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -45,7 +46,12 @@ export class SucursalComponent implements OnInit {
     .subscribe(
       res => {
         if(res == true){
-        alert("Datos Guardados correctamente");
+          swal({
+            type: 'success',
+            title: 'Datos guardados correctamente',
+            /*text: '',
+            footer: '<a href>Why do I have this issue?</a>'*/
+          })
         formsucursal.reset();
         }else{
           alert("error al insertar");
@@ -67,7 +73,12 @@ export class SucursalComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No hay comercios disponibles")
+              swal({
+                type: 'error',
+                title: 'No hay comercios disponibles',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scomercio=result;// se guardan los comercios en la variable 
             }
@@ -90,7 +101,12 @@ export class SucursalComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay paises disponibles',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.spais=this.data;//se guardan los paises 
             }
@@ -124,7 +140,12 @@ export class SucursalComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay departamento para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay departamentos para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdepartamento=this.data;// se guardab los departamentos obtenidos 
             }
@@ -159,7 +180,12 @@ export class SucursalComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay ciudades para ese departamento");
+              swal({
+                type: 'error',
+                title: 'No hay ciudades disponibles para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sciudad=this.data;//se guardan las ciudades obtenidas
             }
@@ -193,7 +219,12 @@ export class SucursalComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay sucursales para ese comercio");
+              swal({
+                type: 'error',
+                title: 'No hay sucursales para este comercio',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sucursalid=this.data; //se resibe el resultado
               this._msucuservice.setsucu(this.sucursalid);//se envia para que el servicio y se guarde

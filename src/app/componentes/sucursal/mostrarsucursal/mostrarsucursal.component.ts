@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MostrarsucursalService } from '../../../servicios/mostrarsucursal.service';
 import { Router } from '@angular/router';
 import { SucursalService } from '../../../servicios/sucursal.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarsucursal',
@@ -80,7 +82,12 @@ export class MostrarsucursalComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta sucursal, tiene asignada una caja");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar esta sucursal',
+                  text: 'Tiene asignada una caja',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridsucursal(this.idsucu); //se llama el metodo que va a eliminar el rgistro
               }
@@ -111,7 +118,12 @@ export class MostrarsucursalComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar esta sucursal");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               this.rt.navigateByUrl('sucursal'); //se redirecciona a otra vista
             }
           }else{

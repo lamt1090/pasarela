@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarestadosrequisitosService } from '../../../servicios/mostrarestadosrequisitos.service';
 import { EstadoRequisitoService } from '../../../servicios/estado-requisito.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarestado',
@@ -34,7 +36,12 @@ export class MostrarestadoComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'success',
+                title: 'No hay estados en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sestado=this.data;//se guardan los datos obtenidos en la variable
             }
@@ -102,7 +109,12 @@ export class MostrarestadoComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar este estado, esta siendo utilizado en la tabla validar estado");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este estado',
+                  text: 'Esta validando un requisito',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridestado(this.ider);//llamda al metodo para eliminar
               }
@@ -134,7 +146,12 @@ export class MostrarestadoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este estado");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la página
             }
           }else{

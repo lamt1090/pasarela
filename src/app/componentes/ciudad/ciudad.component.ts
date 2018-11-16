@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CiudadModule } from '../../modelos/ciudad/ciudad.module';
 import { CiudadService } from '../../servicios/ciudad.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -34,7 +35,12 @@ export class CiudadComponent implements OnInit {
     vm._ciudadservice.addciudad(vm.ciudad)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formciudad.reset();//se resetea el formulario
         
       },
@@ -55,7 +61,12 @@ export class CiudadComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.spais=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -90,7 +101,12 @@ export class CiudadComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay departamento para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay departamentos para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdepartamento=this.data;//guardar los datos obtenidos en la consulta
             }

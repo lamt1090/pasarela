@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarpaisService } from '../../../servicios/mostrarpais.service';
 import { PaisService } from '../../../servicios/pais.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarpais',
@@ -34,7 +36,12 @@ export class MostrarpaisComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay paises en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.spais=this.data;//e fuardan los datos obtenidos en la consulta
             }
@@ -102,7 +109,12 @@ export class MostrarpaisComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta país, tiene departamentos");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este país',
+                  text: 'Tiene departamentos asignados',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridpais(this.idpais);//se llama aal metodo eliminar
               }
@@ -134,7 +146,12 @@ export class MostrarpaisComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este país");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se redireciona la vista
             }
           }else{

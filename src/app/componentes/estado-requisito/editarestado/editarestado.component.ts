@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarestadosrequisitosService } from '../../../servicios/mostrarestadosrequisitos.service';
 import { EstadoRequisitoService } from '../../../servicios/estado-requisito.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editarestado',
@@ -30,7 +32,12 @@ export class EditarestadoComponent implements OnInit {
     vm._estadoservice.editestadorequisito(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/estadorequisito');//se redirecciona a otra vista
       },
       err =>{

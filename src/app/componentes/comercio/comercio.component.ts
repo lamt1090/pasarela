@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComercioModule } from '../../modelos/comercio/comercio.module';
 import { ComercioService } from '../../servicios/comercio.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -49,7 +50,12 @@ export class ComercioComponent implements OnInit {
     vm._comercioservice.addcomercio(vm.comercio)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formcomercio.reset();//se resetea el formualrio
         
       },
@@ -80,7 +86,12 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay subcategorias para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay subcategorias para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.ssubcategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -116,7 +127,12 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay departamento para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay departamentos para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdepartamento=this.data;//se guardan los datos obtenidos de la consulta
             }
@@ -152,7 +168,12 @@ export class ComercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hay ciudades para ese departamento");
+              swal({
+                type: 'error',
+                title: 'No hay ciudades para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sciudad=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -177,7 +198,12 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay regimen en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sregimen=result;//se guardan los datos obtenidos en la BD
             }
@@ -201,7 +227,12 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay iva en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.siva=result;//se guardan los datos obtenidos en la consulta
             }
@@ -225,7 +256,12 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay roles en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.srol=result;//se guardan los datos obtenidos en la consulta
             }
@@ -249,7 +285,12 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay categorias en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -273,7 +314,12 @@ export class ComercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay paises en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.spais=this.data;//se guardan los datos obtenidos en la consulta
             }

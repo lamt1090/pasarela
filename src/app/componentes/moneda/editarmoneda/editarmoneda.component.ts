@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MonedaService } from '../../../servicios/moneda.service';
 import { MostrarmonedasService } from '../../../servicios/mostrarmonedas.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarmoneda',
@@ -30,7 +31,12 @@ export class EditarmonedaComponent implements OnInit {
     vm._monedaservice.editmoneda(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/moneda');//se redirecciona a otra vista
       },
       err =>{

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MostrarcomercioService } from '../../../servicios/mostrarcomercio.service';
 import { ComercioService } from '../../../servicios/comercio.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -47,7 +48,12 @@ export class EditarcomercioComponent implements OnInit {
     vm._comercioservice.editcomercio(vm.model)//petición al servicio para enviar lso datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/mostrarcomercio');//se redirecciona la vista
       },
       err =>{
@@ -73,7 +79,12 @@ export class EditarcomercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -130,7 +141,12 @@ export class EditarcomercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay regimen en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sregimen=result;//se guardan los datos obtenidos en la BD
             }
@@ -154,7 +170,12 @@ export class EditarcomercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay iva en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.siva=result;//se guardan los datos obtenidos en la consulta
             }
@@ -178,7 +199,12 @@ export class EditarcomercioComponent implements OnInit {
             this.data=result;
 
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay subcategorias en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.smsubcat=this.data;//se guardan los datos obtenidos en la consulta
             }

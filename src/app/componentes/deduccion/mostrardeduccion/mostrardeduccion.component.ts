@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrardeduccionesService } from '../../../servicios/mostrardeducciones.service';
 import { DeduccionService } from '../../../servicios/deduccion.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrardeduccion',
@@ -34,7 +36,12 @@ export class MostrardeduccionComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay deducciones en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdeduccion=this.data;//se guardan los datos obtenidos
             }
@@ -113,7 +120,12 @@ export class MostrardeduccionComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay datos para esta opción");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la página
             }
           }else{

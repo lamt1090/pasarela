@@ -4,6 +4,7 @@ import { BancoModule } from '../../../modelos/banco/banco.module';
 import { BancoService } from '../../../servicios/banco.service';
 import { Router } from '@angular/router';
 import { MostrarbancoService } from '../../../servicios/mostrarbanco.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarbanco',
@@ -32,7 +33,12 @@ export class EditarbancoComponent implements OnInit {
     vm._bancoservice.editbanco(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/banco');//se redirecciona la vista
       },
       err =>{

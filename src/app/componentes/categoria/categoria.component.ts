@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriaModule } from '../../modelos/categoria/categoria.module';
 import { CategoriaService } from '../../servicios/categoria.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class CategoriaComponent implements OnInit {
     vm._categoriaservice.addcategoria(vm.categoria)//petició al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formcategoria.reset();//se resetea el formulario
         
       },

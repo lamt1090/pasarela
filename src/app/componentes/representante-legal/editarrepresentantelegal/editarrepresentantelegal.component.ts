@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrarrepresentantelegalService } from '../../../servicios/mostrarrepresentantelegal.service';
 import { RepresentanteLegalService } from '../../../servicios/representante-legal.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -31,7 +32,12 @@ export class EditarrepresentantelegalComponent implements OnInit {
     vm._replegalservice.editrepresentantelegal(vm.model)//petición al servicio par aenviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/mostrarrepresentantelegal');//se redirecciona la vista
       },
       err =>{

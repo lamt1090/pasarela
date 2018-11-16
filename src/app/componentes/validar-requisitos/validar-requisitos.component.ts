@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ValidarRequisitosModule } from '../../modelos/validar-requisitos/validar-requisitos.module';
 import { ValidarRequisitosService } from '../../servicios/validar-requisitos.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-validar-requisitos',
@@ -35,7 +37,12 @@ export class ValidarRequisitosComponent implements OnInit {
     vm._validarrequisitoservice.addvalidarrequisito(vm.validarrequisito)//envio de datos al servicio para hacer la inserción
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formvalidarestado.reset();
   
       },
@@ -56,7 +63,12 @@ export class ValidarRequisitosComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen ciudades para ese departamento")
+              swal({
+                type: 'error',
+                title: 'No hay requisitos disponibles',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.srequisito=result;//guardo en la variable el resultado
             }
@@ -79,7 +91,12 @@ export class ValidarRequisitosComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen ciudades para ese departamento")
+              swal({
+                type: 'error',
+                title: 'No hay comercios disponibles',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scomercio=result; //guardo en la variable el resultado
             }
@@ -102,7 +119,12 @@ export class ValidarRequisitosComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen ciudades para ese departamento")
+              swal({
+                type: 'error',
+                title: 'No hay estados disponibles',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sestadorequisito=result; //guardo en la variable el resultado
             }

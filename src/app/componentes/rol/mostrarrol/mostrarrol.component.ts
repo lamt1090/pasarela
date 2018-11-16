@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarrolesService } from '../../../servicios/mostrarroles.service';
 import { RolService } from '../../../servicios/rol.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarrol',
@@ -34,7 +36,12 @@ export class MostrarrolComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay roles en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.srol=this.data;//se guardan los datos traido de la BD
             }
@@ -102,7 +109,12 @@ export class MostrarrolComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta rol, ya está asignado a un usuario");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este rol',
+                  text: 'Esta asiganado a un representante legal',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridrol(this.idrol);//llamado al metodo de eliminar 
               }
@@ -134,7 +146,12 @@ export class MostrarrolComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este rol");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();// se recarga la vista
             }
           }else{

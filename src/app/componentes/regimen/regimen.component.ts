@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RegimenModule } from '../../modelos/regimen/regimen.module';
 import { RegimenService } from '../../servicios/regimen.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-regimen',
@@ -28,7 +30,12 @@ export class RegimenComponent implements OnInit {
     vm._regimenservice.addregimen(vm.regimen)//petición al servicio para enviar los datos a registrar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formregimen.reset();//se resetea el formualrio
   
       },

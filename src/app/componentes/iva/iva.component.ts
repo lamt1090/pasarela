@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IvaModule } from '../../modelos/iva/iva.module';
 import { IvaService } from '../../servicios/iva.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class IvaComponent implements OnInit {
     vm._ivaservice.addiva(vm.iva)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formiva.reset();//se resetea el formulario
   
       },

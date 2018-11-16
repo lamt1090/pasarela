@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DeduccionModule } from '../../modelos/deduccion/deduccion.module';
 import { DeduccionService } from '../../servicios/deduccion.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-deduccion',
@@ -28,7 +30,12 @@ export class DeduccionComponent implements OnInit {
     vm._deduccionservice.adddeduccion(vm.deduccion)//petición para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formdeduccion.reset();//se resetea el formulario
         
       },

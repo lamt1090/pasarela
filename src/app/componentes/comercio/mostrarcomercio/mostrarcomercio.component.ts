@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarcomercioService } from '../../../servicios/mostrarcomercio.service';
 import { ComercioService } from '../../../servicios/comercio.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarcomercio',
@@ -34,7 +36,12 @@ export class MostrarcomercioComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay comercios en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.scomercio=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -68,7 +75,7 @@ export class MostrarcomercioComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hat datos para esta opción");
+              alert("No hay datos para esta opción");
             }else{
               this.comercioid=this.data;//se obtienen los datos de la consulta
               this._mcmservice.set(this.comercioid);//se envia los datos al mostrar para guardarlos
@@ -102,7 +109,12 @@ export class MostrarcomercioComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar este comercio, tiene sucarsales actualmente");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este comercio',
+                  text: 'Tiene sucursales asignadas',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridcomercio(this.idcm);//llamada al metodo eliminar
               }
@@ -134,7 +146,12 @@ export class MostrarcomercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este comercio");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();
             }
           }else{

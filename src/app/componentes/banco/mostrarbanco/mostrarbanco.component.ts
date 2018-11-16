@@ -3,6 +3,7 @@ import { BancoService } from '../../../servicios/banco.service';
 import { BancoModule } from '../../../modelos/banco/banco.module';
 import { Router } from '@angular/router';
 import { MostrarbancoService } from '../../../servicios/mostrarbanco.service';
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-mostrarbanco',
@@ -38,7 +39,12 @@ export class MostrarbancoComponent implements OnInit {
             this.data=result;
             
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sbanco=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -72,7 +78,12 @@ export class MostrarbancoComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hat datos para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay datos para esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.bancoid=this.data; //se obtienen los datos de la consulta
               this._mbservice.set(this.bancoid); //se envian al mostrar para guardarlos
@@ -117,7 +128,12 @@ export class MostrarbancoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay datos para esta opción");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Los datos se han borrado correctaemnte',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la vista
             }
           }else{

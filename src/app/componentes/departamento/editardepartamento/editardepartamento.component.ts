@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MostrardepartamentoService } from '../../../servicios/mostrardepartamento.service';
 import { DepartamentoService } from '../../../servicios/departamento.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editardepartamento',
@@ -33,7 +35,12 @@ export class EditardepartamentoComponent implements OnInit {
     vm._departamentoservice.editdepartamento(vm.model)//petició al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/departamento');//se redirecciona a otra vista
       },
       err =>{
@@ -59,7 +66,12 @@ export class EditardepartamentoComponent implements OnInit {
             this.data=result;
           
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay paises en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sdepartamento=result;//se guardan los datos obtenidos
             }

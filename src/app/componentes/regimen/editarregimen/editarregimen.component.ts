@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegimenService } from '../../../servicios/regimen.service';
 import { MostrarregimenService } from '../../../servicios/mostrarregimen.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editarregimen',
@@ -30,7 +31,12 @@ export class EditarregimenComponent implements OnInit {
     vm._regimenservice.editregimen(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/regimen');//se redirecciona la vista
       },
       err =>{

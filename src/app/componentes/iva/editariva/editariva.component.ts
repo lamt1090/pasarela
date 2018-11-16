@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IvaService } from '../../../servicios/iva.service';
 import { MostrarivaService } from '../../../servicios/mostrariva.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-editariva',
@@ -30,7 +32,12 @@ export class EditarivaComponent implements OnInit {
     vm._ivaservice.editiva(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
-        alert("Datos Actualizados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos actualizados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         this.rt.navigateByUrl('/iva');//redirección a otra vista
       },
       err =>{

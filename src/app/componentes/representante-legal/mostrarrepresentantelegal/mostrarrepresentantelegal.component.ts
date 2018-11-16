@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarrepresentantelegalService } from '../../../servicios/mostrarrepresentantelegal.service';
 import { RepresentanteLegalService } from '../../../servicios/representante-legal.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mostrarrepresentantelegal',
@@ -34,7 +35,12 @@ export class MostrarrepresentantelegalComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay representantes legales en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sreplegal=this.data;//se guardan los datos obtenidos
             }
@@ -102,7 +108,12 @@ export class MostrarrepresentantelegalComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar este representante, tiene un comercio asignado");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este representante legal',
+                  text: 'Tiene un comercio asigando',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridreplegal(this.idrp);//llamado al metodo eliminar
               }
@@ -134,7 +145,12 @@ export class MostrarrepresentantelegalComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este representante");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la vista 
             }
           }else{

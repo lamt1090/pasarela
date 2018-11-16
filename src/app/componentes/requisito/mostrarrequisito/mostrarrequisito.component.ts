@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarrequisitoService } from '../../../servicios/mostrarrequisito.service';
 import { RequisitoService } from '../../../servicios/requisito.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mostrarrequisito',
@@ -34,7 +35,12 @@ export class MostrarrequisitoComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay requisitos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.srequisito=this.data;//se guardan los datos en la variable
             }
@@ -102,7 +108,12 @@ export class MostrarrequisitoComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar este requisito, es utilizado en la tabla validar estado");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este requisito',
+                  text: 'Esta siendo validado',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridrequisito(this.idrq);//llamdo al metodo de eliminar
               }
@@ -134,7 +145,12 @@ export class MostrarrequisitoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar este requisito");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borradoss correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//se recarga la vista
             }
           }else{

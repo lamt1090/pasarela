@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarciudadService } from '../../../servicios/mostrarciudad.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarciudad',
@@ -34,7 +36,12 @@ export class MostrarciudadComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No existen datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.sciudad=this.data;//se guardan los datos obtenidos en la consulta
             }
@@ -68,7 +75,12 @@ export class MostrarciudadComponent implements OnInit {
             this.data=JSON.parse(result);
             
             if(this.data['status']== false){
-              alert("No hat datos para esta opción");
+              swal({
+                type: 'error',
+                title: 'No hay datos apra esta opción',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.ciudadid=this.data;//obtiene los datos de la consulta
               this._mcdservice.set(this.ciudadid);//envia los datos al mostrar para guardarlos
@@ -102,7 +114,12 @@ export class MostrarciudadComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta ciudad, esta asignada en una sucursal");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar esta ciudad',
+                  text: 'Tiene sucursales asignadas',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridciudad(this.idcd);//llamada al metodo eliminar
               }
@@ -134,7 +151,12 @@ export class MostrarciudadComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar esta ciudad");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//recargar la vista
             }
           }else{

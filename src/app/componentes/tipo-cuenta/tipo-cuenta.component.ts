@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TipoCuentaModule } from '../../modelos/tipo-cuenta/tipo-cuenta.module';
 import { TipoCuentaService } from '../../servicios/tipo-cuenta.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-tipo-cuenta',
@@ -28,7 +30,12 @@ export class TipoCuentaComponent implements OnInit {
     vm._tipocuentaservice.addtipocuenta(vm.tipocuenta)//envio de datos al servicio para hacer la inserción
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formtipocuenta.reset();
   
       },

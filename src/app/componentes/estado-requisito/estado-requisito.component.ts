@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EstadoRequisitoModule } from '../../modelos/estado-requisito/estado-requisito.module';
 import { EstadoRequisitoService } from '../../servicios/estado-requisito.service';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class EstadoRequisitoComponent implements OnInit {
     vm._estadorequisitoservice.addestado(vm.estadorequisito)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
-        alert("Datos Guardados correctamente");
+        swal({
+          type: 'success',
+          title: 'Datos guardados correctamente',
+          /*text: '',
+          footer: '<a href>Why do I have this issue?</a>'*/
+        })
         formestadorequisito.reset();//se resetea el formulario
       },
       err =>{

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MostrarsubcategoriaService } from '../../../servicios/mostrarsubcategoria.service';
 import { SubcategoriaService } from '../../../servicios/subcategoria.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mostrarsubcategoria',
@@ -34,7 +36,12 @@ export class MostrarsubcategoriaComponent implements OnInit {
           if(result.code != 200){
             this.data=result;
             if(this.data['status']== false){
-              alert("No existen datos en la base de datos")
+              swal({
+                type: 'error',
+                title: 'No hay datos en la base de datos',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
             }else{
               this.ssubcategoria=this.data;//se guardan las subcategorias encontradas
             }
@@ -102,7 +109,12 @@ export class MostrarsubcategoriaComponent implements OnInit {
               this.data=JSON.parse(result);
               
               if(this.data['status']== true){
-                alert("No se puede eliminar esta subcategoria, un comercio lo esta usando");
+                swal({
+                  type: 'error',
+                  title: 'No se puede eliminar este subcategoria',
+                  text: 'Esta asiganda a un coemrcio',
+                  /*footer: '<a href>Why do I have this issue?</a>'*/
+                })
               }else{
                 this.eliminaridsubcategoria(this.idsb);//lamado al metodo que realiza la eliminación
               }
@@ -134,7 +146,12 @@ export class MostrarsubcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No se puede eliminar esta subcategoria");
             }else{
-              alert("los datos se han borrado correctamente");
+              swal({
+                type: 'success',
+                title: 'Datos borrados correctamente',
+                /*text: '',
+                footer: '<a href>Why do I have this issue?</a>'*/
+              })
               location.reload();//recarga la vista
             }
           }else{
