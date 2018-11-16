@@ -28,7 +28,8 @@ export class MonedaService {
   //metodo para insertar una moneda
   addmoneda(moneda):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
-    const body = new HttpParams().set('nombre_moneda',moneda.nombre);
+    const body = new HttpParams().set('nombre_moneda',moneda.nombre)
+                                  .set('simbolo', moneda.simbolo);
     return this._http.post(this.url+'insertmoneda.php',body,{headers: headers,responseType:'text'});
   }
 
@@ -36,7 +37,8 @@ export class MonedaService {
   editmoneda(moneda):Observable<any>{
     let headers = new HttpHeaders({"Content-type": 'application/x-www-form-urlencoded; charset=UTF-8'});
     const body = new HttpParams().set('id_coin',moneda.id_moneda)
-                                  .set('nombre_moneda',moneda.nombre);
+                                  .set('nombre_moneda',moneda.nombre)
+                                  .set('simbolo',moneda.simbolo);
     return this._http.post(this.url3+'editmoneda.php',body,{headers: headers,responseType:'text'});
   }
 

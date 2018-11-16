@@ -12,6 +12,12 @@
                             <input type="text" class="form-control" name="name_coin" #name_coin="ngModel" [(ngModel)]="moneda.nombre" placeholder="Ingrese el nombre de la moneda" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
                         </div>
                     </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                                <span *ngIf="!simbolo_coin.valid && simbolo_coin.touched" class="label label-danger">El simbolo es obligatorio, no acepta números </span>
+                            <input type="text" class="form-control" name="simbolo_coin" #simbolo_coin="ngModel" [(ngModel)]="moneda.simbolo" placeholder="Ingrese el simbolo de la moneda" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ\u00F1\u00D1 ]+$" required>
+                        </div>
+                    </div>
                     <button class="btn btn-primary waves-effect" type="submit" [disabled]="!formmoneda.form.valid" >GUARDAR</button>
                 </form>
             </div>

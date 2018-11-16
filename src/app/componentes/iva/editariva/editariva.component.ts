@@ -11,26 +11,27 @@ import { MostrarivaService } from '../../../servicios/mostrariva.service';
 })
 export class EditarivaComponent implements OnInit {
 
-  model:any = {};
+  model:any = {};//variable para guardar los datos del mostrar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrarivaService,
-    private _ivaservice: IvaService
+    private mostrar: MostrarivaService,//objeto de conexión con el mostrar
+    private _ivaservice: IvaService// objeto de conexión con el servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se extraen los datos del mostrar
+    this.model=sidata[0];// se guardan los datos en la variable
   }
 
+  //metodo editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._ivaservice.editiva(vm.model)
+    vm._ivaservice.editiva(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/iva');
+        this.rt.navigateByUrl('/iva');//redirección a otra vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -39,9 +40,10 @@ export class EditarivaComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditiva:NgForm){
-    formeditiva.reset();
-      this.rt.navigateByUrl('/iva');
+    formeditiva.reset();//reseteo del formulario
+      this.rt.navigateByUrl('/iva');//redirección a otra vista
   }
 
 }

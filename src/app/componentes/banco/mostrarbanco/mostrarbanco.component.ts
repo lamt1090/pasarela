@@ -11,26 +11,27 @@ import { MostrarbancoService } from '../../../servicios/mostrarbanco.service';
 })
 export class MostrarbancoComponent implements OnInit {
 
-  sbanco: any[];
-  idb: any;
-  bancoid: any[];
+  sbanco: any[];//variable para guardar los banco de la BD
+  idb: any;//variable para saber la selección del formulario
+  bancoid: any[];//variable para guardar datos de un banco especifico
   data: any;
   public banco: BancoModule;
 
   constructor(
     private rt: Router,
-    private _mbservice: MostrarbancoService, 
-    private _bancoservice: BancoService
+    private _mbservice: MostrarbancoService,//objeto de conexión cone l mostrar 
+    private _bancoservice: BancoService//objeto de conexión con el servicio
   ) {
-    this.mostrar();
+    this.mostrar();//inicialización del metodo
    }
 
   ngOnInit() {
   }
 
+  //metodo para mostrar
   mostrar(){
     let cate=this;
-    cate._bancoservice.getbancos()
+    cate._bancoservice.getbancos()//petición al servicio apra obtener los banco de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -39,7 +40,7 @@ export class MostrarbancoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sbanco=this.data;
+              this.sbanco=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -51,18 +52,20 @@ export class MostrarbancoComponent implements OnInit {
     );
   }
 
+  //metodo para saber que banco va a modificar
   modificar(data){
     this.idb= data;
     if(this.idb!=0){
-      this.idbn(this.idb);
+      this.idbn(this.idb);//llamado del metodo modificar
     }else{
       alert("Error al elegir el banco");
     }
   }
 
+  //metodo modificar
   idbn(idb){
     let bn=this;
-    bn._bancoservice.getbancoid(idb)
+    bn._bancoservice.getbancoid(idb)//petición al servicio para obtener los datos del bancoa  editar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -71,9 +74,9 @@ export class MostrarbancoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.bancoid=this.data;
-              this._mbservice.set(this.bancoid);
-              this.rt.navigateByUrl('editarbanco');
+              this.bancoid=this.data; //se obtienen los datos de la consulta
+              this._mbservice.set(this.bancoid); //se envian al mostrar para guardarlos
+              this.rt.navigateByUrl('editarbanco'); //se redirecciona a otra vista
             }
           }else{
               bn = result.data;
@@ -85,24 +88,27 @@ export class MostrarbancoComponent implements OnInit {
     );
   }
 
+  //metodo par actualizar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la página
   }
 
+  //metodo para saber que banco se va a eliminar
   eliminar(data){
     this.idb= data;
     if(this.idb!=0){
       if(confirm("seguro")== true){
-        this.eliminaridbn(this.idb);
+        this.eliminaridbn(this.idb);//llamado del metodo para eliminar
       }
     }else{
       alert("Error al elegir el banco");
     }
   }
 
+  //metodo para eliminar
   eliminaridbn(idb){
     let bn=this;
-    bn._bancoservice.eliminarbanco(idb)
+    bn._bancoservice.eliminarbanco(idb)//petición al servicio para enviar los datos a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -112,7 +118,7 @@ export class MostrarbancoComponent implements OnInit {
               alert("No hay datos para esta opción");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();//se recarga la vista
             }
           }else{
               bn = result.data;

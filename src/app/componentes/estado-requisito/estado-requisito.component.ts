@@ -12,25 +12,26 @@ import { NgForm } from '@angular/forms';
 })
 export class EstadoRequisitoComponent implements OnInit {
   
-  public estadorequisito: EstadoRequisitoModule;
+  public estadorequisito: EstadoRequisitoModule;//objeto de conexión con el modelo
 
   constructor(
-    private _estadorequisitoservice: EstadoRequisitoService
+    private _estadorequisitoservice: EstadoRequisitoService //objeto de conexión con el mostrar 
   ) {
-    this.estadorequisito= new EstadoRequisitoModule("");
+    this.estadorequisito= new EstadoRequisitoModule(""); //objeto de conexión al servicio
    }
 
   ngOnInit() {
   }
 
+  //metodo para insertar
   onsubmit(formestadorequisito: NgForm){
     let vm = this;
 
-    vm._estadorequisitoservice.addestado(vm.estadorequisito)
+    vm._estadorequisitoservice.addestado(vm.estadorequisito)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formestadorequisito.reset();
+        formestadorequisito.reset();//se resetea el formulario
       },
       err =>{
         alert("Error al guardar en la base de datos")

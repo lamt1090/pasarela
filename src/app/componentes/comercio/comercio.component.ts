@@ -11,49 +11,46 @@ import { NgForm } from '@angular/forms';
   providers: [ComercioService]
 })
 export class ComercioComponent implements OnInit {
-  sc: any;
-  sp: any;
-  scd: any;
+  sc: any;//variable para guardar la selección de categorias del formulario
+  sp: any;//variable para guardar la selección del pais del formulario
+  scd: any;//variable para guardar la selección del departmento del formulario
   data: any[];
-  sregimen : any[];
-  siva : any[];
-  srol : any[];
-  scategoria : any[];
-  spais : any[];
-  ssubcategoria : any[];
-  sdepartamento : any[];
-  sciudad : any[];
-  smoneda : any[];
-  public comercio: ComercioModule;
+  sregimen : any[];//variable para guardar los regimen de la BD
+  siva : any[]; //variable para guardar los iva de la BD
+  srol : any[];//variable para guardar los roles de la BD
+  scategoria : any[];//variable para guardar las categorias de al BD
+  spais : any[];//variable para guardar los paises de al BD
+  ssubcategoria : any[];//variable para guardar las subcategorias de al BD
+  sdepartamento : any[];//variable para guardar los departamentos de al BD
+  sciudad : any[];//variable para guardar las ciudades de al BD
+  
+  public comercio: ComercioModule;//objeto de conexión con el modelo
 
   constructor(
-    private _comercioservice: ComercioService
+    private _comercioservice: ComercioService//objeto de conexión con el servicio
   ) { 
     this.comercio = new ComercioModule("","","","","","","","","","","","","","","","","","","","","","","","","","","","");
   }
 
   ngOnInit(){
-    this.rol();
-    this.categoria();
-    this.pais();
-    this.regimen();
-    this.iva();
-    this.moneda();
-    //this.prueba();
+    this.rol();//inicialización del metodo
+    this.categoria();//inicialización del metodo
+    this.pais();//inicialización del metodo
+    this.regimen();//inicialización del metodo
+    this.iva();//inicialización del metodo
+    
+   
     
   }
 
-  prueba(){
-    console.log("prueba");
-  }
-
+  //metodo para insertar
   onsubmit(formcomercio: NgForm){
     let vm = this;
-    vm._comercioservice.addcomercio(vm.comercio)
+    vm._comercioservice.addcomercio(vm.comercio)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formcomercio.reset();
+        formcomercio.reset();//se resetea el formualrio
         
       },
       err =>{
@@ -63,18 +60,20 @@ export class ComercioComponent implements OnInit {
     ) 
   }
 
+  //metodo para saber la selección de la categoria
   onSelection(){
     this.sc= this.comercio.catc;
     if(this.sc!=0){
-      this.sb(this.sc);
+      this.sb(this.sc);//lamada al metodo buscar las subcategorias según la categoria
     }else{
       alert("Error en la elección de categoria");
     }
   }
 
+  //metodo buscar subcategorias según la categoria
   sb(sc){
     let cate=this;
-    cate._comercioservice.getsubcategoriaopcional(sc)
+    cate._comercioservice.getsubcategoriaopcional(sc)//petición al servicio para obtener las subcategorias según la categoria seleccionada
     .subscribe(
       result => {
           if(result.code != 200){
@@ -83,7 +82,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay subcategorias para esta opción");
             }else{
-              this.ssubcategoria=this.data;
+              this.ssubcategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -96,18 +95,20 @@ export class ComercioComponent implements OnInit {
 
   }
 
+  //metodo para ver que país seleccionaron
   onSelectionpais(){
     this.sp= this.comercio.npais;
     if(this.sp!=0){
-      this.sd(this.sp);
+      this.sd(this.sp);//llamada al metodo buscar departamento
     }else{
       alert("Error al elegir el país");
     }
   }
 
+  //metodo buscar departamento 
   sd(sp){
     let pais=this;
-    pais._comercioservice.getpaisopcional(sp)
+    pais._comercioservice.getpaisopcional(sp)//petición al servicio para obtener los departamentos según el país seleccionado
     .subscribe(
       result => {
           if(result.code != 200){
@@ -117,7 +118,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay departamento para esta opción");
             }else{
-              this.sdepartamento=this.data;
+              this.sdepartamento=this.data;//se guardan los datos obtenidos de la consulta
             }
           }else{
               pais = result.data;
@@ -129,19 +130,21 @@ export class ComercioComponent implements OnInit {
     );
   }
   
+  //metodo para saber que departamento seleccionaron
   onSelectiondepartamento(){
     this.scd= this.comercio.ndep;
     if(this.scd!=0){
-      this.scity(this.scd);
+      this.scity(this.scd);//llaamada al metodo buscar ciudad
     }else{
       alert("Error al elegir el departamento");
     }
   }
 
+  //metodo buscar ciudad
   scity(scd){
     
     let dpto=this;
-    dpto._comercioservice.getciudadopcional(scd)
+    dpto._comercioservice.getciudadopcional(scd)//petición al servicio para buscar las ciudades segun el departamento seleccionado
     .subscribe(
       result => {
           if(result.code != 200){
@@ -151,7 +154,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay ciudades para ese departamento");
             }else{
-              this.sciudad=this.data;
+              this.sciudad=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               dpto = result.data;
@@ -163,9 +166,10 @@ export class ComercioComponent implements OnInit {
     );
   }
 
+  //metodo buscar regimen
   regimen(){
     let cate=this;
-    cate._comercioservice.getregimen()
+    cate._comercioservice.getregimen()//petición para obtener los regimen de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -175,7 +179,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sregimen=result;
+              this.sregimen=result;//se guardan los datos obtenidos en la BD
             }
           }else{
               cate = result.data;
@@ -187,9 +191,10 @@ export class ComercioComponent implements OnInit {
     );
   }
 
+  //metodo buscar  iva
   iva(){
     let cate=this;
-    cate._comercioservice.getiva()
+    cate._comercioservice.getiva()//petición al servicio para buscar los ivas de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -198,7 +203,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.siva=result;
+              this.siva=result;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -210,9 +215,10 @@ export class ComercioComponent implements OnInit {
     );
   }
 
+  //metodo buscar roles
   rol(){
     let cate=this;
-    cate._comercioservice.getrol()
+    cate._comercioservice.getrol()//petición al servicio para obtener los roles de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -221,7 +227,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.srol=result;
+              this.srol=result;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -233,9 +239,10 @@ export class ComercioComponent implements OnInit {
     );
   }
 
+  //metodo buscar categorias
   categoria(){
     let cate=this;
-    cate._comercioservice.getcategoria()
+    cate._comercioservice.getcategoria()//petición al servicio para obtener las categorias de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -244,7 +251,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.scategoria=this.data;
+              this.scategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -256,9 +263,10 @@ export class ComercioComponent implements OnInit {
     );
   }
 
+  //metodo busca país
   pais(){
     let cate=this;
-    cate._comercioservice.getpais()
+    cate._comercioservice.getpais()//petición al servicio para obtener los paises de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -267,7 +275,7 @@ export class ComercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.spais=this.data;
+              this.spais=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -279,29 +287,7 @@ export class ComercioComponent implements OnInit {
     );
   }
 
-  moneda(){
-    let cate=this;
-    cate._comercioservice.getmoneda()
-    .subscribe(
-      result => {
-          if(result.code != 200){
-                        
-            this.data=result;
-
-            if(this.data['status']== false){
-              alert("No existen monedas en la base de datos")
-            }else{
-              this.smoneda=this.data;
-            }
-          }else{
-              cate = result.data;
-          }
-      },
-      error => {
-          console.log(<any>error);
-      }
-    );
-  }
+  
   
   
 }

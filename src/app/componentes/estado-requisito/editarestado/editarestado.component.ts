@@ -11,26 +11,27 @@ import { EstadoRequisitoService } from '../../../servicios/estado-requisito.serv
 })
 export class EditarestadoComponent implements OnInit {
 
-  model:any = {};
+  model:any = {}; //variable para guardar los datos obtenidos del mostrar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrarestadosrequisitosService,
-    private _estadoservice: EstadoRequisitoService
+    private mostrar: MostrarestadosrequisitosService,//objeto de conexión al mostrar
+    private _estadoservice: EstadoRequisitoService//objeto de conexón al servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se extraen los datos del mostrar
+    this.model=sidata[0];//se guardan los datos obtenidos
   }
 
+  //metodo para eliminar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._estadoservice.editestadorequisito(vm.model)
+    vm._estadoservice.editestadorequisito(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/estadorequisito');
+        this.rt.navigateByUrl('/estadorequisito');//se redirecciona a otra vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -39,9 +40,10 @@ export class EditarestadoComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditarestado:NgForm){
-    formeditarestado.reset();
-      this.rt.navigateByUrl('/estadorequisito');
+    formeditarestado.reset();//se resetea el formulario
+      this.rt.navigateByUrl('/estadorequisito');//se redirecciona a otra vista
   }
 
 }

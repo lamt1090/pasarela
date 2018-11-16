@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 export class MonedaModule {
   constructor(
     //campo utilizado en el formulario html y declarados en el componente
-    public nombre: String
+    public nombre: String,
+    public simbolo: string,
   ){}
  }

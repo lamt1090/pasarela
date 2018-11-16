@@ -11,31 +11,32 @@ import { CiudadService } from '../../../servicios/ciudad.service';
 })
 export class EditarciudadComponent implements OnInit {
 
-  model:any = {};
-  sciudad: any[];
-  spais: any[];
-  sp: any;
+  model:any = {}; //variable para guardar los datos del mostrar
+  sciudad: any[]; //variable para guardar los departamentos
+  spais: any[]; //variable para guardar los paises
+  sp: any;//variable para saber la seleccón en el formulario
   data: any;
 
   constructor(
     public rt : Router,
-    private mostrar: MostrarciudadService,
-    private _ciudadservice: CiudadService
+    private mostrar: MostrarciudadService, //objeto de conexión con mostrar
+    private _ciudadservice: CiudadService//objeto de conexión con el servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
-    this.pais();
+    let sidata = this.mostrar.get();//se extraen los datos del mostrar
+    this.model=sidata[0];//se guardan los datos obtenidos
+    this.pais();//inicialización del metodo
   }
 
+  //metodo para editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._ciudadservice.editciudad(vm.model)
+    vm._ciudadservice.editciudad(vm.model)//petición al servico para enviar los datos a editar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/ciudad');
+        this.rt.navigateByUrl('/ciudad');//se redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -44,14 +45,16 @@ export class EditarciudadComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditarciudad:NgForm){
-    formeditarciudad.reset();
-      this.rt.navigateByUrl('/ciudad');
+    formeditarciudad.reset();//se resetea el formulario
+      this.rt.navigateByUrl('/ciudad'); //se redirecciona la vista
   }
 
+  //metodo para traer los paises de la BD
   pais(){
     let cate=this;
-    cate._ciudadservice.getpais()
+    cate._ciudadservice.getpais()//petición al servicio para obtener los paises de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -60,7 +63,7 @@ export class EditarciudadComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.spais=this.data;
+              this.spais=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -72,18 +75,20 @@ export class EditarciudadComponent implements OnInit {
     );
   }
 
+  //metodo para saber que país se escogio en el formulario
   onSelectionpais(){
     this.sp= this.model.npais;
     if(this.sp!=0){
-      this.sd(this.sp);
+      this.sd(this.sp);//llamada al metodo buscar departamento
     }else{
       alert("Error al elegir el país");
     }
   }
 
+  //metodo buscar departamentos
   sd(sp){
     let pais=this;
-    pais._ciudadservice.getpaisopcional(sp)
+    pais._ciudadservice.getpaisopcional(sp)//petición al servico para buscar los departamentos del país seleccionado
     .subscribe(
       result => {
           if(result.code != 200){
@@ -93,7 +98,7 @@ export class EditarciudadComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hay departamento para esta opción");
             }else{
-              this.sciudad=this.data;
+              this.sciudad=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               pais = result.data;
@@ -105,27 +110,5 @@ export class EditarciudadComponent implements OnInit {
     );
   }
 
-  /*departamentos(){
-    let cate=this;
-    cate._ciudadservice.getdepartamentos()
-    .subscribe(
-      result => {
-          if(result.code != 200){
-            this.data=result;
-          
-            if(this.data['status']== false){
-              alert("No existen ciudades para ese departamento")
-            }else{
-              this.sciudad=this.data;
-            }
-          }else{
-              cate = result.data;
-          }
-      },
-      error => {
-          console.log(<any>error);
-      }
-    );
-  }*/
 
 }

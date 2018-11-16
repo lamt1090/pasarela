@@ -11,26 +11,27 @@ import { DeduccionService } from '../../../servicios/deduccion.service';
 })
 export class EditardeduccionComponent implements OnInit {
 
-  model:any = {};
+  model:any = {};//varibale para guardar los datos del msotrar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrardeduccionesService,
-    private _deduccionservice: DeduccionService
+    private mostrar: MostrardeduccionesService, //objeto de conexión al mostrar
+    private _deduccionservice: DeduccionService//objeto de conexión al servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se extraen los datos del mostrar
+    this.model=sidata[0];//se guardan los datos obtenidos
   }
 
+  //metodo para editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._deduccionservice.editdeduccion(vm.model)
+    vm._deduccionservice.editdeduccion(vm.model)//petición al servicio para enviar los datos a editar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/deduccion');
+        this.rt.navigateByUrl('/deduccion');//se redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -39,9 +40,10 @@ export class EditardeduccionComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditardeduccion:NgForm){
-    formeditardeduccion.reset();
-      this.rt.navigateByUrl('/deduccion');
+    formeditardeduccion.reset();// se resetea el formulario
+      this.rt.navigateByUrl('/deduccion');//se redirecciona la vista
   }
 
 }

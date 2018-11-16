@@ -10,24 +10,25 @@ import { CategoriaService } from '../../../servicios/categoria.service';
 })
 export class MostrarcategoriaComponent implements OnInit {
 
-  scategoria: any[];
-  idct: any;
-  categoriaid: any[];
+  scategoria: any[]; //variable para guardar las categorias de la BD
+  idct: any; //cariable para guardar la selección del formulario
+  categoriaid: any[];//variable para guardar una categoria especifica
   data: any;
   constructor(
     private rt: Router,
-    private _mctservice: MostrarcategoriaService, 
-    private _categoriaservice: CategoriaService
+    private _mctservice: MostrarcategoriaService, //objeto de conexión al mostrar
+    private _categoriaservice: CategoriaService //objeto de coneción al servicio
   ) { 
-    this.mostrar();
+    this.mostrar();//inicialización del metodo
   }
 
   ngOnInit() {
   }
 
+  //metodo mostrar
   mostrar(){
     let cate=this;
-    cate._categoriaservice.getcategorias()
+    cate._categoriaservice.getcategorias()//petición al servicio para obtener las categorias de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -35,7 +36,7 @@ export class MostrarcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.scategoria=this.data;
+              this.scategoria=this.data;// se guardan los datos obtenidos 
             }
           }else{
               cate = result.data;
@@ -47,18 +48,20 @@ export class MostrarcategoriaComponent implements OnInit {
     );
   }
 
+  //metodo para saber que categoria modificar
   modificar(data){
     this.idct= data;
     if(this.idct!=0){
-      this.idbn(this.idct);
+      this.idbn(this.idct);//llamdo al metodo modificar
     }else{
       alert("Error al elegir categoria");
     }
   }
 
+  //metodo modificar
   idbn(idct){
     let bn=this;
-    bn._categoriaservice.getcategoriaid(idct)
+    bn._categoriaservice.getcategoriaid(idct)//petición al servicio para obtener los datos de la categoria a modificar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -67,9 +70,9 @@ export class MostrarcategoriaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.categoriaid=this.data;
-              this._mctservice.set(this.categoriaid);
-              this.rt.navigateByUrl('editarcategoria');
+              this.categoriaid=this.data; //se obtienen lso datos de la cansulta
+              this._mctservice.set(this.categoriaid);// se envian al mostrar para guardar los datos
+              this.rt.navigateByUrl('editarcategoria'); //se redirecciona las vista
             }
           }else{
               bn = result.data;
@@ -81,16 +84,18 @@ export class MostrarcategoriaComponent implements OnInit {
     );
   }
 
+  //metodo para actializar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la página
   }
 
+  //metodo para saber que categoria eliminar
   eliminar(data){
     this.idct= data;
     if(this.idct!=0){
       if(confirm("seguro")== true){
         let cat =this;
-        cat._categoriaservice.existecategoria(this.idct)
+        cat._categoriaservice.existecategoria(this.idct)//petición el servicio para saber si la categoria se puede eliminar o no
         .subscribe(
           result => {
             if(result.code != 200){
@@ -99,7 +104,7 @@ export class MostrarcategoriaComponent implements OnInit {
               if(this.data['status']== true){
                 alert("No se puede eliminar esta categoria, tiene una subcategoria");
               }else{
-                this.eliminaridcategoria(this.idct);
+                this.eliminaridcategoria(this.idct);//lamado al metodo eliminar
               }
             }else{
                 cat = result.data;
@@ -116,9 +121,10 @@ export class MostrarcategoriaComponent implements OnInit {
     }
   }
 
+  //metodo elimianr
   eliminaridcategoria(idct){
     let bn=this;
-    bn._categoriaservice.eliminarcategoria(idct)
+    bn._categoriaservice.eliminarcategoria(idct)//petición al servicio para enviar los datos a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -129,7 +135,7 @@ export class MostrarcategoriaComponent implements OnInit {
               alert("No se puede eliminar esta categoria");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();//se recarga la página
             }
           }else{
               bn = result.data;

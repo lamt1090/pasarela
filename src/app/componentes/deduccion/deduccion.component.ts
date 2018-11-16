@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 export class DeduccionComponent implements OnInit {
   
-  public deduccion: DeduccionModule;
+  public deduccion: DeduccionModule; //objeto de conexión con el modelo
 
   constructor(
-    private _deduccionservice: DeduccionService
+    private _deduccionservice: DeduccionService //objeto de coneción con el servicio
   ) {
     this.deduccion = new DeduccionModule("", "");
    }
@@ -22,13 +22,14 @@ export class DeduccionComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para insertar
   onsubmit(formdeduccion: NgForm){
     let vm = this;
-    vm._deduccionservice.adddeduccion(vm.deduccion)
+    vm._deduccionservice.adddeduccion(vm.deduccion)//petición para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formdeduccion.reset();
+        formdeduccion.reset();//se resetea el formulario
         
       },
       err =>{

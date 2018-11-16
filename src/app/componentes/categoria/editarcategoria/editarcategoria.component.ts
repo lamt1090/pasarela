@@ -11,27 +11,27 @@ import { MostrarcategoriaService } from '../../../servicios/mostrarcategoria.ser
 })
 export class EditarcategoriaComponent implements OnInit {
 
-  model:any = {};
-  public sidcategoria : any[];
+  model:any = {};//variable para guardar los datos del mostrar
  
   constructor(
     public rt : Router,
-    private mostrar: MostrarcategoriaService,
-    private _categoriaservice: CategoriaService
+    private mostrar: MostrarcategoriaService,//objeto de conexión con el mostrar
+    private _categoriaservice: CategoriaService //objeto de coenxión con el servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
+    let sidata = this.mostrar.get();//se extraen los datos guardados en el mostrar
+    this.model=sidata[0];//se guardan los datos obtenidos
   }
 
+  //metodo para editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._categoriaservice.editcategoria(vm.model)
+    vm._categoriaservice.editcategoria(vm.model)//petición al servicio para enviar los datos a modificar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/categoria');
+        this.rt.navigateByUrl('/categoria');//se redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -40,9 +40,10 @@ export class EditarcategoriaComponent implements OnInit {
     )
   }
 
+  //metodo para cancelar el editar
   cancelar(formeditarcategoria:NgForm){
-    formeditarcategoria.reset();
-      this.rt.navigateByUrl('/categoria');
+    formeditarcategoria.reset();//se resetea el formualrio
+      this.rt.navigateByUrl('/categoria');//se redirecciona la vista
   }
 
 }

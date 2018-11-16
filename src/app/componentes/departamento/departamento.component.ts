@@ -10,28 +10,28 @@ import { NgForm } from '@angular/forms';
   providers: [DepartamentoService]
 })
 export class DepartamentoComponent implements OnInit {
-  pais: any[];
+  pais: any[];//variable para guardar los paises traidos de la BD
   data: any[];
-  public departamento: DepartamentoModule;
+  public departamento: DepartamentoModule;//objeto de conexión con el modelo
 
   constructor(
-    private _departamentoservice: DepartamentoService
+    private _departamentoservice: DepartamentoService //objeto de conexión con el servicio
   ) { 
-    
     this.departamento = new DepartamentoModule("","");
   }
 
   ngOnInit() {
-    this.paises();
+    this.paises();//se inicializa el metodo
   }
 
+  //metodo para insertar
   onsubmit(formdepartamento: NgForm){
     let vm = this;
-    vm._departamentoservice.adddepartamento(vm.departamento)
+    vm._departamentoservice.adddepartamento(vm.departamento)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formdepartamento.reset();
+        formdepartamento.reset();//se reseteael formulario
         
       },
       err =>{
@@ -41,9 +41,10 @@ export class DepartamentoComponent implements OnInit {
     )
   }
 
+  //metodo mostrar paises
   paises(){
     let cate=this;
-    cate._departamentoservice.getpaises()
+    cate._departamentoservice.getpaises()//petición al serrvicio para obtener los paises de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -52,7 +53,7 @@ export class DepartamentoComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.pais=result;
+              this.pais=result;//se guardan los datos obtenidos
             }
           }else{
               cate = result.data;

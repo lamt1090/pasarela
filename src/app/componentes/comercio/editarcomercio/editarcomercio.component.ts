@@ -12,42 +12,43 @@ import { Router } from '@angular/router';
 })
 export class EditarcomercioComponent implements OnInit {
 
-  model:any = {};
+  model:any = {};//variable para guardar los datos del mostrar
   data: any;
 
-  sc: any;
-  sp: any;
-  scd: any;
-  sregimen : any[];
-  siva : any[];
-  srol : any[];
-  scategoria : any[];
-  ssubcategoria : any[];
-  smsubcat : any[];
+  sc: any;//variable para guardar la selección de categorias del formulario
+  sp: any;//variable para guardar la selección del pais del formulario
+  scd: any;//variable para guardar la selección del departmento del formulario
+  sregimen : any[];//variable para guardar los regimen de la BD
+  siva : any[]; //variable para guardar los iva de la BD
+  srol : any[];//variable para guardar los roles de la BD
+  scategoria : any[];//variable para guardar las categorias de al BD
+  ssubcategoria : any[];//variable para guardar las subcategorias segun la categoria 
+  smsubcat : any[];//variable para guardar las subcategorias de al BD
   
   
   constructor(
     public rt : Router,
-    private mostrar: MostrarcomercioService,
-    private _comercioservice: ComercioService
+    private mostrar: MostrarcomercioService,//objeto de conexión con el mostrar
+    private _comercioservice: ComercioService//objeto de coneción con el servicio
   ) { }
 
   ngOnInit() {
-    let sidata = this.mostrar.get();
-    this.model=sidata[0];
-    this.subcategoria();
-    this.categoria();
-    this.regimen();
-    this.iva();
+    let sidata = this.mostrar.get();//se obtienen los datos guardados en el mostrar
+    this.model=sidata[0];//se guardan los datos obtenidos
+    this.subcategoria();//inicialización del metodo
+    this.categoria();//inicialización del metodo
+    this.regimen();//inicialización del metodo
+    this.iva();//inicialización del metodo
   }
 
+  //medoto editar
   onsubmit(f:NgForm){
     let vm = this;
-    vm._comercioservice.editcomercio(vm.model)
+    vm._comercioservice.editcomercio(vm.model)//petición al servicio para enviar lso datos a editar
     .subscribe(
       res => {
         alert("Datos Actualizados correctamente");
-        this.rt.navigateByUrl('/mostrarcomercio');
+        this.rt.navigateByUrl('/mostrarcomercio');//se redirecciona la vista
       },
       err =>{
         alert("Erro al guardar en la base de datos");
@@ -56,14 +57,16 @@ export class EditarcomercioComponent implements OnInit {
     )
   }
 
+  //metodo cancelar el editar
   cancelar(formeditarcomercio:NgForm){
-    formeditarcomercio.reset();
-      this.rt.navigateByUrl('/mostrarcomercio');
+    formeditarcomercio.reset();//se resetea el formulario
+      this.rt.navigateByUrl('/mostrarcomercio');//se redirecciona la vista
   }
 
+  //metodo buscar categorias
   categoria(){
     let cate=this;
-    cate._comercioservice.getcategoria()
+    cate._comercioservice.getcategoria()//petición al servicio para obtener las categorias de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -72,7 +75,7 @@ export class EditarcomercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.scategoria=this.data;
+              this.scategoria=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -84,24 +87,26 @@ export class EditarcomercioComponent implements OnInit {
     );
   }
 
+  //metodo para saber la selección de la categoria
   onSelection(){
     this.sc= this.model.catc;
     if(this.sc!=0){
-      this.sb(this.sc);
+      this.sb(this.sc);//lamada al metodo buscar las subcategorias según la categoria
     }else{
       alert("Error en la elección de categoria");
     }
   }
 
+  //metodo buscar las subcategorias según la categoria
   sb(sc){
     let cate=this;
-    cate._comercioservice.getsubcategoriaopcional(sc)
+    cate._comercioservice.getsubcategoriaopcional(sc)//petición al servicio para obtener las subcategorias según la categoria seleccionada
     .subscribe(
       result => {
           if(result.code != 200){
             this.data=JSON.parse(result);
 
-              this.ssubcategoria=this.data;
+              this.ssubcategoria=this.data;//se guardan los datos obtenidos en la consulta
             
           }else{
               cate = result.data;
@@ -114,9 +119,10 @@ export class EditarcomercioComponent implements OnInit {
 
   }
 
+   //metodo buscar regimen
   regimen(){
     let cate=this;
-    cate._comercioservice.getregimen()
+    cate._comercioservice.getregimen()//petición para obtener los regimen de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -126,7 +132,7 @@ export class EditarcomercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sregimen=result;
+              this.sregimen=result;//se guardan los datos obtenidos en la BD
             }
           }else{
               cate = result.data;
@@ -138,9 +144,10 @@ export class EditarcomercioComponent implements OnInit {
     );
   }
 
+  //metodo buscar  iva
   iva(){
     let cate=this;
-    cate._comercioservice.getiva()
+    cate._comercioservice.getiva()//petición al servicio para buscar los ivas de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -149,7 +156,7 @@ export class EditarcomercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.siva=result;
+              this.siva=result;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;
@@ -161,9 +168,10 @@ export class EditarcomercioComponent implements OnInit {
     );
   }
 
+  //metodo para buscar subcategorias
   subcategoria(){
     let cate=this;
-    cate._comercioservice.getsubcategoria()
+    cate._comercioservice.getsubcategoria()//petición al servicio para obtener las subcategorias de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -172,7 +180,7 @@ export class EditarcomercioComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.smsubcat=this.data;
+              this.smsubcat=this.data;//se guardan los datos obtenidos en la consulta
             }
           }else{
               cate = result.data;

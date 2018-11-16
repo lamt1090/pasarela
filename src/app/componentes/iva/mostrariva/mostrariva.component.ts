@@ -10,24 +10,25 @@ import { IvaService } from '../../../servicios/iva.service';
 })
 export class MostrarivaComponent implements OnInit {
 
-  siva: any[];
-  idiva: any;
-  ivaid: any[];
+  siva: any[];//variable para guardar los ivas obtenidos de la BD
+  idiva: any; //variable para saber la selección del formulario
+  ivaid: any[]; //variable pára guardar los datos especificos de un iva
   data: any;
   constructor(
     private rt: Router,
-    private _mivaservice: MostrarivaService, 
-    private _ivaservice: IvaService
+    private _mivaservice: MostrarivaService, //objeto de conexión con el mostrar
+    private _ivaservice: IvaService//objeto de conexión con el servicio
   ) { 
-    this.mostrar();
+    this.mostrar();//inicalización del metodo
   }
 
   ngOnInit() {
   }
 
+  //metodo apra mostrar 
   mostrar(){
     let cate=this;
-    cate._ivaservice.getiva()
+    cate._ivaservice.getiva()//perición al servicio para obtener los ivas de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -35,7 +36,7 @@ export class MostrarivaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.siva=this.data;
+              this.siva=this.data;//se guardan los datos obtenidos
             }
           }else{
               cate = result.data;
@@ -47,18 +48,20 @@ export class MostrarivaComponent implements OnInit {
     );
   }
 
+  //metodo para saber que iva modifica
   modificar(data){
     this.idiva= data;
     if(this.idiva!=0){
-      this.idbn(this.idiva);
+      this.idbn(this.idiva);//llamado al metodo modificar
     }else{
       alert("Error al elegir iva");
     }
   }
 
+  //metodo modificar
   idbn(idiva){
     let bn=this;
-    bn._ivaservice.getivaid(idiva)
+    bn._ivaservice.getivaid(idiva)//petición al servicio para enviar los datos a modificar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -67,9 +70,9 @@ export class MostrarivaComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.ivaid=this.data;
-              this._mivaservice.set(this.ivaid);
-              this.rt.navigateByUrl('editariva');
+              this.ivaid=this.data; //se obtienen los datos de la consulta
+              this._mivaservice.set(this.ivaid);// se envian al mostrar para guardarlos
+              this.rt.navigateByUrl('editariva');//se redirecciona a otra vista
             }
           }else{
               bn = result.data;
@@ -81,16 +84,18 @@ export class MostrarivaComponent implements OnInit {
     );
   }
 
+  //metodo para actualizar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la vista
   }
 
+  //metodo para saber que iva eliminar y si se puede eliminar
   eliminar(data){
     this.idiva= data;
     if(this.idiva!=0){
       if(confirm("seguro")== true){
         let cat =this;
-        cat._ivaservice.existeiva(this.idiva)
+        cat._ivaservice.existeiva(this.idiva)//petición al servicio para buscar si es posible eliminar la elección o no
         .subscribe(
           result => {
             if(result.code != 200){
@@ -99,7 +104,7 @@ export class MostrarivaComponent implements OnInit {
               if(this.data['status']== true){
                 alert("No se puede eliminar el iva, un comercio tiene este valor");
               }else{
-                this.eliminaridiva(this.idiva);
+                this.eliminaridiva(this.idiva);//llamda al metodo eliminar
               }
             }else{
                 cat = result.data;
@@ -116,9 +121,10 @@ export class MostrarivaComponent implements OnInit {
     }
   }
 
+  //metodo eliminar
   eliminaridiva(idiva){
     let bn=this;
-    bn._ivaservice.eliminariva(idiva)
+    bn._ivaservice.eliminariva(idiva)//petición al servicio para enviar los datos a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -129,7 +135,7 @@ export class MostrarivaComponent implements OnInit {
               alert("No se puede eliminar esta categoria");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();//se recarga la vista
             }
           }else{
               bn = result.data;

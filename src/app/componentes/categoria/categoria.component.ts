@@ -12,10 +12,10 @@ import { NgForm } from '@angular/forms';
 })
 export class CategoriaComponent implements OnInit {
   
-  public categoria: CategoriaModule;
+  public categoria: CategoriaModule; //objeto de conexión con el modelo
 
   constructor(
-    private _categoriaservice: CategoriaService
+    private _categoriaservice: CategoriaService //objeto de conexión con el servicio
   ) {
     this.categoria= new CategoriaModule("");
    }
@@ -23,14 +23,15 @@ export class CategoriaComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para insertar
   onsubmit(formcategoria: NgForm){
     let vm = this;
 
-    vm._categoriaservice.addcategoria(vm.categoria)
+    vm._categoriaservice.addcategoria(vm.categoria)//petició al servicio para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formcategoria.reset();
+        formcategoria.reset();//se resetea el formulario
         
       },
       err =>{

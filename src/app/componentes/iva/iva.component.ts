@@ -12,10 +12,10 @@ import { NgForm } from '@angular/forms';
 })
 export class IvaComponent implements OnInit {
   
-  public iva: IvaModule;
+  public iva: IvaModule;//objeto de conexión con el modelo
 
   constructor(
-    private _ivaservice: IvaService
+    private _ivaservice: IvaService//objeto de conexión con el servicio
   ) { 
     this.iva= new IvaModule("");
   }
@@ -23,14 +23,15 @@ export class IvaComponent implements OnInit {
   ngOnInit() {
   }
 
+  //metodo para insrtar
   onsubmit(formiva: NgForm){
     let vm = this;
 
-    vm._ivaservice.addiva(vm.iva)
+    vm._ivaservice.addiva(vm.iva)//petición al servicio para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formiva.reset();
+        formiva.reset();//se resetea el formulario
   
       },
       err =>{

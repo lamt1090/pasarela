@@ -10,24 +10,25 @@ import { DeduccionService } from '../../../servicios/deduccion.service';
 })
 export class MostrardeduccionComponent implements OnInit {
 
-  sdeduccion: any[];
-  iddc: any;
-  deduccionid: any[];
+  sdeduccion: any[]; //variable para guardar la deducciones
+  iddc: any; //variable para ver la selección del formulario
+  deduccionid: any[];// variable para gauardar una deducción en especifico
   data: any;
   constructor(
     private rt: Router,
-    private _mdcservice: MostrardeduccionesService, 
-    private _deduccionservice: DeduccionService
+    private _mdcservice: MostrardeduccionesService, //objeto d econexión con el mostrar
+    private _deduccionservice: DeduccionService//objeto de conexión con el servicio
   ) { 
-    this.mostrar();
+    this.mostrar();//inicialización del metodo
   }
 
   ngOnInit() {
   }
 
+  //metodo mostrar
   mostrar(){
     let dc=this;
-    dc._deduccionservice.getdeducciones()
+    dc._deduccionservice.getdeducciones()//petición al servicio para obtener los datos de la BD
     .subscribe(
       result => {
           if(result.code != 200){
@@ -35,7 +36,7 @@ export class MostrardeduccionComponent implements OnInit {
             if(this.data['status']== false){
               alert("No existen datos en la base de datos")
             }else{
-              this.sdeduccion=this.data;
+              this.sdeduccion=this.data;//se guardan los datos obtenidos
             }
           }else{
               dc = result.data;
@@ -47,18 +48,20 @@ export class MostrardeduccionComponent implements OnInit {
     );
   }
 
+  //metodo para saber la deducción seleccionada
   modificar(data){
     this.iddc= data;
     if(this.iddc!=0){
-      this.idbn(this.iddc);
+      this.idbn(this.iddc);//llamdo al metodo modificar
     }else{
       alert("Error al elegir deducción");
     }
   }
 
+  //metodo modificar
   idbn(iddc){
     let bn=this;
-    bn._deduccionservice.getdeduccionid(iddc)
+    bn._deduccionservice.getdeduccionid(iddc)//petición al servicio para obtener los datos de la deducción seleccionada
     .subscribe(
       result => {
           if(result.code != 200){
@@ -67,9 +70,9 @@ export class MostrardeduccionComponent implements OnInit {
             if(this.data['status']== false){
               alert("No hat datos para esta opción");
             }else{
-              this.deduccionid=this.data;
-              this._mdcservice.set(this.deduccionid);
-              this.rt.navigateByUrl('editardeduccion');
+              this.deduccionid=this.data; //se obtienen los datos de la consulta
+              this._mdcservice.set(this.deduccionid);//se envian al mostrar para guardar
+              this.rt.navigateByUrl('editardeduccion');// se redirecciona a otra vista
             }
           }else{
               bn = result.data;
@@ -81,24 +84,27 @@ export class MostrardeduccionComponent implements OnInit {
     );
   }
 
+  //metodo para actualizar
   actualizar(){
-    location.reload();
+    location.reload();//se recarga la página
   }
 
+  //metodo para saber que deducción eliminar
   eliminar(data){
     this.iddc= data;
     if(this.iddc!=0){
       if(confirm("seguro")== true){
-        this.eliminariddeduccion(this.iddc);
+        this.eliminariddeduccion(this.iddc);//lamado al metodo eliminar
       }
     }else{
       alert("Error al elegir la deducción");
     }
   }
 
+  //metodo eliminar
   eliminariddeduccion(iddc){
     let bn=this;
-    bn._deduccionservice.eliminardeduccion(iddc)
+    bn._deduccionservice.eliminardeduccion(iddc)//petición al servicio para enviar los datos a eliminar
     .subscribe(
       result => {
           if(result.code != 200){
@@ -108,7 +114,7 @@ export class MostrardeduccionComponent implements OnInit {
               alert("No hay datos para esta opción");
             }else{
               alert("los datos se han borrado correctamente");
-              location.reload();
+              location.reload();//se recarga la página
             }
           }else{
               bn = result.data;

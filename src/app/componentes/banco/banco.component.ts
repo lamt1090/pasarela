@@ -13,10 +13,10 @@ import { NgForm } from '@angular/forms';
 export class BancoComponent implements OnInit {
  
   data: any;
-  public banco : BancoModule;
+  public banco : BancoModule; //objeto de conexión con el modelo
 
   constructor(
-    private _bancoservice: BancoService
+    private _bancoservice: BancoService // objeto de conexión con el servicio
   ) { 
     this.banco= new BancoModule("");
     
@@ -26,14 +26,15 @@ export class BancoComponent implements OnInit {
    
   }
 
+  //metodo para insertar
   onsubmit(formbanco: NgForm){
     let vm = this;
 
-    vm._bancoservice.addbanco(vm.banco)
+    vm._bancoservice.addbanco(vm.banco)//petición para enviar los datos a insertar
     .subscribe(
       res => {
         alert("Datos Guardados correctamente");
-        formbanco.reset();
+        formbanco.reset();//se resetea el formulario
       },
       err =>{
         alert("Erro al guardar en la base de datos");
